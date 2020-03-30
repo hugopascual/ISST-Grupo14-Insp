@@ -7,14 +7,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>iNspector</title>
 </head>
 <body>
 
-<h2>Página del TFG de ${tfg.name}</h2>
-<p>Título del TFG: ${tfg.title}</p>
-<p>Estado del TFG: ${tfg.status}</p>
-<p>Tutor del TFG: ${tfg.advisor.name}</p>
+<h2>Página del inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2}</h2>
+
+<p>Email: ${inspector.email}</p>
 
 <h2>
 <form action="FormLogoutServlet">

@@ -11,19 +11,8 @@
 </head>
 <body>
 
-<h2>Página del profesor ${profesor.name}</h2>
-<p>Nombre: ${profesor.name}</p>
-<p>Email: ${profesor.email}</p>
-<p>Lista de TFGs tutorizados:</p>
-<table border="1">
-<c:forEach items="${profesor.advisedTFGs}" var="tfgi">
-<tr>
-<td>${tfgi.name}</td>
-<td>${tfgi.email}</td>
-<td>${tfgi.title}</td>
-</tr>
-</c:forEach>
-</table>
+<h2>Página del cliente ${cliente.nombre} ${cliente.apellido_1} ${cliente.apellido_2}</h2>
+<p>DATOS DEL CLIENTE <p>
 
 <h2>
 <form action="FormLogoutServlet">

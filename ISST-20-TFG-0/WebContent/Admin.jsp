@@ -5,43 +5,44 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>iNspector</title>
 </head>
 <body>
 
-<h2>Admin</h2>
-<p><b>Número de trabajos activos: </b>${fn:length(tfgs)}</p>
-<p><b>Número de profesores activos: </b>${fn:length(profesores)}</p>
+<h2>Bienvenido administrador</h2>
+<p><b>Número de establecimientos registrados: </b>${fn:length(establecimientos)}</p>
+<p><b>Número de inspectores registrados: </b>${fn:length(inspectores)}</p>
 
-<h2>Profesores</h2>
+<h2>Inspectores</h2>
 <table border="1">
-<c:forEach items="${profesores}" var="profesori">
+<c:forEach items="${inspectores}" var="inspectori">
 <tr>
-<td>${profesori.name}</td>
-<td>${profesori.email}</td>
+<td>${inspectori.nombre}</td>
+<td>${inspectori.apellido_1}</td>
 </tr>
 </c:forEach>
 </table>
 
-<h2>TFGs</h2>
+<h2>Establecimientos</h2>
 <table border="1">
-<c:forEach items="${tfgs}" var="tfgi">
+<c:forEach items="${establecimientos}" var="establecimientoi">
 <tr>
-<td>${tfgi.title}</td>
-<td>${tfgi.status}</td>
-<td>${tfgi.email}</td>
+<td>${establecimientoi.cif}</td>
+<td>${establecimientoi.nombre}</td>
+<td>${establecimientoi.rep_legal}</td>
 </tr>
 </c:forEach>
 </table>
 
 
-<h2>Registrar un nuevo profesor</h2>
-<%@ include file = "FormCreaProfesor.jsp" %>
+<h2>Registrar un nuevo inspector</h2>
+<%@ include file = "FormCreaInspector.jsp" %>
+
+<h2>Registrar un nuevo restaurante</h2>
+<%@ include file = "FormCreaRestaurante.jsp" %>
 
 <h2>
-<form action="FormLogoutServlet">
-<button type="submit">Logout</button>
-</form>
+<%@ include file = "FormLogout.jsp" %>
 </h2>
 
 </body>

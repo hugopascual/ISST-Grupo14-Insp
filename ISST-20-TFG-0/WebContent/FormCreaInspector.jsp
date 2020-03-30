@@ -5,14 +5,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registro de un profesor</title>
+<title>Registro de un inspector en el sistema</title>
 </head>
 <body>
 
-<form action="FormCreaProfesorServlet">
+<form action="FormCreaInspectorServlet">
+<input type="text" name="nombre" placeholder="Nombre">
+<input type="text" name="apellido_1" placeholder="Primer Apellido">
+<input type="text" name="apellido_2" placeholder="Segundo Apellido">
 <input type="text" name="email" placeholder="Email">
-<input type="password" name="password" placeholder="Password">
-<input type="text" name="name" placeholder="Nombre y apellidos">
+<input type="text" name="usuario" placeholder="Usuario">
+<input type="password" name="password" placeholder="Contraseña">
 <button type="submit">Registrar profesor</button>
 </form>
 

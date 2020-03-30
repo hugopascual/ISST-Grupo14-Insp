@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
-import es.upm.dit.isst.tfg.model.TFG;
+import es.upm.dit.isst.tfg.model.Establecimiento;
 
 /*
  * DAO son clases utilizadas para realizar operaciones de persistencia 
@@ -14,69 +14,68 @@ import es.upm.dit.isst.tfg.model.TFG;
  * base de datos
  */
 
-public class TFGDAOImplementation implements TFGDAO {
+public class EstablecimientoDAOImplementation implements EstablecimientoDAO {
 
 	//Esta clase debe seguir el patron de diseno Singleton
-	private static TFGDAOImplementation instancia = null;
-	private static TFGDAOImplementation TFGDAO;
+	private static EstablecimientoDAOImplementation instancia = null;
 	
-	private TFGDAOImplementation() {
+	private EstablecimientoDAOImplementation() {
 	}
 	
 	//con esto nos aseguramos de que solo haya creado un objeto de este tipo
-	public static TFGDAOImplementation getInstance() {
+	public static EstablecimientoDAOImplementation getInstance() {
 		if (null==instancia)
-			instancia = new TFGDAOImplementation();
+			instancia = new EstablecimientoDAOImplementation();
 		return instancia;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void create(TFG tfg) {
+	public void create(Establecimiento establecimiento) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.save(tfg);
+		session.save(establecimiento);
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public TFG read(String email) {
+	public Establecimiento read(String cif) {//hay que ver que identifica al establecimiento
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		TFG tfg = session.get(TFG.class, email);
+		Establecimiento establecimiento= session.get(Establecimiento.class, cif);
 		session.getTransaction().commit();
 		session.close();
-		return tfg;
+		return establecimiento;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void update(TFG tfg) {
+	public void update(Establecimiento establecimiento) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(tfg);
-		session.getTransaction().commit();
-		session.close();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void delete(TFG tfg) {
-		Session session = SessionFactoryService.get().openSession();
-		session.beginTransaction();
-		session.delete(tfg);
+		session.saveOrUpdate(establecimiento);
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TFG> readAll() {
+	public void delete(Establecimiento establecimiento) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		List<TFG> list = session.createQuery("from TFG").list();
+		session.delete(establecimiento);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Establecimiento> readAll() {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		List<Establecimiento> list = session.createQuery("from Establecimiento").list();
 		session.getTransaction().commit();
 		session.close();
 		return list;
@@ -84,19 +83,20 @@ public class TFGDAOImplementation implements TFGDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public TFG login(String email, String password) {
+	public Establecimiento login(String cif, String password) {//los restaurantes van a necesitar entrar en la app?
 		Session session = SessionFactoryService.get().openSession();
-		TFG tfg = null;
+		Establecimiento establecimiento = null;
 		session.beginTransaction();
-		Query q = session.createQuery("select t from TFG t where t.email = :email and t.password = :password");
-		q.setParameter("email", email);
-		q.setParameter("password", password);
-		List<TFG> tfgs = q.getResultList();
-		if (tfgs.size() > 0)
-			tfg = (TFG)(q.getResultList().get(0));
+		Query q = session.createQuery("select e from Establecimiento e where e.cif = :cif");
+		//Query q = session.createQuery("select e from Establecimiento e where e.cif = :cif and e.password = :password");
+		q.setParameter("cif", cif);
+		//q.setParameter("password", password);
+		List<Establecimiento> establecimientos = q.getResultList();
+		if (establecimientos.size() > 0)
+			establecimiento = (Establecimiento)(q.getResultList().get(0));
 		session.getTransaction().commit();
 		session.close();
-		return tfg;
+		return establecimiento;
 	}
 
 }

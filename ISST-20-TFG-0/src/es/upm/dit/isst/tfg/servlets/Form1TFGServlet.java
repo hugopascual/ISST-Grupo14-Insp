@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.upm.dit.isst.tfg.dao.ProfessorDAOImplementation;
-import es.upm.dit.isst.tfg.dao.TFGDAOImplementation;
+import es.upm.dit.isst.tfg.dao.InspectorDAOImplementation;
+import es.upm.dit.isst.tfg.dao.EstablecimientoDAOImplementation;
 import es.upm.dit.isst.tfg.model.Professor;
 import es.upm.dit.isst.tfg.model.TFG;
 
@@ -33,7 +33,7 @@ public class Form1TFGServlet extends HttpServlet  {
 		String title = req.getParameter("titulo");
 		String advisorEmail = req.getParameter("profesor");
 		
-		Professor advisor = ProfessorDAOImplementation.getInstance().read(advisorEmail); //busca al profesor segun su email
+		/*Inspector advisor = InspectorDAOImplementation.getInstance().read(advisorEmail); //busca al profesor segun su email
 		if( null != advisor ) { //comprobacion de que el profesor esta en la base de datos
 			TFG tfg = new TFG();
 			tfg.setEmail(email);
@@ -41,9 +41,9 @@ public class Form1TFGServlet extends HttpServlet  {
 			tfg.setName(name);
 			tfg.setTitle(title);
 			tfg.setAdvisor(advisor);
-			TFGDAOImplementation.getInstance().create(tfg);
+			EstablecimientoDAOImplementation.getInstance().create(tfg);
 			req.getSession().setAttribute("tfg", tfg);
-		}
+		}*/
 		getServletContext().getRequestDispatcher("/index.html")
 		.forward(req, resp);
 	}

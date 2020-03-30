@@ -1,75 +1,65 @@
 package es.upm.dit.isst.tfg.dao;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Query;
 
 import org.hibernate.Session;
-import es.upm.dit.isst.tfg.model.Professor;
 
-/*
- * DAO son clases utilizadas para realizar operaciones de persistencia 
- * asociadas al modelo, es decir, utilizadas para escribir o leer de la 
- * base de datos
- */
+import es.upm.dit.isst.tfg.model.Cliente;
 
-public class ProfessorDAOImplementation implements ProfessorDAO {
+public class ClienteDAOImplementation implements ClienteDAO {
 
 	//Esta clase debe seguir el patron de diseno Singleton
-		private static ProfessorDAOImplementation instancia = null;
-		private static ProfessorDAOImplementation ProfessorDAO;
+		private static ClienteDAOImplementation instancia = null;
 		
-		private ProfessorDAOImplementation() {
+		private ClienteDAOImplementation() {
 		}
 		
 		
-		public static ProfessorDAOImplementation getInstance() {
+		public static ClienteDAOImplementation getInstance() {
 			if (null==instancia)
-				instancia = new ProfessorDAOImplementation();
+				instancia = new ClienteDAOImplementation();
 			return instancia;
-			/*if (ProfessorDAO==null)
-				ProfessorDAO = new ProfessorDAOImplementation(ProfessorDAO);
-			return ProfessorDAO;*/
 		}
 
 		@SuppressWarnings("unchecked")
 		@Override
-		public void create(Professor professor) {
+		public void create(Cliente cliente) {
 			Session session = SessionFactoryService.get().openSession();
 			session.beginTransaction();
-			session.save(professor);
+			session.save(cliente);
 			session.getTransaction().commit();
 			session.close();
 		}
 
 		@SuppressWarnings("unchecked")
 		@Override
-		public Professor read(String email) {
+		public Cliente read(String email) {//hay que ver como leer el identificador del inspector
 			Session session = SessionFactoryService.get().openSession();
 			session.beginTransaction();
-			Professor professor = session.get(Professor.class, email);
+			Cliente cliente = session.get(Cliente.class, email);
 			session.getTransaction().commit();
 			session.close();
-			return professor;
+			return cliente;
 		}
 
 		@SuppressWarnings("unchecked")
 		@Override
-		public void update(Professor professor) {
+		public void update(Cliente cliente) {
 			Session session = SessionFactoryService.get().openSession();
 			session.beginTransaction();
-			session.saveOrUpdate(professor);
+			session.saveOrUpdate(cliente);
 			session.getTransaction().commit();
 			session.close();	
 		}
 
 		@SuppressWarnings("unchecked")
 		@Override
-		public void delete(Professor professor) {
+		public void delete(Cliente cliente) {
 			Session session = SessionFactoryService.get().openSession();
 			session.beginTransaction();
-			session.delete(professor);
+			session.delete(cliente);
 			session.getTransaction().commit();
 			session.close();
 			
@@ -77,10 +67,10 @@ public class ProfessorDAOImplementation implements ProfessorDAO {
 
 		@SuppressWarnings("unchecked")
 		@Override
-		public List<Professor> readAll() {
+		public List<Cliente> readAll() {
 			Session session = SessionFactoryService.get().openSession();
 			session.beginTransaction();
-			List<Professor> list = session.createQuery("from Professor").list();
+			List<Cliente> list = session.createQuery("from Cliente").list();
 			session.getTransaction().commit();
 			session.close();
 			return list;
@@ -88,19 +78,20 @@ public class ProfessorDAOImplementation implements ProfessorDAO {
 
 		@SuppressWarnings("unchecked")
 		@Override
-		public Professor login(String email, String password) {
+		public Cliente login(String email, String password) {
 			Session session = SessionFactoryService.get().openSession();
-			Professor professor =null;
+			Cliente cliente =null;
 			session.beginTransaction();
-			Query q = session.createQuery("select p from Professor p where p.email = :email and p.password = :password");
+			Query q = session.createQuery("select c from Cliente c where c.email = :email and c.password = :password");
 			q.setParameter("email", email); //cambia email en la query por email del parametro
 			q.setParameter("password", password);//cambia password en la query por password de parametro
-			List<Professor> profs = q.getResultList();
-			if (profs.size() > 0)
-				professor = (Professor) (q.getResultList().get(0));
+			List<Cliente> clientes = q.getResultList();
+			if (clientes.size() > 0)
+				cliente = (Cliente) (q.getResultList().get(0));
 			session.getTransaction().commit();
 			session.close();
-			return professor;
+			return cliente;
 		}
 		
 }
+
