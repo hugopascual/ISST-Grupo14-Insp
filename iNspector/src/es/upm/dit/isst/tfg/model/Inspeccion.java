@@ -22,6 +22,8 @@ public class Inspeccion implements Serializable {
 	private String nota;
 	private String descripcion;
 
+	
+	
 	public Inspeccion() {
 	}
 

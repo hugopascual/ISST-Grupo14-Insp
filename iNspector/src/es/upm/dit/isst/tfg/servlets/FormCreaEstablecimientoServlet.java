@@ -44,10 +44,10 @@ public class FormCreaEstablecimientoServlet extends HttpServlet {
 			establecimiento.setRep_legal(rep_legal);
 			establecimiento.setTipo(tipo);
 			
-			EstablecimientoDAOImplementation.getInstance().create(establecimiento);
+			EstablecimientoDAOImplementation.getInstance().create(establecimiento);//respalda el establecimiento en la base de datos
+			
 			List<Establecimiento> establecimientos = new ArrayList<Establecimiento>();
-			establecimientos.addAll((List<Establecimiento>)
-					req.getSession().getAttribute("establecimientos"));//lee los establecimientos ya existentes 
+			establecimientos.addAll((List<Establecimiento>) req.getSession().getAttribute("establecimientos"));//lee los establecimientos ya existentes 
 			establecimientos.add (establecimiento);//anade el nuevo establecimiento
 			req.getSession().setAttribute("establecimientos", establecimientos);//actualiza el atributo de la sesion con los establecimientos
 			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);

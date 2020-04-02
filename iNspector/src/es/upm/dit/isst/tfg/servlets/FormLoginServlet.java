@@ -39,26 +39,38 @@ public class FormLoginServlet extends HttpServlet {
 		Establecimiento establecimiento = EstablecimientoDAOImplementation.getInstance().login(email, password);
 		Inspector inspector = InspectorDAOImplementation.getInstance().login(email, password);
 		Cliente cliente = ClienteDAOImplementation.getInstance().login(email, password);
+		
+		req.getSession().setAttribute("nuevo_usuario", false);//Desactiva la variable que hace que salte el mensaje de "Usuario registrado"
+		
 
 		if( ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(password) ) {
-			//si se logea como admin y pego los distintos atributos en la sesion
+			
 			req.getSession().setAttribute("admin", true);
-			req.getSession().setAttribute("inspectores", inspectores); //lista de profesores
-			req.getSession().setAttribute("establecimientos", establecimientos);//lista de tfgs
+			req.getSession().setAttribute("inspectores", inspectores);
+			req.getSession().setAttribute("establecimientos", establecimientos);
 			req.getSession().setAttribute("clientes", clientes);
-			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);//redirijo a la vista Admin.jsp
+			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
+			
 		} else if ( null != cliente ) {
-			//si corresponde a un tfg registrado
-			//pego en la sesion el atributo del tfg y redirijo la servlet a la vista TFG.jsp
-			req.getSession().setAttribute("cliente", cliente);//el objeto tfg es el que paso a la siguiente servlet
-			getServletContext().getRequestDispatcher("/ClienteView.jsp").forward(req,resp);
+		
+			req.getSession().setAttribute("soy_cliente", true);
+			req.getSession().setAttribute("cliente", cliente);
+			req.getSession().setAttribute("establecimientos", establecimientos);
+			//getServletContext().getRequestDispatcher("/ClienteView.jsp").forward(req,resp);
+			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+			
 		} else if ( null != inspector ) {
-			//si se corresponde con un profesor registrado
-			//pego el atributo de email del profesor en la sesion y redirijo a la vista Profesor.jsp
-			req.getSession().setAttribute("inspector",inspector);//el objeto profesor es el que paso a la siguiente servlet
-			getServletContext().getRequestDispatcher("/InspectorView.jsp").forward(req,resp);
+			
+			req.getSession().setAttribute("soy_inspector", true);
+			req.getSession().setAttribute("inspector",inspector);
+			req.getSession().setAttribute("establecimientos", establecimientos);
+			//getServletContext().getRequestDispatcher("/InspectorView.jsp").forward(req,resp);
+			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+			
 		} else {
-			getServletContext().getRequestDispatcher("/index.html").forward(req,resp);
+			
+			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+			
 		}
 	}
 }

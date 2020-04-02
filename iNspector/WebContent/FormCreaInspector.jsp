@@ -16,8 +16,9 @@
 <input type="text" name="email" placeholder="Email">
 <input type="text" name="usuario" placeholder="Usuario">
 <input type="password" name="password" placeholder="Contraseña">
-<button type="submit">Registrar profesor</button>
+<button type="submit">Registrar inspector</button>
 </form>
+
 
 </body>
 </html>

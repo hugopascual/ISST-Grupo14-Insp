@@ -8,8 +8,26 @@
 <title></title>
 </head>
 <body>
-<form action="FormLogoutServlet">
-<button type="submit">Logout</button>
-</form>
+
+<div>
+<c:choose>
+	<c:when test="${soy_cliente}">
+		<form action="FormLogoutServlet">
+			<button type="submit">Logout</button>
+		</form>
+	</c:when>
+	<c:when test="${soy_inspector}">
+		<form action="FormLogoutServlet">
+			<button type="submit">Logout</button>
+		</form>
+	</c:when>
+	<c:otherwise>
+		<form action="FormLogoutServlet">
+			<button type="submit">Volver a la página principal</button>
+		</form>
+	</c:otherwise>
+</c:choose>
+</div>		
+
 </body>
 </html>

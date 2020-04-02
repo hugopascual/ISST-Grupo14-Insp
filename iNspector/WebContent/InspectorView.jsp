@@ -13,12 +13,17 @@
 
 <h2>Página del inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2}</h2>
 
-<p>Email: ${inspector.email}</p>
+<p>Nombre: ${inspector.nombre}<p>
+<p>Apellidos: ${inspector.apellido_1} ${inspector.apellido_2}<p>
+<p>Usuario: ${inspector.usuario}<p>
+<p>Email: ${inspector.email}<p>
 
 <h2>
-<form action="FormLogoutServlet">
-<button type="submit">Logout</button>
-</form>
+<%@ include file = "FormListaEstablecimientos.jsp" %>
+</h2>
+
+<h2>
+<%@ include file = "FormLogout.jsp" %>
 </h2>
 
 </body>

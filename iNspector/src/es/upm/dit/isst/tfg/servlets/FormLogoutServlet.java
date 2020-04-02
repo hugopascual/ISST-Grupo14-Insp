@@ -20,6 +20,6 @@ public class FormLogoutServlet extends HttpServlet {
 		req.getSession().removeAttribute("profesor");
 		req.getSession().removeAttribute("profesores");
 		req.getSession().invalidate();//mata la sesion borrando la tabla y sus atributos
-		getServletContext().getRequestDispatcher("/index.html").forward(req,resp);
+		getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 	}
 }

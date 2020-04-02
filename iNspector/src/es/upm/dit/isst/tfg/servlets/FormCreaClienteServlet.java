@@ -44,6 +44,7 @@ public class FormCreaClienteServlet extends HttpServlet {
 				//req.getSession().getAttribute("clientes"));
 		//clientes.add(cliente);
 		req.getSession().setAttribute("clientes", clientes);
-		getServletContext().getRequestDispatcher("/index.html").forward(req,resp);
+		req.getSession().setAttribute("nuevo_usuario", true);//variable que hara que salte el mensaje de "Usuario registrado"
+		getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 	}
 }

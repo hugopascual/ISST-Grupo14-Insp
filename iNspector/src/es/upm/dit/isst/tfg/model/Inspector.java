@@ -12,13 +12,14 @@ public class Inspector implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id; 
 	private String nombre;
 	private String apellido_1;
 	private String apellido_2;
 	private String usuario;
 	private String password;
+	@Id
 	private String email;
 	
 	public Inspector() {
