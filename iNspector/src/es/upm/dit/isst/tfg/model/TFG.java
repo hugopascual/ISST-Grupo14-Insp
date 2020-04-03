@@ -29,9 +29,6 @@ public class TFG implements Serializable {
 		super();
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	}
 
 	@Override
 	public String toString() {
