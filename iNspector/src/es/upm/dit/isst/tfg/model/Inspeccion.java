@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Inspeccion implements Serializable {
@@ -21,7 +22,12 @@ public class Inspeccion implements Serializable {
 	private String higiene_empleados;
 	private String nota;
 	private String descripcion;
-
+	
+	@ManyToOne
+	private Inspector inspector_realiza_inspeccion;
+	
+	@ManyToOne
+	private Establecimiento establecimiento_inspeccion;
 	
 	
 	public Inspeccion() {

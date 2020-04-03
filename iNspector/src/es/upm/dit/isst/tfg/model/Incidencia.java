@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Incidencia implements Serializable {
@@ -18,6 +19,12 @@ public class Incidencia implements Serializable {
 	private String gravedad;
 	private String descripcion;
 	private Calendar fecha;
+	
+	@ManyToOne
+	private Establecimiento establecimiento_incidencia;
+	
+	@ManyToOne
+	private Cliente cliente_incidencia;
 	
 	public Incidencia() {
 	}

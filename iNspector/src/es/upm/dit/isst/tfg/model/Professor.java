@@ -1,6 +1,7 @@
 package es.upm.dit.isst.tfg.model;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 

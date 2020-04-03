@@ -1,9 +1,15 @@
 package es.upm.dit.isst.tfg.model;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Establecimiento implements Serializable {
@@ -17,6 +23,15 @@ public class Establecimiento implements Serializable {
 	private String ciudad;
 	private String rep_legal;
 	private String tipo; //tipo puede ser: bar, restaurante, cafeteria, hotel, otro
+	
+	@OneToMany(mappedBy="establecimiento_inspeccion", fetch = FetchType.EAGER)
+	private List <Inspeccion> inspecciones_realizadas_rest;
+	
+	@OneToMany (mappedBy="establecimiento_incidencia", fetch= FetchType.EAGER)
+	private Set <Incidencia> incidencias;
+	
+	@ManyToMany (mappedBy = "establecimientos_inspeccionados")
+	private List <Inspector> inspectores_realizado_inspecciones;
 	
 	public Establecimiento() {
 	}

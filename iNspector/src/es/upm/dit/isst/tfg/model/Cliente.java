@@ -1,11 +1,14 @@
 package es.upm.dit.isst.tfg.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente implements Serializable {
@@ -20,6 +23,9 @@ public class Cliente implements Serializable {
 	private String usuario;
 	private String password;
 	private String email;
+	
+	@OneToMany(mappedBy = "cliente_incidencia", fetch = FetchType.EAGER)
+	private List <Incidencia> incidencias_cliente;
 
 	public Cliente() {
 

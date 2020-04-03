@@ -2,10 +2,17 @@ package es.upm.dit.isst.tfg.model;
 
 import java.io.Serializable;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Inspector implements Serializable {
@@ -21,6 +28,21 @@ public class Inspector implements Serializable {
 	private String password;
 	@Id
 	private String email;
+	
+	@OneToMany (mappedBy = "inspector_realiza_inspeccion", fetch = FetchType.EAGER)
+	private List <Inspeccion> inspecciones_realizadas_inspector;
+	
+	
+	@ManyToMany
+	@JoinTable (
+			name="Establecimientos_inspectores",
+			joinColumns = @JoinColumn(name = "email"),
+			inverseJoinColumns = @JoinColumn(name = "cif"))
+	private List <Establecimiento> establecimientos_inspeccionados;
+	
+	
+	
+
 	
 	public Inspector() {
 		super();
