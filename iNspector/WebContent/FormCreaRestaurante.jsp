@@ -16,7 +16,7 @@
 <input type="text" name="ciudad" placeholder="Ciudad">
 <input type="text" name="rep_legal" placeholder="Representante legal">
 <select name="tipo">
-   <option selected value="0"> Tipo de establecimiento </option>
+   <option value="" disabled selected>Tipo de establecimiento</option>
        <option value="Restaurante">Restaurante</option> 
        <option value="Cafeteria">Cafetería</option> 
        <option value="Bar">Bar</option> 

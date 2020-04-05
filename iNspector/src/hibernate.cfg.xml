@@ -14,8 +14,6 @@
 		<property name="hibernate.enable_lazy_load_no_trans">true</property>
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
-		<mapping class="es.upm.dit.isst.tfg.model.TFG" />
-		<mapping class="es.upm.dit.isst.tfg.model.Professor" />
 		<mapping class="es.upm.dit.isst.tfg.model.Cliente" />
 		<mapping class="es.upm.dit.isst.tfg.model.Establecimiento" />
 		<mapping class="es.upm.dit.isst.tfg.model.Incidencia" />

@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<h2>Lista de establecimientos regitrados en iNspector</h2>
+<h2>Lista de establecimientos registrados en iNspector</h2>
 <h3>Actualmente hay registrados ${fn:length(establecimientos)} establecimientos</h3>
 
 <div>

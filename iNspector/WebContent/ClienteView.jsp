@@ -17,13 +17,9 @@
 <p>Usuario: ${cliente.usuario}<p>
 <p>Email: ${cliente.email}<p>
 
-<h2>
-<%@ include file = "FormListaEstablecimientos.jsp" %>
-</h2>
+<h2><%@ include file = "FormListaEstablecimientos.jsp" %></h2>
 
-<h2>
-<%@ include file = "FormLogout.jsp" %>
-</h2>
+<h2><%@ include file = "FormLogout.jsp" %></h2>
 
 
 </body>

@@ -22,6 +22,7 @@
 	<c:when test="${soy_inspector}">
 		<h1>Bienvenido de nuevo a iNspector, ${inspector.nombre}</h1>
 		<boton_cli><%@ include file = "FormPerfilUsuario.jsp" %></boton_cli>
+		<boton_inspecciones><%@ include file ="BotonInspeccionesInspector.jsp" %></boton_inspecciones>
 		<h2><%@ include file = "FormListaEstablecimientos.jsp" %></h2>
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
 	</c:when>

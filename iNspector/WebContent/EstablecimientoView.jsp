@@ -25,8 +25,9 @@
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
 	</c:when>
 	<c:when test="${soy_inspector}">
+		<boton_registrar><%@ include file = "BotonPaginaInspeccion.jsp" %></boton_registrar>
+		<boton_registrar><%@ include file = "BotonHistorialInspecciones.jsp" %></boton_registrar>
 		<boton_perfil><%@ include file = "FormPerfilUsuario.jsp" %></boton_perfil>
-		<p>Botones de inspector: Registrar informe y Ver historial</p>
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
 	</c:when>
 	<c:when test="${usuario_no_registrado}">

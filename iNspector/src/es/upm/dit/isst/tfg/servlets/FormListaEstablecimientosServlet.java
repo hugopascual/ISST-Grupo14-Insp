@@ -21,13 +21,13 @@ public class FormListaEstablecimientosServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	List<Establecimiento> establecimientos = (List<Establecimiento>) EstablecimientoDAOImplementation.getInstance().readAll();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		Object soy_cliente = req.getSession().getAttribute("soy_cliente");
 		Object soy_inspector = req.getSession().getAttribute("soy_inspector");
+		List<Establecimiento> establecimientos = (List<Establecimiento>) EstablecimientoDAOImplementation.getInstance().readAll();
 		
 		req.getSession().setAttribute("establecimientos", establecimientos);
 		
