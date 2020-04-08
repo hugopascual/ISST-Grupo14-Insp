@@ -14,13 +14,13 @@
 </head>
 
 <header>
-	<div style='float: left'>
+	<div class="logo">
 		<img src="files/logo_iNspector.png" alt="Logo de iNspector"
 			width="250">
 	</div>
 
 
-	<div style='float: right'>
+	<div class="button">
 		<!-- selección de boton para logout dependiendo de si estas o no registrado -->
 		<c:choose>
 			<c:when test="${soy_cliente}">
@@ -42,6 +42,7 @@
 	</div>
 	
 	<div style='clear:both'></div>
+	
 
 </header>
 

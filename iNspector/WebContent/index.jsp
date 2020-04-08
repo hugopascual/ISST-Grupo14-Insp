@@ -11,13 +11,16 @@
 <meta charset="UTF-8">
 <title>iNspector</title>
 </head>
+
+style="margin: 10px;"
+
 -->
 
 <body>
-
+ 
 <jsp:include page="header.jsp"/>
-
-<div>
+ 
+<div class="contenido_pagina" >
 <c:choose>
 	<c:when test="${soy_cliente}">
 		<h1>Bienvenido de nuevo a iNspector, ${cliente.nombre}</h1>
@@ -63,10 +66,8 @@
 	</c:when>
 </c:choose>
 
-<jsp:include page="footer.jsp"/>
-
 </body>
 
-
+<jsp:include page="footer.jsp"/>
 
 </html>

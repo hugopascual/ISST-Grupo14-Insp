@@ -5,13 +5,27 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
+
+<link rel="stylesheet" href="CSS/footer.css" type="text/css"></link>
+
 <head>
 <meta charset="UTF-8">
 <title>iNspector</title>
 </head>
 
 <footer>
-Portal Web realizado para la asignatura ISST por el grupo 14. Todos los derechos reservados.
+
+	<div class="logo">
+	<img src="files/icono_iNspector.png" alt="Icono de iNspector"
+		width="50">
+	</div>
+	
+	<div class="texto">
+	<p>
+	Portal Web realizado para la asignatura ISST por el grupo 14. Todos los derechos reservados.
+	</p>
+	</div>
+
 </footer>
 
 </html>
