@@ -19,6 +19,8 @@
 
 <h2><%@ include file = "FormListaEstablecimientos.jsp" %></h2>
 
+<h2><%@ include file = "FormIndex.jsp" %></h2>
+
 <h2><%@ include file = "FormLogout.jsp" %></h2>
 
 

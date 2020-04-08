@@ -15,19 +15,21 @@
 
 <p>Nombre: ${establecimiento.nombre}</p>
 <p>Dirección: ${establecimiento.direccion}</p>
-<p>Nombre: ${establecimiento.ciudad}</p>
+<p>Ciudad: ${establecimiento.ciudad}</p>
 
 <div>
 <c:choose>
 	<c:when test="${soy_cliente}">
 		<boton_perfil><%@ include file = "FormPerfilUsuario.jsp" %></boton_perfil>
 		<p>Botones de cliente: Reportar incidencia</p>
+		<h2><%@ include file = "FormIndex.jsp" %></h2>
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
 	</c:when>
 	<c:when test="${soy_inspector}">
 		<boton_registrar><%@ include file = "BotonPaginaInspeccion.jsp" %></boton_registrar>
 		<boton_registrar><%@ include file = "BotonHistorialInspecciones.jsp" %></boton_registrar>
 		<boton_perfil><%@ include file = "FormPerfilUsuario.jsp" %></boton_perfil>
+		<h2><%@ include file = "FormIndex.jsp" %></h2>
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
 	</c:when>
 	<c:when test="${usuario_no_registrado}">
