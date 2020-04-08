@@ -5,11 +5,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
+
+<!--
 <head>
 <meta charset="UTF-8">
 <title>iNspector</title>
 </head>
+-->
+
 <body>
+
+<jsp:include page="header.jsp"/>
 
 <div>
 <c:choose>
@@ -57,5 +63,10 @@
 	</c:when>
 </c:choose>
 
+<jsp:include page="footer.jsp"/>
+
 </body>
+
+
+
 </html>
