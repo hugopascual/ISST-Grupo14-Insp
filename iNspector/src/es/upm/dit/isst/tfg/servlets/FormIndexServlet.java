@@ -22,11 +22,11 @@ public class FormIndexServlet extends HttpServlet {
 		Object soy_cliente = req.getSession().getAttribute("soy_cliente");
 		Object soy_inspector = req.getSession().getAttribute("soy_inspector");
 		
-		if (null != soy_cliente) { //compruebo que el usuario logeado es un cliente
-			req.getSession().getAttribute("cliente");//me quedo con los datos del cliente
+		if (null != soy_cliente) { //compruebo que el usuario logeado es un cliente.
+			req.getSession().getAttribute("cliente");//me quedo con los datos del cliente.
 			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
-		} else if ( null != soy_inspector) { //compruebo que el usuario logeado es un inspector
-			req.getSession().getAttribute("inspector");//me quedo con los datos del inspector
+		} else if ( null != soy_inspector) { //compruebo que el usuario logeado es un inspector.
+			req.getSession().getAttribute("inspector");//me quedo con los datos del inspector.
 			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 		}
 		
