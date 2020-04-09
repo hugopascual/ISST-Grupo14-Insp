@@ -39,6 +39,7 @@
 <c:choose>
 	<c:when test="${soy_cliente}">
 		<boton_cli><%@ include file = "FormPerfilUsuario.jsp" %></boton_cli>
+		<h2><%@ include file = "FormIndex.jsp" %></h2>
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
 	</c:when>
 	<c:when test="${soy_inspector}">

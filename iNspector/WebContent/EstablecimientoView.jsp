@@ -36,12 +36,14 @@
 	<c:when test="${soy_cliente}">
 		<h2><%@ include file = "FormPerfilUsuario.jsp" %></h2>
 		<p>Botones de cliente: Reportar incidencia</p>
+		<h2><%@ include file = "FormIndex.jsp" %></h2>
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
 	</c:when>
 	<c:when test="${soy_inspector}">
 		<h2><%@ include file = "BotonPaginaInspeccion.jsp" %></h2>
 		<h2><%@ include file = "BotonHistorialInspecciones.jsp" %></h2>
 		<h2><%@ include file = "FormPerfilUsuario.jsp" %></h2>
+		<h2><%@ include file = "FormIndex.jsp" %></h2>
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
 	</c:when>
 	<c:when test="${usuario_no_registrado}">
@@ -54,8 +56,6 @@
 	
 </c:choose>
 </div>	
-
-
 
 </body>
 </html>

@@ -76,6 +76,8 @@
 
 <div>
 	<h2><%@ include file = "FormPerfilUsuario.jsp" %></h2>
+	<boton_insp><%@ include file = "FormPerfilUsuario.jsp" %></boton_insp>
+	<h2><%@ include file = "FormIndex.jsp" %></h2>
 	<h2><%@ include file = "FormLogout.jsp" %></h2>
 </div>		
 
