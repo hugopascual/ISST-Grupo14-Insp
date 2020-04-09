@@ -19,6 +19,7 @@ public class Incidencia implements Serializable {
 	private String gravedad;
 	private String descripcion;
 	private Calendar fecha;
+	private int status;
 	
 	@ManyToOne
 	private Establecimiento establecimiento_incidencia;
@@ -27,6 +28,14 @@ public class Incidencia implements Serializable {
 	private Cliente cliente_incidencia;
 	
 	public Incidencia() {
+	}
+	
+	public int getStatus() {
+		return status;
+	}
+	
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	/**

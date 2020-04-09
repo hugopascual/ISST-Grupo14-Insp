@@ -1,15 +1,20 @@
 package es.upm.dit.isst.tfg.servlets;
 
 import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
 
 import es.upm.dit.isst.tfg.dao.EstablecimientoDAOImplementation;
 import es.upm.dit.isst.tfg.model.Establecimiento;
@@ -21,12 +26,13 @@ import es.upm.dit.isst.tfg.model.Establecimiento;
  */
 
 @WebServlet("/FormCreaEstablecimientoServlet")
+@MultipartConfig
 public class FormCreaEstablecimientoServlet extends HttpServlet {
 	
 		private static final long serialVersionUID = 1L;
 
 		@Override
-		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
 			String cif = req.getParameter("cif");
 			String nombre = req.getParameter("nombre");
@@ -34,6 +40,7 @@ public class FormCreaEstablecimientoServlet extends HttpServlet {
 			String ciudad = req.getParameter("ciudad");
 			String rep_legal = req.getParameter("rep_legal");
 			String tipo = req.getParameter("tipo");
+			Part filePart = req.getPart("image");
 			
 			Establecimiento establecimiento = new Establecimiento();
 			
@@ -43,6 +50,12 @@ public class FormCreaEstablecimientoServlet extends HttpServlet {
 			establecimiento.setCiudad(ciudad);
 			establecimiento.setRep_legal(rep_legal);
 			establecimiento.setTipo(tipo);
+			
+			InputStream fileContent = filePart.getInputStream();
+			ByteArrayOutputStream output = new ByteArrayOutputStream();
+			byte[] buffer = new byte[10240];
+			for (int length = 0; (length = fileContent.read(buffer)) > 0;) output.write(buffer, 0, length);
+			establecimiento.setImagen(output.toByteArray());
 			
 			EstablecimientoDAOImplementation.getInstance().create(establecimiento);//respalda el establecimiento en la base de datos
 			

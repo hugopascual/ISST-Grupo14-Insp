@@ -14,8 +14,8 @@
 <c:choose>
 	<c:when test="${segun_establecimiento}">
 		<h2>Lista de inspecciones realizadas en el establecimiento ${establecimiento.nombre}</h2>
-		<h3>Ahora mismo el inspector ${inspector.nombre} está visualizando el historial de inspecciones</h3>
-		<h3>En este establecimiento se han realizado ${fn:length(inspecciones)} inspecciones</h3>
+		<p>Ahora mismo el inspector ${inspector.nombre} está visualizando el historial de inspecciones</p>
+		<p>En este establecimiento se han realizado ${fn:length(inspecciones)} inspecciones</p>
 		<div>
 		<table border="1">
 			<tr>
@@ -45,8 +45,8 @@
 	</c:when>
 	<c:when test="${segun_inspector}">
 		<h2>Lista de inspecciones realizadas por el inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2}</h2>
-		<h3>Este inspector ha realizado ${fn:length(inspecciones)} inspecciones</h3>
-		<h3>Nota. en un futuro aquí también aparecerán las inspecciones programadas para que las realice el inspector</h3>
+		<p>Este inspector ha realizado ${fn:length(inspecciones)} inspecciones</p>
+		<p>Nota. en un futuro aquí también aparecerán las inspecciones programadas para que las realice el inspector</p>
 		<table border="1">
 			<tr>
 				<td><b>Inspector</b></td>
@@ -75,7 +75,7 @@
 </c:choose>
 
 <div>
-	<boton_insp><%@ include file = "FormPerfilUsuario.jsp" %></boton_insp>
+	<h2><%@ include file = "FormPerfilUsuario.jsp" %></h2>
 	<h2><%@ include file = "FormLogout.jsp" %></h2>
 </div>		
 

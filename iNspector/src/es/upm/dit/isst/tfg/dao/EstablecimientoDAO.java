@@ -15,6 +15,6 @@ public interface EstablecimientoDAO {
 	public void update (Establecimiento establecimiento);
 	public void delete (Establecimiento establecimiento);
 	public Collection<Establecimiento> readAll ();//devuelve una lista de todos los tfgs
-	public Establecimiento login(String email, String psd);// el establecimiento no necesita entrar en la pagina
+	//public Establecimiento login(String email, String psd);// el establecimiento no necesita entrar en la pagina
 	
 }

@@ -11,14 +11,12 @@
 </head>
 <body>
 
-<h1>El inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2} está registrando una inspección del establecimiento ${establecimiento.nombre}</h1>
+<h1>Página de registro de inspecciones</h1>
+<h3>El inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2} está registrando una inspección del establecimiento ${establecimiento.nombre}</h3>
 	
-<h1>La fecha actual es: ${fecha} </h1>
-
 <form action="FormRegistrarInspeccionServlet" method="post" enctype="multipart/form-data">
-
 	<input type="text" name="establecimiento" value="${establecimiento.nombre}">
-	<input type="date" name="fecha_insp" value="${fecha}" min="2018-01-01" max="${fecha}" placeholder="Fecha de la inspección">
+	<input required type="date" name="fecha_insp" min="1900-01-01" placeholder="Fecha de la inspección">
 	<select name="nota">
 		   <option value="" disabled selected>Nota</option>
 	       <option value="Favorable">Favorable</option> 

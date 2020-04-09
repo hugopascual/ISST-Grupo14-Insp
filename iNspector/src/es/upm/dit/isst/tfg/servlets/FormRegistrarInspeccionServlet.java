@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,7 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.taglibs.standard.extra.spath.ParseException;
+
 import es.upm.dit.isst.tfg.dao.InspeccionDAOImplementation;
+import es.upm.dit.isst.tfg.dao.InspectorDAOImplementation;
 import es.upm.dit.isst.tfg.model.Establecimiento;
 import es.upm.dit.isst.tfg.model.Inspeccion;
 import es.upm.dit.isst.tfg.model.Inspector;
@@ -36,12 +41,15 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
 		
 		Establecimiento establecimiento = (Establecimiento) req.getSession().getAttribute("establecimiento");//establecimiento inspeccionado
 		Inspector inspector = (Inspector) req.getSession().getAttribute("inspector");//inspector que registra la inspeccion
+
+		Date fecha_insp = null;
 		
-//		DateFormat df = new SimpleDateFormat("dd/MM/yy"); //decimos en que formato queremos mostrar la fecha
-//		Calendar date = Calendar.getInstance(); //objeto Calendar actual. Tiene la hora, la fecha, la zona horaria y más cosas que no necesitamos
-//	    String fecha_insp = df.format(date.getTime());//guardaremos la fecha como string
-		
-		String fecha_insp = req.getParameter("date"); //este req.Parameter("date") solo puede sacar strings
+		try {
+			fecha_insp = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha_insp")); //getParameter siempre devuelve string
+		} catch (java.text.ParseException e) {
+			e.printStackTrace();
+		}
+
 		String nota = req.getParameter("nota");
 		String descripcion = req.getParameter("descripcion");
 		
@@ -64,7 +72,14 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
     	
     	InspeccionDAOImplementation.getInstance().create(inspeccion);//respalda la inspeccion en la base de datos
     	
-    	req.getSession().setAttribute("inspeccion", inspeccion);
+    	//obtengo la inspeccion mas reciente del establecimiento
+    	Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);
+		req.getSession().setAttribute("ultima_inspeccion", ultima_inspeccion);
+    	
+    	//actualizar la lista de inspecciones para que salga la ultima inspeccion
+    	List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Establ(establecimiento);
+		req.getSession().setAttribute("inspecciones", inspecciones);
+	
     	getServletContext().getRequestDispatcher("/EstablecimientoView.jsp").forward(req,resp);//después de registrar la inspeccion vuelve a la pagina del establecimiento
 			
 	}

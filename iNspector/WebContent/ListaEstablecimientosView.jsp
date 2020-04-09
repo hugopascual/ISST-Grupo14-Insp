@@ -46,7 +46,11 @@
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
 	</c:when>
 	<c:otherwise>
-		<p>Un usuario no registrado esta viendo los restaurantes</p>
+		<p>Hemos visto que aún no estás registrado...</p>
+		<form method="get" action="FormCreaCliente.html">
+  			<button type="submit">Registrarse</button>
+		</form>
+		<h2><%@ include file = "FormLogout.jsp" %></h2>
 	</c:otherwise>
 </c:choose>
 </div>		

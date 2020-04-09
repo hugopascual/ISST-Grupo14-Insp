@@ -18,6 +18,27 @@
 <p>Usuario: ${inspector.usuario}<p>
 <p>Email: ${inspector.email}<p>
 
+<div>
+	
+</div>
+
+<div>
+<c:choose>
+	<c:when test="${imagen}">
+		<img src="${pageContext.request.contextPath}/ServeImageServlet?id=${inspector.email}" width="200" height="250" />
+	</c:when>
+	<c:otherwise>
+		<img src="img/FotoNoDisponible.PNG" width="200" height="250"/>
+		<form action="FotoPerfilServlet" method="post" enctype="multipart/form-data">
+			<p>Aquí puedes actualizar tu foto de perfil</p>
+			<input type="hidden" name="email" value="${inspector.email}" />
+			<input type="file" name="image" />
+			<button type="submit">Subir foto</button>
+		</form>
+	</c:otherwise>	
+</c:choose>
+</div>	
+
 <h2><%@ include file = "FormListaEstablecimientos.jsp" %></h2>
 
 <h2><%@ include file = "FormLogout.jsp" %></h2>

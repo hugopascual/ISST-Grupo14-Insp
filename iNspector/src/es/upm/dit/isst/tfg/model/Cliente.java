@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -15,17 +16,23 @@ public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id; 
 	private String nombre;
 	private String apellido_1;
 	private String apellido_2;
 	private String usuario;
 	private String password;
-	private String email;
+	@Id
+	private String email; 
+	
 	
 	@OneToMany(mappedBy = "cliente_incidencia", fetch = FetchType.EAGER)
 	private List <Incidencia> incidencias_cliente;
+	
+	@Lob
+	private byte[] imagen;
 
 	public Cliente() {
 
@@ -94,6 +101,14 @@ public class Cliente implements Serializable {
 		} else if (!usuario.equals(other.usuario))
 			return false;
 		return true;
+	}
+	
+	public byte[] getImagen(){
+		return this.imagen;
+	}
+	
+	public void setImagen(byte[] imagen){
+		this.imagen = imagen;
 	}
 
 	/**

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Lob;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -33,8 +34,13 @@ public class Establecimiento implements Serializable {
 	@ManyToMany (mappedBy = "establecimientos_inspeccionados")
 	private List <Inspector> inspectores_realizado_inspecciones;
 	
+	@Lob
+	private byte[] imagen;
+
+	
 	public Establecimiento() {
 	}
+	
 	
 	@Override
 	public String toString() {
@@ -97,6 +103,14 @@ public class Establecimiento implements Serializable {
 		return true;
 	}
 
+	
+	public byte[] getImagen(){
+		return this.imagen;
+	}
+	
+	public void setImagen(byte[] imagen){
+		this.imagen = imagen;
+	}
 
 	/**
 	 * @return the cif

@@ -3,6 +3,7 @@ package es.upm.dit.isst.tfg.model;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Inspeccion implements Serializable {
@@ -18,13 +21,10 @@ public class Inspeccion implements Serializable {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id; //tenemos que ver como hacer para generarlo de manera automatica
-	private String fecha_insp;//tenemos que ver como manejar las fechas. Probablemente haya que meterlo en la bbdd como string y despues al leerlo formatearlo a Calendar otra vez
 	
-	//private String higiene_instalacion;
-	//private String estado_instalaciones;
-	//private String area_prep_alim;
-	//private String estado_alimentos;
-	//private String higiene_empleados;
+	@Temporal(TemporalType.DATE)
+	private Date fecha_insp;//tenemos que ver como manejar las fechas. Probablemente haya que meterlo en la bbdd como string y despues al leerlo formatearlo a Calendar otra vez
+	
 	private String nota;
 	private String descripcion;
 	
@@ -61,7 +61,7 @@ public class Inspeccion implements Serializable {
 	/**
 	 * @return the fecha_insp
 	 */
-	public String getFecha_insp() {
+	public Date getFecha_insp() {
 		return fecha_insp;
 	}
 
@@ -69,7 +69,7 @@ public class Inspeccion implements Serializable {
 	/**
 	 * @param fecha_insp the fecha_insp to set
 	 */
-	public void setFecha_insp(String fecha_insp) {
+	public void setFecha_insp(Date fecha_insp) {
 		this.fecha_insp = fecha_insp;
 	}
 

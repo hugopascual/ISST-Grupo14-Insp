@@ -28,8 +28,6 @@ public class BotonHistorialInspeccionesServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
-		
 		Establecimiento establecimiento = (Establecimiento) req.getSession().getAttribute("establecimiento");
 		List<Inspeccion> inspecciones = (List<Inspeccion>) InspeccionDAOImplementation.getInstance().readAllInspecciones_Establ(establecimiento);
 		

@@ -108,16 +108,40 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 			Session session = SessionFactoryService.get().openSession();
 			session.beginTransaction();
 			Query q = session.createQuery("select i from Inspeccion i where i.inspector_realiza_inspeccion = :inspector");
-			q.setParameter("inspector", inspector); //cambia cif en la query por cif del parametro
+			q.setParameter("inspector", inspector); //cambia inspector en la query por inspector del parametro
 			List<Inspeccion> inspecciones = q.getResultList();
 			session.getTransaction().commit();
 			session.close();
 			return inspecciones;
 		}
+		
+		//Obtiene la ultima inspeccion realizada en un establecimiento
+		public Inspeccion ultimaInspeccion(Establecimiento establecimiento) {
+			Session session = SessionFactoryService.get().openSession();
+			session.beginTransaction();
+			
+			Inspeccion inspeccion;
+
+			Query q1 = session.createQuery("select max(i.fecha_insp) from Inspeccion i where i.establecimiento_inspeccion= :establ"); //la fecha de la ultima inspeccion del establecimiento
+			q1.setParameter("establ", establecimiento);
+			Object fecha = q1.getSingleResult();
+			
+			Query q2 = session.createQuery("select i from Inspeccion i where i.establecimiento_inspeccion = :establ and i.fecha_insp = :fecha ");//ultima inspeccion del establecimiento
+			q2.setParameter("establ", establecimiento);
+			q2.setParameter("fecha", fecha);
+			
+			inspeccion = (Inspeccion) q2.getSingleResult();
+			session.getTransaction().commit();
+			session.close();
+			return inspeccion;			
+		}
+		
+		
+		
 
 //		@SuppressWarnings("unchecked")
 //		@Override
-//		public Inspector login(String email, String password) {
+//		public Inspeccion login(String email, String password) {
 //			Session session = SessionFactoryService.get().openSession();
 //			Inspector inspector =null;
 //			session.beginTransaction();

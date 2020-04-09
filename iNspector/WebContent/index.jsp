@@ -35,6 +35,10 @@
 			<input type="password" name="password" placeholder="Password">
 			<button type="submit">Login</button>
 		</form>
+		
+		<c:if test="${not empty loginError}">
+    		<p style="color:red;">Las credenciales introducidas no son correctas...</p>
+		</c:if>
 
 		<h3>¿Aún no tienes cuenta?</h3>
 		<form method="get" action="FormCreaCliente.html">

@@ -39,12 +39,9 @@ public class FormCreaClienteServlet extends HttpServlet {
 		cliente.setPassword(password);
 		
 		ClienteDAOImplementation.getInstance().create(cliente);
-		List<Cliente> clientes = new ArrayList<Cliente>();
-		//clientes.addAll((List<Cliente>)
-				//req.getSession().getAttribute("clientes"));
-		//clientes.add(cliente);
-		req.getSession().setAttribute("clientes", clientes);
+		
 		req.getSession().setAttribute("nuevo_usuario", true);//variable que hara que salte el mensaje de "Usuario registrado"
+		
 		getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 	}
 }

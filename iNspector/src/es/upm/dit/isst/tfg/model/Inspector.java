@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -40,9 +41,8 @@ public class Inspector implements Serializable {
 			inverseJoinColumns = @JoinColumn(name = "cif"))
 	private List <Establecimiento> establecimientos_inspeccionados;
 	
-	
-	
-
+	@Lob
+	private byte[] imagen;
 	
 	public Inspector() {
 		super();
@@ -110,6 +110,15 @@ public class Inspector implements Serializable {
 			return false;
 		return true;
 	}
+	
+	public byte[] getImagen(){
+		return this.imagen;
+	}
+	
+	public void setImagen(byte[] imagen){
+		this.imagen = imagen;
+	}
+	
 	/**
 	 * @return the id
 	 */

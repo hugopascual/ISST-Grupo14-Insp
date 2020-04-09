@@ -1,7 +1,6 @@
 package es.upm.dit.isst.tfg.servlets;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -35,8 +34,7 @@ public class FormLoginServlet extends HttpServlet {
 		List<Establecimiento> establecimientos = (List<Establecimiento>) EstablecimientoDAOImplementation.getInstance().readAll();
 		List<Cliente> clientes = (List<Cliente>) ClienteDAOImplementation.getInstance().readAll();
 		
-		//Objetos que despues se pasaran a la servlet
-		Establecimiento establecimiento = EstablecimientoDAOImplementation.getInstance().login(email, password);
+		//Se pasara a la servlet el objeto que haya introducido sus credenciales correspondientes
 		Inspector inspector = InspectorDAOImplementation.getInstance().login(email, password);
 		Cliente cliente = ClienteDAOImplementation.getInstance().login(email, password);
 		
@@ -56,7 +54,11 @@ public class FormLoginServlet extends HttpServlet {
 			req.getSession().setAttribute("soy_cliente", true);
 			req.getSession().setAttribute("cliente", cliente);
 			req.getSession().setAttribute("establecimientos", establecimientos);
-			//getServletContext().getRequestDispatcher("/ClienteView.jsp").forward(req,resp);
+			boolean imagen = false;
+			if (cliente.getImagen() != null) {
+				imagen = true;
+			}
+			req.getSession().setAttribute("imagen",imagen);
 			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 			
 		} else if ( null != inspector ) {
@@ -64,11 +66,16 @@ public class FormLoginServlet extends HttpServlet {
 			req.getSession().setAttribute("soy_inspector", true);
 			req.getSession().setAttribute("inspector",inspector);
 			req.getSession().setAttribute("establecimientos", establecimientos);
-			//getServletContext().getRequestDispatcher("/InspectorView.jsp").forward(req,resp);
+			boolean imagen = false;
+			if (inspector.getImagen() != null) {
+				imagen = true;
+			}
+			req.getSession().setAttribute("imagen",imagen);
 			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 			
 		} else {
 			
+			req.getSession().setAttribute("loginError", true);
 			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 			
 		}

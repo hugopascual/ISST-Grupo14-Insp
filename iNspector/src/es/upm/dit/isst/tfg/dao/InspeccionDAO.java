@@ -22,6 +22,7 @@ public interface InspeccionDAO {
 	public Collection<Inspeccion> readAll ();
 	public Collection<Inspeccion> readAllInspecciones_Establ(Establecimiento establecimiento);
 	public Collection<Inspeccion> readAllInspecciones_Insp(Inspector inspector);
+	public Inspeccion ultimaInspeccion(Establecimiento establecimiento);
 	//public Inspeccion login (String email, String psd);
 	
 }

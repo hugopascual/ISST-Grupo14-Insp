@@ -81,22 +81,22 @@ public class EstablecimientoDAOImplementation implements EstablecimientoDAO {
 		return list;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Establecimiento login(String cif, String password) {//los restaurantes van a necesitar entrar en la app?
-		Session session = SessionFactoryService.get().openSession();
-		Establecimiento establecimiento = null;
-		session.beginTransaction();
-		Query q = session.createQuery("select e from Establecimiento e where e.cif = :cif");
-		//Query q = session.createQuery("select e from Establecimiento e where e.cif = :cif and e.password = :password");
-		q.setParameter("cif", cif);
-		//q.setParameter("password", password);
-		List<Establecimiento> establecimientos = q.getResultList();
-		if (establecimientos.size() > 0)
-			establecimiento = (Establecimiento)(q.getResultList().get(0));
-		session.getTransaction().commit();
-		session.close();
-		return establecimiento;
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public Establecimiento login(String cif, String password) {//los restaurantes van a necesitar entrar en la app?
+//		Session session = SessionFactoryService.get().openSession();
+//		Establecimiento establecimiento = null;
+//		session.beginTransaction();
+//		Query q = session.createQuery("select e from Establecimiento e where e.cif = :cif");
+//		//Query q = session.createQuery("select e from Establecimiento e where e.cif = :cif and e.password = :password");
+//		q.setParameter("cif", cif);
+//		//q.setParameter("password", password);
+//		List<Establecimiento> establecimientos = q.getResultList();
+//		if (establecimientos.size() > 0)
+//			establecimiento = (Establecimiento)(q.getResultList().get(0));
+//		session.getTransaction().commit();
+//		session.close();
+//		return establecimiento;
+//	}
 
 }
