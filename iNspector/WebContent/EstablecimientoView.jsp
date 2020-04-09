@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- este archivo puede dar conflicto debido al merge -->
+
 <h2>Estás viendo el establecimiento ${establecimiento.nombre}</h2>
 
 <p>Nombre: ${establecimiento.nombre}</p>

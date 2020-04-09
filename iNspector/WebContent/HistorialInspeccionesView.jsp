@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- este archivo puede dar conflicto debido al merge -->
+
 <c:choose>
 	<c:when test="${segun_establecimiento}">
 		<h2>Lista de inspecciones realizadas en el establecimiento ${establecimiento.nombre}</h2>
