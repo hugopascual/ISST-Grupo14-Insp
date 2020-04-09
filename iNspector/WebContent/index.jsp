@@ -5,13 +5,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
+
+<!--
 <head>
 <meta charset="UTF-8">
 <title>iNspector</title>
 </head>
-<body>
 
-<div>
+style="margin: 10px;"
+
+-->
+
+<body>
+ 
+<jsp:include page="header.jsp"/>
+ 
+<div class="contenido_pagina" >
 <c:choose>
 	<c:when test="${soy_cliente}">
 		<h1>Bienvenido de nuevo a iNspector, ${cliente.nombre}</h1>
@@ -62,4 +71,7 @@
 </c:choose>
 
 </body>
+
+<jsp:include page="footer.jsp"/>
+
 </html>

@@ -1,0 +1,16 @@
+footer{
+	background-color: #3366ff;
+	position: fixed;
+	bottom: 0;
+	width: 100%;	
+}
+
+footer div.logo{
+	position: relative;
+	text-align: center;
+	margin-top: 10px;
+}
+
+footer div.texto{
+	text-align: center;
+}
