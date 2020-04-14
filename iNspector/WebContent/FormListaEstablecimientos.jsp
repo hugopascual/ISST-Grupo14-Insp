@@ -10,7 +10,7 @@
 <body>
 
 <form action="FormListaEstablecimientosServlet">
-<button type="submit">Ver todos los establecimientos de iNspector</button>
+<button type="submit" class="btn btn-primary mt-1 mb-1 ">Ver todos los establecimientos de iNspector</button>
 </form>
 
 

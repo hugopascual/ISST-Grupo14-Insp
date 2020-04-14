@@ -1,5 +1,5 @@
 html{
-	background-color: #99ccff;
+	background-color: #fbf6f5;
 }
 
 body{
@@ -8,10 +8,11 @@ body{
 
 body div.contenido_pagina{
 	margin: 10px;
+  	position: center;
 }
 
 header{
-	background-color: #3366ff;
+	background-color: #584dda;
 	margin-top:0;
 }
 
@@ -20,7 +21,24 @@ header div.logo{
 }
 
 header div.button{
+	display: inline-block;
+	padding: 15 px;
+	box-sizing: border-box;
 	float: right;
 	margin-top: 35px;
 	margin-right: 25px;
+}
+
+header div.logout{
+	width:30 px;
+	height:30 px;
+	float: right;
+	margin-top: 35 px;
+	margin-right: 25 px;
+}
+
+header div.perfil{
+	float:right;
+	margin-top: 35 px;
+	margin-right: 100 px;
 }

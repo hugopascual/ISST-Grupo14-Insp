@@ -10,6 +10,7 @@
 <title>iNspector</title>
 </head>
 <body>
+<%@ include file = "header.jsp" %>
 
 <h2>Lista de establecimientos registrados en iNspector</h2>
 <h3>Actualmente hay registrados ${fn:length(establecimientos)} establecimientos</h3>
@@ -48,7 +49,7 @@
 	</c:when>
 	<c:otherwise>
 		<p>Hemos visto que aún no estás registrado...</p>
-		<form method="get" action="FormCreaCliente.html">
+		<form method="get" action="FormCreaCliente.jsp">
   			<button type="submit">Registrarse</button>
 		</form>
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
@@ -57,6 +58,6 @@
 </div>		
 
 
-
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

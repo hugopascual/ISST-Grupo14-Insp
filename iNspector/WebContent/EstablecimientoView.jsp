@@ -10,6 +10,7 @@
 <title>iNspector</title>
 </head>
 <body>
+<%@ include file = "header.jsp" %>
 
 <!-- este archivo puede dar conflicto debido al merge -->
 
@@ -50,7 +51,7 @@
 	</c:when>
 	<c:when test="${usuario_no_registrado}">
 		<p>Hemos visto que aún no estás registrado...</p>
-		<form method="get" action="FormCreaCliente.html">
+		<form method="get" action="FormCreaCliente.jsp">
   			<button type="submit">Registrarse</button>
 		</form>
 		<h2><%@ include file = "FormLogout.jsp" %></h2>
@@ -58,6 +59,8 @@
 	
 </c:choose>
 </div>	
+
+<%@ include file = "footer.jsp" %>
 
 </body>
 </html>

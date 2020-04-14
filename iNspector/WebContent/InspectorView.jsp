@@ -10,6 +10,7 @@
 <title>iNspector</title>
 </head>
 <body>
+<%@ include file = "header.jsp" %>
 
 <h2>Página del inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2}</h2>
 
@@ -45,5 +46,6 @@
 
 <h2><%@ include file = "FormLogout.jsp" %></h2>
 
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

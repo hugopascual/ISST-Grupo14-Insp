@@ -6,58 +6,76 @@
 
 <html>
 
-<!--
 <head>
 <meta charset="UTF-8">
 <title>iNspector</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="CSS/index.css" type="text/css"></link>
 </head>
 
-style="margin: 10px;"
-
--->
-
-<body>
+<body class="text-center">
  
-<jsp:include page="header.jsp"/>
+<%@ include file = "header.jsp" %>
  
-<div class="contenido_pagina" >
+<div class="container" >
 <c:choose>
 	<c:when test="${soy_cliente}">
-		<h1>Bienvenido de nuevo a iNspector, ${cliente.nombre}</h1>
-		<boton_cli><%@ include file = "FormPerfilUsuario.jsp" %></boton_cli>
-		<h2><%@ include file = "FormListaEstablecimientos.jsp" %></h2>
-		<h2><%@ include file = "FormLogout.jsp" %></h2>
+		<h3>Bienvenido de nuevo a iNspector, ${cliente.nombre}</h3>
+		<div class="btn-group-vertical">
+			<%@ include file = "FormPerfilUsuario.jsp" %>
+			<%@ include file = "FormListaEstablecimientos.jsp" %>
+			<%@ include file = "FormLogout.jsp" %>
+		</div>
 	</c:when>
 	<c:when test="${soy_inspector}">
-		<h1>Bienvenido de nuevo a iNspector, ${inspector.nombre}</h1>
-		<boton_cli><%@ include file = "FormPerfilUsuario.jsp" %></boton_cli>
-		<boton_inspecciones><%@ include file ="BotonInspeccionesInspector.jsp" %></boton_inspecciones>
-		<h2><%@ include file = "FormListaEstablecimientos.jsp" %></h2>
-		<h2><%@ include file = "FormLogout.jsp" %></h2>
+		<h3>Bienvenido de nuevo a iNspector, ${inspector.nombre}</h3>
+			<div class="btn-group-vertical ">
+				<%@ include file = "FormPerfilUsuario.jsp" %>
+				<%@ include file = "BotonInspeccionesInspector.jsp" %>
+				<%@ include file = "FormListaEstablecimientos.jsp" %>
+				<%@ include file = "FormLogout.jsp" %>
+			</div>
 	</c:when>
 	<c:otherwise>
-		<h1>¡Bienvenido a iNspector!</h1>
-		<h2>Acceder a cuenta existente en la página</h2>
-	
-		<form action="FormLoginServlet">
-			<input type="text" name="email" placeholder="Email">
-			<input type="password" name="password" placeholder="Password">
-			<button type="submit">Login</button>
-		</form>
-		
-		<c:if test="${not empty loginError}">
-    		<p style="color:red;">Las credenciales introducidas no son correctas...</p>
-		</c:if>
-
-		<h3>¿Aún no tienes cuenta?</h3>
-		<form method="get" action="FormCreaCliente.html">
-  			<button type="submit">Registrarse</button>
-		</form>
-		
-		<div>
-		<h3>Si lo prefieres, puedes usar iNspector sin iniciar sesión</h3>
-		<h2><%@ include file = "FormListaEstablecimientos.jsp" %></h2>
+	<div class="container">
+	<div class="col">
+		<div class="row ">
+			<h3>¡Bienvenido a iNspector!</h3>
 		</div>
+		<div class="row">
+			<h4>Acceder a cuenta existente en la página</h4>
+		</div>
+		<div class="row">
+			<form action="FormLoginServlet">
+				<input type="text" name="email" placeholder="Email">
+				<input type="password" name="password" placeholder="Password">
+				<button type="submit" class="btn btn-primary">Login</button>
+			</form>
+		</div>
+		<div class="row">
+			<c:if test="${not empty loginError}">
+	    		<p style="color:red;">Las credenciales introducidas no son correctas...</p>
+			</c:if>
+		</div>
+	
+		<div class="row">
+			<h4>¿Aún no tienes cuenta?</h4>
+		</div>	
+		<div class="row">
+			<form method="get" action="FormCreaCliente.jsp">
+	  			<button type="submit" class="btn btn-primary">Registrarse</button>
+			</form>
+		</div>
+		
+		<div class="row">
+			<h5>Si lo prefieres, puedes usar iNspector sin iniciar sesión</h5>
+		</div>
+		<div class="row">
+			<%@ include file = "FormListaEstablecimientos.jsp" %>
+		</div>
+	</div>
+	</div>
+	
 	</c:otherwise>
 </c:choose>
 </div>	

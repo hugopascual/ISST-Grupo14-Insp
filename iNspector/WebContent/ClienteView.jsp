@@ -10,6 +10,7 @@
 <title>iNspector</title>
 </head>
 <body>
+<%@ include file = "header.jsp" %>
 
 <h2>Página del cliente ${cliente.nombre} ${cliente.apellido_1} ${cliente.apellido_2}</h2>
 <p>Nombre: ${cliente.nombre}<p>
@@ -40,6 +41,7 @@
 
 <h2><%@ include file = "FormLogout.jsp" %></h2>
 
+<%@ include file = "footer.jsp" %>
 
 </body>
 </html>

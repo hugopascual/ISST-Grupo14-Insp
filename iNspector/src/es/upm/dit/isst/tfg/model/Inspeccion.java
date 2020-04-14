@@ -20,7 +20,7 @@ public class Inspeccion implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private int id; //tenemos que ver como hacer para generarlo de manera automatica
+	private int id;
 	
 	@Temporal(TemporalType.DATE)
 	private Date fecha_insp;//tenemos que ver como manejar las fechas. Probablemente haya que meterlo en la bbdd como string y despues al leerlo formatearlo a Calendar otra vez

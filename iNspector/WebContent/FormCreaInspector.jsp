@@ -5,20 +5,42 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registro de un inspector en el sistema</title>
+<title>iNspector</title>
 </head>
 <body>
 
-<form action="FormCreaInspectorServlet">
-<input type="text" name="nombre" placeholder="Nombre">
-<input type="text" name="apellido_1" placeholder="Primer Apellido">
-<input type="text" name="apellido_2" placeholder="Segundo Apellido">
-<input type="text" name="email" placeholder="Email">
-<input type="text" name="usuario" placeholder="Usuario">
-<input type="password" name="password" placeholder="Contraseña">
-<button type="submit">Registrar inspector</button>
-</form>
-
+<div class="col-lg-12">
+			<h2>Registrar un nuevo inspector</h2>
+			<form action="FormCreaInspectorServlet" class="form">
+					<div class="form-row">
+						<div class="col mb-1">
+						<input type="text" name="nombre" placeholder="Nombre">
+						</div>
+						<div class="col">
+						<input type="text" name="apellido_1" placeholder="Primer Apellido">
+						</div>
+						<div class="col">
+						<input type="text" name="apellido_2" placeholder="Segundo Apellido">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col">
+						<input type="text" name="email" placeholder="Email">
+						</div>
+						<div class="col">
+						<input type="text" name="usuario" placeholder="Usuario">
+						</div>
+						<div class="col">
+						<input type="password" name="password" placeholder="Contraseña">
+						</div>
+					</div>
+					<div class="form-row mt-1">
+						<div class="col text-center">
+						<button type="submit">Registrar inspector</button>
+						</div>
+					</div>
+			</form>
+</div>
 
 </body>
 </html>

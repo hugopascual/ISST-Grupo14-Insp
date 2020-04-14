@@ -24,18 +24,28 @@
 		<!-- selección de boton para logout dependiendo de si estas o no registrado -->
 		<c:choose>
 			<c:when test="${soy_cliente}">
-				<form action="FormLogoutServlet">
-					<button type="submit">Logout</button>
-				</form>
+					<div class="logout">
+						<form action="FormLogoutServlet">
+							<button type="submit" class="btn btn-danger ml-1">Logout</button>
+						</form>
+					</div>
+					<div class="perfil">
+						<%@ include file = "FormPerfilUsuario.jsp" %>
+					</div>
 			</c:when>
 			<c:when test="${soy_inspector}">
-				<form action="FormLogoutServlet">
-					<button type="submit">Logout</button>
-				</form>
+					<div class="logout">
+						<form action="FormLogoutServlet">
+							<button type="submit" class="btn btn-danger ml-1">Logout</button>
+						</form>
+					</div>
+					<div class="perfil">
+						<%@ include file = "FormPerfilUsuario.jsp" %>
+					</div>
 			</c:when>
 			<c:otherwise>
 				<form action="FormLogoutServlet">
-					<button type="submit">Volver a la página principal</button>
+					<button type="submit" class="btn btn-danger">Volver a la página principal</button>
 				</form>
 			</c:otherwise>
 		</c:choose>

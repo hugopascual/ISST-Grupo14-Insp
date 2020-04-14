@@ -13,17 +13,17 @@
 <c:choose>
 	<c:when test="${soy_cliente}">
 		<form action="FormLogoutServlet">
-			<button type="submit">Logout</button>
+			<button type="submit" class="btn btn-danger mt-1">Logout</button>
 		</form>
 	</c:when>
 	<c:when test="${soy_inspector}">
 		<form action="FormLogoutServlet">
-			<button type="submit">Logout</button>
+			<button type="submit" class="btn btn-danger mt-1">Logout</button>
 		</form>
 	</c:when>
 	<c:otherwise>
 		<form action="FormLogoutServlet">
-			<button type="submit">Volver a la página principal</button>
+			<button type="submit" class="btn btn-danger mt-1">Volver a la página principal</button>
 		</form>
 	</c:otherwise>
 </c:choose>

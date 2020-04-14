@@ -9,7 +9,7 @@
 </head>
 <body>
 <form action="FormPerfilUsuarioServlet">
-<button type="submit">Mi perfil</button>
+<button type="submit" class="btn btn-primary">Mi perfil</button>
 </form>
 </body>
 </html>

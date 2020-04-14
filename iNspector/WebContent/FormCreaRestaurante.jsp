@@ -5,26 +5,49 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registro de un restaurante</title>
+<title>iNspector</title>
 </head>
 <body>
 
-<form action="FormCreaEstablecimientoServlet" method="post" enctype="multipart/form-data">
-	<input type="text" name="cif" placeholder="CIF">
-	<input type="text" name="nombre" placeholder="Nombre">
-	<input type="text" name="direccion" placeholder="Direccion">
-	<input type="text" name="ciudad" placeholder="Ciudad">
-	<input type="text" name="rep_legal" placeholder="Representante legal">
-	<select name="tipo">
-	   <option value="" disabled selected>Tipo de establecimiento</option>
-	       <option value="Restaurante">Restaurante</option> 
-	       <option value="Cafeteria">Cafetería</option> 
-	       <option value="Bar">Bar</option> 
-	       <option value="Hotel">Hotel</option> 
-	</select>
-	<input type="file" name="image" />
-	<button type="submit">Registrar establecimiento</button>
-</form>
-
+<div class="col-lg-12">
+	<h2>Registrar un nuevo establecimiento</h2>
+	<form action="FormCreaEstablecimientoServlet" method="post" enctype="multipart/form-data" class="form">
+		<div class="form-row">
+			<div class="col mb-1">
+			<input type="text" name="cif" placeholder="CIF">
+			</div>
+			<div class="col">
+			<input type="text" name="nombre" placeholder="Nombre">
+			</div>
+			<div class="col">
+			<input type="text" name="direccion" placeholder="Direccion">
+			</div>
+			<div class="col">
+			<input type="text" name="ciudad" placeholder="Ciudad">
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col">
+			<input type="text" name="rep_legal" placeholder="Representante legal">
+			</div>
+			<div class="col">
+			<select name="tipo">
+			   <option value="" disabled selected>Tipo de establecimiento</option>
+			       <option value="Restaurante">Restaurante</option> 
+			       <option value="Cafeteria">Cafetería</option> 
+			       <option value="Bar">Bar</option> 
+			       <option value="Hotel">Hotel</option> 
+			       <option value="Otro">Otro</option>
+			</select>
+			</div>
+			<div class="col">
+			<input type="file" name="image" />
+			</div>
+			<div class="col">
+			<button type="submit">Registrar establecimiento</button>
+			</div>
+		</div>
+	</form>
+</div>
 </body>
 </html>
