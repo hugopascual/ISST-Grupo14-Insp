@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registro de un restaurante</title>
+<title>iNspector</title>
 </head>
 <body>
 
 <form action="FormListaEstablecimientosServlet">
-<button type="submit" class="btn btn-primary mt-1 mb-1 ">Ver todos los establecimientos de iNspector</button>
+<button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1 ">Ver todos los establecimientos de iNspector</button>
 </form>
 
 

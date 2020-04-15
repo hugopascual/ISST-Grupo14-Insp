@@ -8,57 +8,70 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>iNspector</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+
 <%@ include file = "header.jsp" %>
 
 <!-- este archivo puede dar conflicto debido al merge -->
 
-<h2>Estás viendo el establecimiento ${establecimiento.nombre}</h2>
-
-<p>Nombre: ${establecimiento.nombre}</p>
-<p>Dirección: ${establecimiento.direccion}</p>
-<p>Ciudad: ${establecimiento.ciudad}</p>
-<p>Número de inspecciones: ${fn:length(inspecciones)}</p>
-<c:choose>
-	<c:when test="${not empty ultima_inspeccion}">
-		<p>Nota última inspección: ${ultima_inspeccion.nota} <p>
-		<p>Fecha de la última inspección: ${ultima_inspeccion.fecha_insp} </p>
-	</c:when>
-	<c:otherwise>
-		<p>Este establecimiento aún no tiene registrada ninguna inspección <p>
-	</c:otherwise>
-</c:choose>
-
-<div>
-	<img src="${pageContext.request.contextPath}/ServeImageServlet?id=${establecimiento.cif}" width="500" height="350" />
-</div>	
-
-<div>
-<c:choose>
-	<c:when test="${soy_cliente}">
-		<h2><%@ include file = "FormPerfilUsuario.jsp" %></h2>
-		<p>Botones de cliente: Reportar incidencia</p>
-		<h2><%@ include file = "FormIndex.jsp" %></h2>
-		<h2><%@ include file = "FormLogout.jsp" %></h2>
-	</c:when>
-	<c:when test="${soy_inspector}">
-		<h2><%@ include file = "BotonPaginaInspeccion.jsp" %></h2>
-		<h2><%@ include file = "BotonHistorialInspecciones.jsp" %></h2>
-		<h2><%@ include file = "FormPerfilUsuario.jsp" %></h2>
-		<h2><%@ include file = "FormIndex.jsp" %></h2>
-		<h2><%@ include file = "FormLogout.jsp" %></h2>
-	</c:when>
-	<c:when test="${usuario_no_registrado}">
-		<p>Hemos visto que aún no estás registrado...</p>
-		<form method="get" action="FormCreaCliente.jsp">
-  			<button type="submit">Registrarse</button>
-		</form>
-		<h2><%@ include file = "FormLogout.jsp" %></h2>
-	</c:when>
+<div class="container">
+	<div class="col">
+		<h2>Establecimiento ${establecimiento.nombre}</h2>
+	</div>
+	<div class="row">
+		<div class="col-lg-6">
+			<p>Nombre: ${establecimiento.nombre}</p>
+			<p>Dirección: ${establecimiento.direccion}</p>
+			<p>Ciudad: ${establecimiento.ciudad}</p>
+			<p>Número de inspecciones: ${fn:length(inspecciones)}</p>
+			<c:choose>
+				<c:when test="${not empty ultima_inspeccion}">
+					<p>Nota última inspección: ${ultima_inspeccion.nota} <p>
+					<p>Fecha de la última inspección: ${ultima_inspeccion.fecha_insp} </p>
+				</c:when>
+				<c:otherwise>
+					<p>Este establecimiento aún no tiene registrada ninguna inspección </p>
+				</c:otherwise>
+			</c:choose>
+		</div>
+		
+		<div class="col-lg-6">
+			<div>
+				<img src="${pageContext.request.contextPath}/ServeImageServlet?id=${establecimiento.cif}" width="500" height="350" />
+			</div>
+		</div>
+	</div>	
 	
-</c:choose>
-</div>	
+	<div>
+	<c:choose>
+		<c:when test="${soy_cliente}">
+			<div class="row">
+				<!--Aquí se incluyen los botones de cliente-->
+				<!--<p>Botoón: Reportar incidencia</p>-->
+				<%@ include file = "FormIndex.jsp" %>
+			</div>
+		</c:when>
+		<c:when test="${soy_inspector}">
+			<div class="row">
+				<%@ include file = "BotonPaginaInspeccion.jsp" %>
+				<%@ include file = "BotonHistorialInspecciones.jsp" %>
+				<%@ include file = "FormIndex.jsp" %>
+			</div>
+		</c:when>
+		<c:when test="${usuario_no_registrado}">
+			<div class="row">
+				<p>Hemos visto que aún no estás registrado...</p>
+				<form method="get" action="FormCreaCliente.jsp">
+		  			<button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1">Registrarse</button>
+				</form>
+			</div>
+		</c:when>
+		
+	</c:choose>
+	</div>	
+</div>
 
 <%@ include file = "footer.jsp" %>
 

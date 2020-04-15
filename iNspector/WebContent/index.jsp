@@ -39,38 +39,38 @@
 	<c:otherwise>
 	<div class="container">
 	<div class="col">
-		<div class="row ">
+		<div class="row mt-1 mb-1 ml-1 mr-1">
 			<h3>¡Bienvenido a iNspector!</h3>
 		</div>
-		<div class="row">
+		<div class="row mt-1 mb-1 ml-1 mr-1">
 			<h4>Acceder a cuenta existente en la página</h4>
 		</div>
-		<div class="row">
+		<div class="row mt-1 mb-1 ml-1 mr-1">
 			<form action="FormLoginServlet">
 				<input type="text" name="email" placeholder="Email">
 				<input type="password" name="password" placeholder="Password">
 				<button type="submit" class="btn btn-primary">Login</button>
 			</form>
 		</div>
-		<div class="row">
+		<div class="row mt-1 mb-1 ml-1 mr-1">
 			<c:if test="${not empty loginError}">
 	    		<p style="color:red;">Las credenciales introducidas no son correctas...</p>
 			</c:if>
 		</div>
 	
-		<div class="row">
+		<div class="row mt-1 mb-1 ml-1 mr-1">
 			<h4>¿Aún no tienes cuenta?</h4>
 		</div>	
-		<div class="row">
+		<div class="row mt-1 mb-1 ml-1 mr-1">
 			<form method="get" action="FormCreaCliente.jsp">
-	  			<button type="submit" class="btn btn-primary">Registrarse</button>
+	  			<button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1">Registrarse</button>
 			</form>
 		</div>
 		
-		<div class="row">
+		<div class="row mt-1 mb-1 ml-1 mr-1">
 			<h5>Si lo prefieres, puedes usar iNspector sin iniciar sesión</h5>
 		</div>
-		<div class="row">
+		<div class="row mt-1 mb-1 ml-1 mr-1">
 			<%@ include file = "FormListaEstablecimientos.jsp" %>
 		</div>
 	</div>

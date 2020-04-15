@@ -26,7 +26,7 @@
 			<c:when test="${soy_cliente}">
 					<div class="logout">
 						<form action="FormLogoutServlet">
-							<button type="submit" class="btn btn-danger ml-1">Logout</button>
+							<button type="submit" class="btn btn-danger mt-1 mb-1 ml-1 mr-1">Logout</button>
 						</form>
 					</div>
 					<div class="perfil">
@@ -36,7 +36,7 @@
 			<c:when test="${soy_inspector}">
 					<div class="logout">
 						<form action="FormLogoutServlet">
-							<button type="submit" class="btn btn-danger ml-1">Logout</button>
+							<button type="submit" class="btn btn-danger mt-1 mb-1 ml-1 mr-1">Logout</button>
 						</form>
 					</div>
 					<div class="perfil">
@@ -45,7 +45,7 @@
 			</c:when>
 			<c:otherwise>
 				<form action="FormLogoutServlet">
-					<button type="submit" class="btn btn-danger">Volver a la página principal</button>
+					<button type="submit" class="btn btn-danger mt-1 mb-1 ml-1 mr-1">Volver a la página principal</button>
 				</form>
 			</c:otherwise>
 		</c:choose>

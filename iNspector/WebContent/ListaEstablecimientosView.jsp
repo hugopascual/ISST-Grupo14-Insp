@@ -8,53 +8,59 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>iNspector</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 </head>
 <body>
 <%@ include file = "header.jsp" %>
 
-<h2>Lista de establecimientos registrados en iNspector</h2>
-<h3>Actualmente hay registrados ${fn:length(establecimientos)} establecimientos</h3>
-
-<div>
-<table border="1">
-	<tr>
-		<td><b>Nombre</b></td>
-		<td><b>Dirección</b></td>
-		<td><b>Ciudad</b></td>
-		<td><b>Tipo</b></td>
-	</tr>
-
-	<c:forEach items="${establecimientos}" var="establecimientoi">
+<div class="container">
+	<h2>Lista de establecimientos registrados</h2>
+	<p>Actualmente hay registrados ${fn:length(establecimientos)} establecimientos en iNspector<p>
+	
+	<div>
+	<table border="1">
 		<tr>
-			<td>${establecimientoi.nombre}</td>
-			<td>${establecimientoi.direccion}</td>
-			<td>${establecimientoi.ciudad}</td>
-			<td>${establecimientoi.tipo}</td>
-			<td><%@ include file = "BotonDetalleEstablecimiento.jsp" %></td>
+			<td><b>Nombre</b></td>
+			<td><b>Dirección</b></td>
+			<td><b>Ciudad</b></td>
+			<td><b>Tipo</b></td>
 		</tr>
-	</c:forEach>	
-</table>
-</div>
-
-<div>
-<c:choose>
-	<c:when test="${soy_cliente}">
-		<boton_cli><%@ include file = "FormPerfilUsuario.jsp" %></boton_cli>
-		<h2><%@ include file = "FormIndex.jsp" %></h2>
-		<h2><%@ include file = "FormLogout.jsp" %></h2>
-	</c:when>
-	<c:when test="${soy_inspector}">
-		<boton_insp><%@ include file = "FormPerfilUsuario.jsp" %></boton_insp>
-		<h2><%@ include file = "FormLogout.jsp" %></h2>
-	</c:when>
-	<c:otherwise>
-		<p>Hemos visto que aún no estás registrado...</p>
-		<form method="get" action="FormCreaCliente.jsp">
-  			<button type="submit">Registrarse</button>
-		</form>
-		<h2><%@ include file = "FormLogout.jsp" %></h2>
-	</c:otherwise>
-</c:choose>
+	
+		<c:forEach items="${establecimientos}" var="establecimientoi">
+			<tr>
+				<td>${establecimientoi.nombre}</td>
+				<td>${establecimientoi.direccion}</td>
+				<td>${establecimientoi.ciudad}</td>
+				<td>${establecimientoi.tipo}</td>
+				<td><%@ include file = "BotonDetalleEstablecimiento.jsp" %></td>
+			</tr>
+		</c:forEach>	
+	</table>
+	</div>
+	
+	<div>
+	<c:choose>
+		<c:when test="${soy_cliente}">
+		<!--por si hay que incluir algo cuando eres cliente -->
+			<%@ include file = "FormIndex.jsp" %>
+		</c:when>
+		<c:when test="${soy_inspector}">
+			<!--por si hay que incluir algo cuando eres inspector -->
+			<%@ include file = "FormIndex.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<div class="row">
+				<div class="col mt-2">
+					<p>Hemos visto que aún no estás registrado...</p>
+					<form method="get" action="FormCreaCliente.jsp">
+			  			<button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1">Registrarse</button>
+					</form>
+				</div>
+			</div>
+		</c:otherwise>
+	</c:choose>
+	</div>
 </div>		
 
 

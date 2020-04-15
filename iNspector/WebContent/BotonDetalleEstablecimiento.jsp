@@ -11,7 +11,7 @@
 
 <form action="BotonDetalleEstablecimientoServlet">
 	<input type="hidden" name="establecimientoCIF" value="${establecimientoi.cif}" />
-	<button type="submit">Ver establecimiento</button>
+	<button type="submit" class="btn btn-primary">Ver establecimiento</button>
 </form>
 
 </body>

@@ -12,7 +12,7 @@
 <form action="BotonHistorialInspeccionesServlet">
 	<input type="hidden" name="establecimientoCIF" value="${establecimientoi.cif}" />
 	<input type="hidden" name="inspector_email" value="${inspector.email}"/>
-	<button type="submit">Ver inspecciones</button>
+	<button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1">Ver inspecciones</button>
 </form>
 
 </body>

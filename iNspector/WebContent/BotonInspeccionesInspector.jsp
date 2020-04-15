@@ -11,7 +11,7 @@
 
 <form action="BotonInspeccionesInspectorServlet">
 	<input type="hidden" name="inspector_email" value="${inspector.email}"/>
-	<button type="submit" class="btn btn-primary mt-1 mb-1">Mis inspecciones</button>
+	<button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1">Mis inspecciones</button>
 </form>
 
 </body>

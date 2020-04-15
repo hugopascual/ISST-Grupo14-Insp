@@ -11,7 +11,7 @@
 
 <form action="BotonPaginaInspeccionServlet">
 	<input type="hidden" name="establecimientoCIF" value="${establecimientoi.cif}" />
-	<button type="submit">Registrar inspección</button>
+	<button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1">Registrar inspección</button>
 </form>
 
 </body>
