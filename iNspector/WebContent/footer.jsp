@@ -13,7 +13,7 @@
 <title>iNspector</title>
 </head>
 
-<footer>
+<footer class="footer" style="background-color:#584dda;">
 
 	<div class="logo">
 	<img src="files/icono_iNspector.png" alt="Icono de iNspector"

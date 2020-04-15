@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <title>iNspector</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" href="CSS/index.css" type="text/css"></link>
 </head>
 
 <body class="text-center">
@@ -20,21 +19,29 @@
 <div class="container" >
 <c:choose>
 	<c:when test="${soy_cliente}">
-		<h3>Bienvenido de nuevo a iNspector, ${cliente.nombre}</h3>
-		<div class="btn-group-vertical">
-			<%@ include file = "FormPerfilUsuario.jsp" %>
-			<%@ include file = "FormListaEstablecimientos.jsp" %>
-			<%@ include file = "FormLogout.jsp" %>
-		</div>
-	</c:when>
-	<c:when test="${soy_inspector}">
-		<h3>Bienvenido de nuevo a iNspector, ${inspector.nombre}</h3>
-			<div class="btn-group-vertical ">
+	<div class="row">
+		<div class="col-lg-12">
+			<h3>Bienvenido de nuevo a iNspector, ${cliente.nombre}</h3>
+			<div class="btn-group-vertical">
 				<%@ include file = "FormPerfilUsuario.jsp" %>
-				<%@ include file = "BotonInspeccionesInspector.jsp" %>
 				<%@ include file = "FormListaEstablecimientos.jsp" %>
 				<%@ include file = "FormLogout.jsp" %>
 			</div>
+		</div>
+	</div>
+	</c:when>
+	<c:when test="${soy_inspector}">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3>Bienvenido de nuevo a iNspector, ${inspector.nombre}</h3>
+				<div class="btn-group-vertical ">
+					<%@ include file = "FormPerfilUsuario.jsp" %>
+					<%@ include file = "BotonInspeccionesInspector.jsp" %>
+					<%@ include file = "FormListaEstablecimientos.jsp" %>
+					<%@ include file = "FormLogout.jsp" %>
+				</div>
+			</div>
+		</div>
 	</c:when>
 	<c:otherwise>
 	<div class="container">
@@ -88,8 +95,6 @@
 	</c:when>
 </c:choose>
 
+<!--<jsp:include page="footer.jsp"/>-->
 </body>
-
-<jsp:include page="footer.jsp"/>
-
 </html>
