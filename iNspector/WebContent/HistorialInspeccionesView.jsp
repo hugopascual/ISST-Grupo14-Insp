@@ -8,11 +8,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>iNspector</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="CSS/elements.css" type="text/css"></link>
+<!-- Favicon -->
+<link rel="icon" href="img/favi.ico">
 </head>
 <body>
 <%@ include file = "header.jsp" %>
 
 <!-- este archivo puede dar conflicto debido al merge -->
+<div class= container>
 
 <c:choose>
 	<c:when test="${segun_establecimiento}">
@@ -20,14 +25,17 @@
 		<p>Ahora mismo el inspector ${inspector.nombre} está visualizando el historial de inspecciones</p>
 		<p>En este establecimiento se han realizado ${fn:length(inspecciones)} inspecciones</p>
 		<div>
-		<table border="1">
+		<table class="table" border="1">
+			<thead class="my-thead">
 			<tr>
 				<td><b>Inspector</b></td>
 				<td><b>Establecimiento</b></td>
 				<td><b>Fecha de la inspección</b></td>
 				<td><b>Nota</b></td>
 				<td><b>Comentarios del inspector</b></td>
+				<td><b>Informe</b></td>
 			</tr>
+			</thead>
 			<c:forEach items="${inspecciones}" var="inspeccioni">
 				<tr>
 					<td>${inspeccioni.inspector_realiza_inspeccion.nombre} ${inspeccioni.inspector_realiza_inspeccion.apellido_1} ${inspeccioni.inspector_realiza_inspeccion.apellido_2}</td>
@@ -77,14 +85,13 @@
 	</c:when>
 </c:choose>
 
-<div>
+<div class="row" id="botonesHistorialInspeccionesView">
 	<h2><%@ include file = "FormPerfilUsuario.jsp" %></h2>
-	<boton_insp><%@ include file = "FormPerfilUsuario.jsp" %></boton_insp>
 	<h2><%@ include file = "FormIndex.jsp" %></h2>
 	<h2><%@ include file = "FormLogout.jsp" %></h2>
 </div>	
+</div>
 
-<%@ include file = "footer.jsp" %>	
 
 </body>
 </html>

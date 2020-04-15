@@ -10,7 +10,11 @@
 <meta charset="UTF-8">
 <title>iNspector</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="CSS/elements.css" type="text/css"></link>
+<!-- Favicon -->
+<link rel="icon" href="img/favi.ico">
 </head>
+
 
 <body class="text-center">
  
@@ -22,7 +26,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h3>Bienvenido de nuevo a iNspector, ${cliente.nombre}</h3>
-			<div class="btn-group-vertical">
+			<div class= row id ="botonesHistorialInspeccionesView">
 				<%@ include file = "FormPerfilUsuario.jsp" %>
 				<%@ include file = "FormListaEstablecimientos.jsp" %>
 				<%@ include file = "FormLogout.jsp" %>
@@ -34,7 +38,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h3>Bienvenido de nuevo a iNspector, ${inspector.nombre}</h3>
-				<div class="btn-group-vertical ">
+				<div class= row id ="botonesHistorialInspeccionesView">
 					<%@ include file = "FormPerfilUsuario.jsp" %>
 					<%@ include file = "BotonInspeccionesInspector.jsp" %>
 					<%@ include file = "FormListaEstablecimientos.jsp" %>

@@ -7,28 +7,32 @@
 <meta charset="UTF-8">
 <title>iNspector</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+<link rel="stylesheet" href="CSS/elements.css" type="text/css"></link>
+<!-- Favicon -->
+<link rel="icon" href="img/favi.ico">
 </head>
 <body>
 <%@ include file = "header.jsp" %>
 
-<div class="container">
+<div class="container" id="admin">
 	<h2>Bienvenido administrador</h2>
 	<p><b>Número de establecimientos registrados: </b>${fn:length(establecimientos)}</p>
 	<p><b>Número de inspectores registrados: </b>${fn:length(inspectores)}</p>
 </div>
 
-<div class="container">
-	<div class="row">
-		<div class="col-lg-4">
+<div class="container-fluid">
+	<div class="row" id="admin">
+		<div class="col-lg-5">
 			<h2>Inspectores</h2>
-			<table border="1">
+			<table class="table" border="1">
+					<thead class="my-thead">
 					<tr>
 						<td><b>Nombre</b></td>
 						<td><b>Apellidos</b></td>
 						<td><b>Email</b></td>
 						<td></td>
 					</tr>
+					</thead>
 				<c:forEach items="${inspectores}" var="inspectori">
 					<tr>
 						<td>${inspectori.nombre}</td>
@@ -39,10 +43,19 @@
 				</c:forEach>
 			</table>
 			</div>
-			
-			<div class="col-lg-8">
+			<div class="col-lg-4">
+			<%@ include file = "FormCreaInspector.jsp" %>
+			</div>
+	</div>
+	
+</div>
+
+<div class="container-fluid">
+	<div class="row" id="admin">
+	<div class="col-lg-5">
 			<h2>Establecimientos</h2>
-			<table border="1">
+			<table class= "table" border="1">
+					<thead class="my-thead">
 					<tr>
 						<td><b>CIF</b></td>
 						<td><b>Nombre</b></td>
@@ -52,6 +65,7 @@
 						<td><b>Tipo de establecimiento</b></td>
 						<td></td>
 					</tr>
+					</thead>
 				<c:forEach items="${establecimientos}" var="establecimientoi">
 					<tr>
 						<td>${establecimientoi.cif}</td>
@@ -65,18 +79,15 @@
 				</c:forEach>
 			</table>
 		</div>
-	</div>
+		<div class = "col-lg-4">
+		<%@ include file = "FormCreaRestaurante.jsp" %>
+		</div>
+		</div>
 </div>
 
-<div class="container">
-	<%@ include file = "FormCreaInspector.jsp" %>
-</div>
 
-<div class="container">
-	<%@ include file = "FormCreaRestaurante.jsp" %>
-</div>
 
-<%@ include file = "footer.jsp" %>
+
 
 </body>
 </html>

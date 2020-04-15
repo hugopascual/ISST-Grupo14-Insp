@@ -11,12 +11,16 @@
 <head>
 <meta charset="UTF-8">
 <title>iNspector</title>
+
+
 </head>
 
 <header>
 	<div class="logo">
+	<a href="index.jsp">
 		<img src="files/logo_iNspector.png" alt="Logo de iNspector"
 			width="250">
+	</a>
 	</div>
 
 
@@ -44,9 +48,9 @@
 					</div>
 			</c:when>
 			<c:otherwise>
-				<form action="FormLogoutServlet">
+				<!--  <form action="FormLogoutServlet">
 					<button type="submit" class="btn btn-danger mt-1 mb-1 ml-1 mr-1">Volver a la página principal</button>
-				</form>
+				</form>-->
 			</c:otherwise>
 		</c:choose>
 	</div>

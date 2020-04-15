@@ -9,7 +9,9 @@
 <meta charset="ISO-8859-1">
 <title>iNspector</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+<link rel="stylesheet" href="CSS/elements.css" type="text/css"></link>
+<!-- Favicon -->
+<link rel="icon" href="img/favi.ico">
 </head>
 <body>
 <%@ include file = "header.jsp" %>
@@ -19,13 +21,16 @@
 	<p>Actualmente hay registrados ${fn:length(establecimientos)} establecimientos en iNspector<p>
 	
 	<div>
-	<table border="1">
+	<table  class= "table" border="1">
+		<thead class = "my-thead">
 		<tr>
 			<td><b>Nombre</b></td>
 			<td><b>Dirección</b></td>
 			<td><b>Ciudad</b></td>
 			<td><b>Tipo</b></td>
+			<td><b>Acción</b>
 		</tr>
+		</thead>
 	
 		<c:forEach items="${establecimientos}" var="establecimientoi">
 			<tr>
@@ -64,6 +69,6 @@
 </div>		
 
 
-<%@ include file = "footer.jsp" %>
+
 </body>
 </html>

@@ -1,0 +1,25 @@
+
+.my-thead{
+	background-color: #584dda;
+	color: #FFFFFF;
+}
+
+#admin {
+	text-align:center;
+	justify-content: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+#botonesHistorialInspeccionesView {
+	justify-content: center;
+	padding-top: 50px;
+}
+
+#botonRegistrarInforme {
+	margin: 20px;
+	justify-content: center;
+}
+
+#informeRegistrarInspeccion {
+	margin: 30px
+}

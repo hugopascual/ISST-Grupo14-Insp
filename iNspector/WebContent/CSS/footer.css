@@ -3,6 +3,7 @@ footer{
 	background-color: #584dda;
 	width: 100%;
 	bottom:0;	
+	position:absolute;
 }
 
 footer div.logo{
