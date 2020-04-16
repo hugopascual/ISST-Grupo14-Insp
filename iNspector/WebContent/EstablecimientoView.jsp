@@ -52,22 +52,23 @@
 			<div class="row">
 				<!--Aquí se incluyen los botones de cliente-->
 				<!--<p>Botoón: Reportar incidencia</p>-->
-				<%@ include file = "FormIndex.jsp" %>
+				<%@ include file = "FormListaEstablecimientos.jsp" %>
 			</div>
 		</c:when>
 		<c:when test="${soy_inspector}">
 			<div class="row">
 				<%@ include file = "BotonPaginaInspeccion.jsp" %>
 				<%@ include file = "BotonHistorialInspecciones.jsp" %>
-				<%@ include file = "FormIndex.jsp" %>
+				<%@ include file = "FormListaEstablecimientos.jsp" %>
 			</div>
 		</c:when>
 		<c:when test="${usuario_no_registrado}">
 			<div class="row">
 				<p>Hemos visto que aún no estás registrado...</p>
-				<form method="get" action="FormCreaCliente.jsp">
+				<p><form method="get" action="FormCreaCliente.jsp">
 		  			<button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1">Registrarse</button>
 				</form>
+				<%@ include file = "FormListaEstablecimientos.jsp" %></p>
 			</div>
 		</c:when>
 		

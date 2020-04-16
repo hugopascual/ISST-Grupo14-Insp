@@ -20,9 +20,9 @@
 	<p><b>Número de inspectores registrados: </b>${fn:length(inspectores)}</p>
 </div>
 
-<div class="container-fluid">
+<div class="container">
 	<div class="row" id="admin">
-		<div class="col-lg-5">
+		
 			<h2>Inspectores</h2>
 			<table class="table" border="1">
 					<thead class="my-thead">
@@ -42,17 +42,17 @@
 					</tr>
 				</c:forEach>
 			</table>
-			</div>
-			<div class="col-lg-4">
+			
+			<div class="row">
 			<%@ include file = "FormCreaInspector.jsp" %>
 			</div>
 	</div>
 	
 </div>
 
-<div class="container-fluid">
+<div class="container" id="margen">
 	<div class="row" id="admin">
-	<div class="col-lg-5">
+	<div class="row" id="admin">
 			<h2>Establecimientos</h2>
 			<table class= "table" border="1">
 					<thead class="my-thead">
@@ -79,11 +79,13 @@
 				</c:forEach>
 			</table>
 		</div>
-		<div class = "col-lg-4">
+		<div class = "row" id="margen">
 		<%@ include file = "FormCreaRestaurante.jsp" %>
 		</div>
 		</div>
 </div>
+
+
 
 
 

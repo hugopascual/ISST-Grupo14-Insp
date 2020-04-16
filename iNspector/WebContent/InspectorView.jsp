@@ -44,9 +44,9 @@
 		</div>	
 	</div>
 	<div class="row">
-		<%@ include file = "FormIndex.jsp" %>
+		
 		<%@ include file = "FormListaEstablecimientos.jsp" %>
-		<%@ include file = "FormLogout.jsp" %>
+		
 	</div>
 </div>
 

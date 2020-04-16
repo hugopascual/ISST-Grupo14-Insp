@@ -58,7 +58,8 @@
 		<h2>Lista de inspecciones realizadas por el inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2}</h2>
 		<p>Este inspector ha realizado ${fn:length(inspecciones)} inspecciones</p>
 		<p>Nota. en un futuro aquí también aparecerán las inspecciones programadas para que las realice el inspector</p>
-		<table border="1">
+		<table class ="table" border="1">
+			<thead class="my-thead">
 			<tr>
 				<td><b>Inspector</b></td>
 				<td><b>Establecimiento</b></td>
@@ -66,6 +67,7 @@
 				<td><b>Nota</b></td>
 				<td><b>Comentarios del inspector</b></td>
 			</tr>
+			</thead>
 			<c:forEach items="${inspecciones}" var="inspeccioni">
 				<tr>
 					<td>${inspeccioni.inspector_realiza_inspeccion.nombre} ${inspeccioni.inspector_realiza_inspeccion.apellido_1} ${inspeccioni.inspector_realiza_inspeccion.apellido_2}</td>
@@ -87,8 +89,7 @@
 
 <div class="row" id="botonesHistorialInspeccionesView">
 	<h2><%@ include file = "FormPerfilUsuario.jsp" %></h2>
-	<h2><%@ include file = "FormIndex.jsp" %></h2>
-	<h2><%@ include file = "FormLogout.jsp" %></h2>
+	
 </div>	
 </div>
 

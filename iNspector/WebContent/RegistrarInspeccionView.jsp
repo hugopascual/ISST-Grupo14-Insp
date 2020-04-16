@@ -34,7 +34,8 @@
 	</select>
 	</p>
 	<p>
-	<input type="text" name="descripcion" placeholder="Comentarios adicionales sobre la inspección" style="width:500px;height:200px">
+	<!--  <input type="text" name="descripcion" placeholder="Comentarios adicionales sobre la inspección" style="width:500px;height:200px"> -->
+	<textarea rows="10" cols="40" name="descripcion" placeholder="Comentarios adicionales sobre la inspección"></textarea>
 	</p>
 	<p>
     <input type="file" name="file" />
@@ -51,7 +52,7 @@
 
 <h2><%@ include file = "FormListaEstablecimientos.jsp" %></h2>
 
-<h2><%@ include file = "FormLogout.jsp" %></h2>
+
 
 </div>
 </div>
