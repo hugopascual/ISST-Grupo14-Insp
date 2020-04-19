@@ -93,7 +93,7 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 		public List<Inspeccion> readAllInspecciones_Establ(Establecimiento establecimiento) {
 			Session session = SessionFactoryService.get().openSession();
 			session.beginTransaction();
-			Query q = session.createQuery("select i from Inspeccion i where i.establecimiento_inspeccion = :establecimiento");
+			Query q = session.createQuery("select i from Inspeccion i where i.establecimiento_inspeccion = :establecimiento order by i.fecha_insp desc");
 			q.setParameter("establecimiento", establecimiento); //cambia cif en la query por cif del parametro
 			List<Inspeccion> inspecciones = q.getResultList();
 			session.getTransaction().commit();
@@ -107,7 +107,7 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 		public List<Inspeccion> readAllInspecciones_Insp(Inspector inspector) {
 			Session session = SessionFactoryService.get().openSession();
 			session.beginTransaction();
-			Query q = session.createQuery("select i from Inspeccion i where i.inspector_realiza_inspeccion = :inspector");
+			Query q = session.createQuery("select i from Inspeccion i where i.inspector_realiza_inspeccion = :inspector order by i.fecha_insp desc");
 			q.setParameter("inspector", inspector); //cambia inspector en la query por inspector del parametro
 			List<Inspeccion> inspecciones = q.getResultList();
 			session.getTransaction().commit();

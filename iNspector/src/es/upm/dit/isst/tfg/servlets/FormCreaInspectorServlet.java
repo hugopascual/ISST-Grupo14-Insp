@@ -28,6 +28,29 @@ public class FormCreaInspectorServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		List<Inspector> lista_inspectores = (List<Inspector>) req.getSession().getAttribute("inspectores");
+		
+		if (lista_inspectores.size() == 0) {
+			//si no hay inspectores, debemos crear el "inspector falso" al que se le asignaran las inspecciones de inspectores eliminados
+			String nombre = "Inspector";
+			String apellido_1 = "Eliminado";
+			String apellido_2 = null;
+			String email = "inspector_falso";//necesita email porque es el id
+			String usuario = null;
+			String password = null; // no necesita password porque no queremos que pueda iniciar sesion
+			
+			Inspector inspector_falso = new Inspector();
+			
+			inspector_falso.setNombre(nombre);
+			inspector_falso.setApellido_1(apellido_1);
+			inspector_falso.setApellido_2(apellido_2);
+			inspector_falso.setEmail(email);
+			inspector_falso.setUsuario(usuario);
+			inspector_falso.setPassword(password);
+			
+			InspectorDAOImplementation.getInstance().create(inspector_falso);		
+		}
+		
 		String nombre = req.getParameter("nombre");
 		String apellido_1 = req.getParameter("apellido_1");
 		String apellido_2 = req.getParameter("apellido_2");
@@ -45,8 +68,9 @@ public class FormCreaInspectorServlet extends HttpServlet {
 		inspector.setPassword(password);
 		
 		InspectorDAOImplementation.getInstance().create(inspector);
+		
 		List<Inspector> inspectores = new ArrayList<Inspector>();
-		inspectores.addAll((List<Inspector>)
+		inspectores.addAll((List<Inspector>) 
 				req.getSession().getAttribute("inspectores"));
 		inspectores.add (inspector);
 		req.getSession().setAttribute("inspectores", inspectores);

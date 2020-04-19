@@ -40,9 +40,18 @@
 		</div>
 		
 		<div class="col-lg-6">
-			<div>
-				<img src="${pageContext.request.contextPath}/ServeImageServlet?id=${establecimiento.cif}" width="500" height="350" />
-			</div>
+			<c:choose>
+				<c:when test="${sin_imagen}">
+					<div>
+						<img src="img/Imagen_Establecimiento_NoDisponible.PNG" width="500" height="350" />
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div>
+						<img src="${pageContext.request.contextPath}/ServeImageServlet?id=${establecimiento.cif}" width="500" height="350" />
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>	
 	

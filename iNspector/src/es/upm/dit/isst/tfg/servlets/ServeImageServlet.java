@@ -23,17 +23,7 @@ public class ServeImageServlet extends HttpServlet {
 	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
-//		//con un try catch a lo mejor puede comprobar si es nulo...
-//		try {
-//		String cif = (req.getParameter("cif"));
-//		Establecimiento establecimiento = EstablecimientoDAOImplementation.getInstance().read(cif);
-//		} catch (Exception e) {
-//			System.out.println("No hay parametro CIF");
-//		}
-		
-		//String cif = (req.getParameter("cif"));
-		String id = (req.getParameter("id")); //hay hecha una trampa en EstablecimientoView, porque le paso el parametro cif pero lo llamo email
+		String id = (req.getParameter("id")); //hay hecha una "trampa" en EstablecimientoView, porque le paso el parametro cif pero lo llamo email, asi esta servlet vale para establecimientos y usuarios
 		
 		Establecimiento establecimiento = EstablecimientoDAOImplementation.getInstance().read(id);
 		Inspector inspector = InspectorDAOImplementation.getInstance().read(id);
@@ -46,8 +36,12 @@ public class ServeImageServlet extends HttpServlet {
 			resp.setContentLength(cliente.getImagen().length);
 			resp.getOutputStream().write(cliente.getImagen());
 		} else if (null != establecimiento) {
-			resp.setContentLength(establecimiento.getImagen().length);
-			resp.getOutputStream().write(establecimiento.getImagen());	
+			if (establecimiento.getImagen().length == 0) {
+				req.getSession().setAttribute("sin_imagen",true); //no funciona
+			} else {
+				resp.setContentLength(establecimiento.getImagen().length);
+				resp.getOutputStream().write(establecimiento.getImagen());	
+			}
 		}
 	}
 

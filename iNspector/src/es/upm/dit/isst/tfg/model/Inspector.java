@@ -27,12 +27,12 @@ public class Inspector implements Serializable {
 	private String apellido_2;
 	private String usuario;
 	private String password;
+	
 	@Id
 	private String email;
 	
 	@OneToMany (mappedBy = "inspector_realiza_inspeccion", fetch = FetchType.EAGER)
 	private List <Inspeccion> inspecciones_realizadas_inspector;
-	
 	
 	@ManyToMany
 	@JoinTable (
