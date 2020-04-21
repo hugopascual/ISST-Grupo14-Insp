@@ -14,11 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /*
- * Servlet para sacar toda la información relativa al establecimiento seleccionado para el registro de la inspeccion
+ * Servlet para sacar toda la información relativa al establecimiento seleccionado para la denuncia de la incidencia
  */
 
-@WebServlet("/BotonPaginaInspeccionServlet")
-public class BotonPaginaInspeccionServlet extends HttpServlet {
+@WebServlet("/BotonPaginaReportarServlet")
+public class BotonPaginaReportarServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -28,10 +28,10 @@ public class BotonPaginaInspeccionServlet extends HttpServlet {
 		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");//fecha de hoy
 		
 		req.getSession().getAttribute("establecimiento");
-		req.getSession().getAttribute("inspector");
+		req.getSession().getAttribute("cliente");
 		req.getSession().setAttribute("fecha", fecha);
 		
-		getServletContext().getRequestDispatcher("/RegistrarInspeccionView.jsp").forward(req,resp);
+		getServletContext().getRequestDispatcher("/ReportarView.jsp").forward(req,resp);
 			
 	}
 }

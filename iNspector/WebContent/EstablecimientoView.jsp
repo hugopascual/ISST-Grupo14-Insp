@@ -60,7 +60,7 @@
 		<c:when test="${soy_cliente}">
 			<div class="row">
 				<!--Aquí se incluyen los botones de cliente-->
-				<!--<p>Botoón: Reportar incidencia</p>-->
+				<%@ include file = "BotonPaginaReportar.jsp" %>
 				<%@ include file = "FormListaEstablecimientos.jsp" %>
 			</div>
 		</c:when>

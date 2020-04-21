@@ -2,12 +2,16 @@ package es.upm.dit.isst.tfg.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Incidencia implements Serializable {
@@ -18,8 +22,13 @@ public class Incidencia implements Serializable {
 	private int id;
 	private String gravedad;
 	private String descripcion;
-	private Calendar fecha;
-	private int status;
+	
+	@Temporal(TemporalType.DATE)
+	private Date fecha;
+	private int status;//tal vez sea mejor modificarlo a String y que tenga valores Registrada, En revisión, Revisada (o similares)
+	
+	@Lob
+	private byte[] imagen;
 	
 	@ManyToOne
 	private Establecimiento establecimiento_incidencia;
@@ -28,6 +37,31 @@ public class Incidencia implements Serializable {
 	private Cliente cliente_incidencia;
 	
 	public Incidencia() {
+	}
+	
+	public Cliente getCliente_incidencia() {
+		return cliente_incidencia;
+	}
+	
+	public void setCliente_incidencia(Cliente cliente) {
+		this.cliente_incidencia=cliente;
+	}
+	
+	public Establecimiento getEstablecimiento_incidencia() {
+		return establecimiento_incidencia;
+	}
+	
+	public void setEstablecimiento_incidencia(Establecimiento establecimiento) {
+		this.establecimiento_incidencia=establecimiento;
+	}
+	
+	
+	public byte[] getImagen() {
+		return imagen;
+	}
+	
+	public void setImagen(byte[] imagen) {
+		this.imagen=imagen;
 	}
 	
 	public int getStatus() {
@@ -83,14 +117,14 @@ public class Incidencia implements Serializable {
 	/**
 	 * @return the fecha
 	 */
-	public Calendar getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
 	/**
 	 * @param fecha the fecha to set
 	 */
-	public void setFecha(Calendar fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 

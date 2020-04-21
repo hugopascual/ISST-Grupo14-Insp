@@ -28,6 +28,7 @@
 			<h3>Bienvenido de nuevo a iNspector, ${cliente.nombre}</h3>
 			<div class= row id ="botonesHistorialInspeccionesView">
 				<%@ include file = "FormPerfilUsuario.jsp" %>
+				<%@ include file = "BotonIncidenciasCliente.jsp" %>
 				<%@ include file = "FormListaEstablecimientos.jsp" %>
 				<%@ include file = "FormLogout.jsp" %>
 			</div>
