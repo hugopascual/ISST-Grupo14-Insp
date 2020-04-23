@@ -129,5 +129,7 @@ public class IncidenciaDAOImplementation implements IncidenciaDAO {
 //		return inspeccion;			
 //   }
 	
+	
+	// TODO readAllBeforeDateAndPendiente
 
 }

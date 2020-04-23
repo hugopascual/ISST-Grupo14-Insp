@@ -1,6 +1,7 @@
 package es.upm.dit.isst.tfg.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -10,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -24,6 +27,12 @@ public class Establecimiento implements Serializable {
 	private String ciudad;
 	private String rep_legal;
 	private String tipo; //tipo puede ser: bar, restaurante, cafeteria, hotel, otro
+	private String codigo_postal;
+	
+	@Temporal(TemporalType.DATE)
+	//si favorable 1 año, favorable Condicionado 8 meses, no favorable 2 meses
+	private Date proxima_inspeccion; 
+	
 	
 	@OneToMany(mappedBy="establecimiento_inspeccion", fetch = FetchType.EAGER)
 	private List <Inspeccion> inspecciones_realizadas_rest;
@@ -39,6 +48,10 @@ public class Establecimiento implements Serializable {
 
 	
 	public Establecimiento() {
+		Date hoy = new Date();
+		int aux = hoy.getYear()+1;
+		hoy.setYear(aux);
+		this.proxima_inspeccion=hoy;
 	}
 	
 	
@@ -197,10 +210,42 @@ public class Establecimiento implements Serializable {
 	}
 
 	/**
+	 * @return the proxima_inspeccion
+	 */
+	public Date getProxima_inspeccion() {
+		return proxima_inspeccion;
+	}
+	
+	/**
+	 * @param proxima_inspeccion the proxima_inspeccion to set
+	 */
+	public void setProxima_inspeccion(Date proxima_inspeccion) {
+		this.proxima_inspeccion = proxima_inspeccion;
+	}
+	
+	/**
+	 * @return the proxima_inspeccion
+	 */
+	public String getCodigo_postal() {
+		return codigo_postal;
+	}
+	
+	/**
+	 * @param proxima_inspeccion the proxima_inspeccion to set
+	 */
+	public void setCodigo_postal(String codigo_postal) {
+		this.codigo_postal = codigo_postal;
+	}
+	
+	/**
 	 * @return the serialversionuid
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+
+
+	
 
 }

@@ -32,9 +32,11 @@
 				<c:when test="${not empty ultima_inspeccion}">
 					<p>Nota última inspección: ${ultima_inspeccion.nota} <p>
 					<p>Fecha de la última inspección: ${ultima_inspeccion.fecha_insp} </p>
+					<p>Fecha proxima inspeción: ${establecimiento.proxima_inspeccion} </p>
 				</c:when>
 				<c:otherwise>
 					<p>Este establecimiento aún no tiene registrada ninguna inspección </p>
+					<p>Fecha proxima inspeción: ${establecimiento.proxima_inspeccion} </p>
 				</c:otherwise>
 			</c:choose>
 		</div>

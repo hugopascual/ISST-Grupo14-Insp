@@ -40,6 +40,7 @@ public class FormCreaEstablecimientoServlet extends HttpServlet {
 			String ciudad = req.getParameter("ciudad");
 			String rep_legal = req.getParameter("rep_legal");
 			String tipo = req.getParameter("tipo");
+			String codigo_postal = req.getParameter("codigo_postal");
 			Part filePart = req.getPart("image");
 			
 			Establecimiento establecimiento = new Establecimiento();
@@ -50,6 +51,7 @@ public class FormCreaEstablecimientoServlet extends HttpServlet {
 			establecimiento.setCiudad(ciudad);
 			establecimiento.setRep_legal(rep_legal);
 			establecimiento.setTipo(tipo);
+			establecimiento.setCodigo_postal(codigo_postal);
 			
 			InputStream fileContent = filePart.getInputStream();
 			ByteArrayOutputStream output = new ByteArrayOutputStream();

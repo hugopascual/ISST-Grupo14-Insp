@@ -25,7 +25,7 @@ public class Incidencia implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
-	private int status;//tal vez sea mejor modificarlo a String y que tenga valores Registrada, En revisión, Revisada (o similares)
+	private String status;// puede tener dos valores Pendiente y Revisada.
 	
 	@Lob
 	private byte[] imagen;
@@ -64,11 +64,11 @@ public class Incidencia implements Serializable {
 		this.imagen=imagen;
 	}
 	
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 	
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

@@ -25,6 +25,9 @@
 			<div class="col">
 			<input type="text" name="ciudad" placeholder="Ciudad">
 			</div>
+			<div class="col">
+			<input type="text" name="codigo_postal" placeholder="Codigo Postal">
+			</div>
 		</div>
 		<div class="form-row">
 			<div class="col">
