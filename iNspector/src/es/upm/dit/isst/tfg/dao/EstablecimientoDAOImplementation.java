@@ -80,6 +80,18 @@ public class EstablecimientoDAOImplementation implements EstablecimientoDAO {
 		session.close();
 		return list;
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Establecimiento> readAllOrderInspeccion() {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		List<Establecimiento> list = session.createQuery("from Establecimiento order by proxima_inspeccion desc").list();
+		session.getTransaction().commit();
+		session.close();
+		return list;
+	}
+	
 
 //	@SuppressWarnings("unchecked")
 //	@Override

@@ -108,6 +108,23 @@ public class IncidenciaDAOImplementation implements IncidenciaDAO {
 		return incidencias;
 	}
 	
+	//Obtiene el número de indicencias pendientes segun establecimiento y ordenadas por cantidad
+	@SuppressWarnings("unchecked")
+	public List<Incidencia> getIncidenciasPendientes() {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		Query q = session.createQuery("SELECT incidencia.status, establecimiento.nombre, count(*) FROM incidencia" + 
+				" LEFT JOIN establecimiento" + 
+				" ON incidencia.establecimiento_incidencia_cif = establecimiento.cif" + 
+				" WHERE incidencia.status = 'pendiente'" + 
+				" GROUP BY establecimiento.nombre" + 
+				" ORDER BY count(*) desc");
+		List<Incidencia> incidencias = q.getResultList();
+		session.getTransaction().commit();
+		session.close();
+		return incidencias;
+	}
+	
 	//Obtiene la ultima inspeccion realizada en un establecimiento
 //	public Inspeccion ultimaInspeccion(Establecimiento establecimiento) {
 //		Session session = SessionFactoryService.get().openSession();

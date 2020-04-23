@@ -43,6 +43,8 @@
 					<%@ include file = "FormPerfilUsuario.jsp" %>
 					<%@ include file = "BotonInspeccionesInspector.jsp" %>
 					<%@ include file = "FormListaEstablecimientos.jsp" %>
+					<%@ include file = "BotonProximasInspecciones.jsp" %>
+					<%@ include file = "BotonIncidenciasPendientes.jsp" %>
 					<%@ include file = "FormLogout.jsp" %>
 				</div>
 			</div>

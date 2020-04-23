@@ -25,7 +25,7 @@ public class Incidencia implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
-	private String status;// puede tener dos valores Pendiente y Revisada.
+	private String status;// puede tener dos valores pendiente y revisada.
 	
 	@Lob
 	private byte[] imagen;
@@ -37,6 +37,7 @@ public class Incidencia implements Serializable {
 	private Cliente cliente_incidencia;
 	
 	public Incidencia() {
+		this.status="pendiente";
 	}
 	
 	public Cliente getCliente_incidencia() {
@@ -70,6 +71,14 @@ public class Incidencia implements Serializable {
 	
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public void changeStatus() {
+		if(this.status == null)
+			this.status="pendiente";
+		
+		if(this.status == "pendiente")
+			this.status="revisada";
 	}
 
 	/**
