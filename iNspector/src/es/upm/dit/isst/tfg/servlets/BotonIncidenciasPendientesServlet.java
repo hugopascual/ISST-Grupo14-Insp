@@ -1,7 +1,9 @@
 package es.upm.dit.isst.tfg.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,32 +21,25 @@ import es.upm.dit.isst.tfg.model.Incidencia;
  */
 @WebServlet("/BotonIncidenciasPendientesServlet")
 public class BotonIncidenciasPendientesServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BotonIncidenciasPendientesServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		List<Incidencia> incidencias = (List<Incidencia>) IncidenciaDAOImplementation.getInstance().getIncidenciasPendientes();
-		req.getSession().setAttribute("incidencias", incidencias);
+		List<Establecimiento> establecimientos = (List<Establecimiento>) EstablecimientoDAOImplementation.getInstance().readAll();
+		
+		//List<Incidencia> incidencias_pendientes = (List<Incidencia>) IncidenciaDAOImplementation.getInstance().getIncidenciasPendientes();//todas las incidencias pendientes
+		
+		Map<Establecimiento,Integer> num_incidencias_pendientes = new HashMap<Establecimiento,Integer>();
+		
+		for (Establecimiento e :establecimientos) {
+			//query que saca numero incidencias pendientes
+			int num = IncidenciaDAOImplementation.getInstance().getIncidenciasPendientes(e);
+			num_incidencias_pendientes.put(e, num); //anade Establecimiento y numero incidencias pendientes
+		}
+		
+		req.getSession().setAttribute("num_incidencias_establecimiento", num_incidencias_pendientes);
 		getServletContext().getRequestDispatcher("/IncidenciasPendientes.jsp").forward(req,res);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

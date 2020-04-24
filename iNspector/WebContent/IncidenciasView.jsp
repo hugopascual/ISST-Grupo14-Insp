@@ -21,32 +21,54 @@
 		<c:when test="${segun_establecimiento}">
 			<!-- CAMBIAR PARA IMPLEMENTACION SEGUN ESTABLECIMIENTO -->
 			<h2>Lista de incidencias reportadas en el establecimiento ${establecimiento.nombre}</h2>
-			<p>En este establecimiento los clientes han reportado ${fn:length(incidencias)} incidencias</p>
+			<p>En este establecimiento los clientes han reportado ${fn:length(incidencias_pendientes)} incidencias no revisadas</p>
+			
 			<div>
+			<h3>Incidencias pendientes</h3>
 			<table class="table" border="1">
 				<thead class="my-thead">
 				<tr>
-					<td><b>Inspector</b></td>
 					<td><b>Establecimiento</b></td>
-					<td><b>Fecha de la inspección</b></td>
-					<td><b>Nota</b></td>
-					<td><b>Comentarios del inspector</b></td>
-					<td><b>Informe</b></td>
+					<td><b>Cliente</b></td>
+					<td><b>Fecha de la incidencia</b></td>
+					<td><b>Gravedad</b></td>
+					<td><b>Descripción</b></td>
+					<td><b>Estado</b></td>
 				</tr>
 				</thead>
-				<c:forEach items="${inspecciones}" var="inspeccioni">
+				<c:forEach items="${incidencias_pendientes}" var="incidenciai">
 					<tr>
-						<td>${inspeccioni.inspector_realiza_inspeccion.nombre} ${inspeccioni.inspector_realiza_inspeccion.apellido_1} ${inspeccioni.inspector_realiza_inspeccion.apellido_2}</td>
-						<td>${inspeccioni.establecimiento_inspeccion.nombre}</td>
-						<td>${inspeccioni.fecha_insp}</td>
-						<td>${inspeccioni.nota}</td>
-						<td>${inspeccioni.descripcion}</td>
-						<td>
-						   <form action="ServeFileServlet" method="get">
-							   <input type="hidden" name="inspeccion_id" value="${inspeccioni.id}" />
-							   <button type="submit">Descargar informe de inspección</button>
-						   </form>
-						</td>
+						<td>${incidenciai.establecimiento_incidencia.nombre}</td>
+						<td>${incidenciai.cliente_incidencia.nombre} ${incidenciai.cliente_incidencia.apellido_1} ${incidenciai.cliente_incidencia.apellido_2}</td>
+						<td>${incidenciai.fecha}</td>
+						<td>${incidenciai.gravedad}</td>
+						<td>${incidenciai.descripcion}</td>
+						<td>${incidenciai.status}</td>
+					</tr>
+				</c:forEach>	
+			</table>
+			</div>
+			<div>
+			<h3>Incidencias revisadas</h3>
+			<table class="table" border="1">
+				<thead class="my-thead">
+				<tr>
+					<td><b>Establecimiento</b></td>
+					<td><b>Cliente</b></td>
+					<td><b>Fecha de la incidencia</b></td>
+					<td><b>Gravedad</b></td>
+					<td><b>Descripción</b></td>
+					<td><b>Estado</b></td>
+				</tr>
+				</thead>
+				<c:forEach items="${incidencias_revisadas}" var="incidenciai">
+					<tr>
+						<td>${incidenciai.establecimiento_incidencia.nombre}</td>
+						<td>${incidenciai.cliente_incidencia.nombre} ${incidenciai.cliente_incidencia.apellido_1} ${incidenciai.cliente_incidencia.apellido_2}</td>
+						<td>${incidenciai.fecha}</td>
+						<td>${incidenciai.gravedad}</td>
+						<td>${incidenciai.descripcion}</td>
+						<td>${incidenciai.status}</td>
 					</tr>
 				</c:forEach>	
 			</table>

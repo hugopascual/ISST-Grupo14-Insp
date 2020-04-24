@@ -94,6 +94,21 @@ public class IncidenciaDAOImplementation implements IncidenciaDAO {
 		return incidencias;
 	}
 	
+	//Obtiene las incidencia segun el restaurante y segun su status
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Incidencia> readAllIncidencias_EstablStatus(Establecimiento establecimiento, String status) {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		Query q = session.createQuery("select i from Incidencia i where i.establecimiento_incidencia = :establecimiento and i.status = :status order by i.fecha desc");
+		q.setParameter("establecimiento", establecimiento);
+		q.setParameter("status", status);
+		List<Incidencia> incidencias = q.getResultList();//devuelve lista de incidencias en el establecimiento segun el status pasado como parametro
+		session.getTransaction().commit();
+		session.close();
+		return incidencias;
+	}
+	
 	//Obtiene las inspecciones segun el cliente que las ha realizado
 	@SuppressWarnings("unchecked")
 	@Override
@@ -110,20 +125,42 @@ public class IncidenciaDAOImplementation implements IncidenciaDAO {
 	
 	//Obtiene el número de indicencias pendientes segun establecimiento y ordenadas por cantidad
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<Incidencia> getIncidenciasPendientes() {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		Query q = session.createQuery("SELECT incidencia.status, establecimiento.nombre, count(*) FROM incidencia" + 
-				" LEFT JOIN establecimiento" + 
-				" ON incidencia.establecimiento_incidencia_cif = establecimiento.cif" + 
-				" WHERE incidencia.status = 'pendiente'" + 
-				" GROUP BY establecimiento.nombre" + 
-				" ORDER BY count(*) desc");
+		Query q = session.createQuery("SELECT i from Incidencia i where i.status='pendiente'");
 		List<Incidencia> incidencias = q.getResultList();
 		session.getTransaction().commit();
 		session.close();
 		return incidencias;
 	}
+	
+	//Obtiene el número de indicencias pendientes de un establecimiento
+		@SuppressWarnings("unchecked")
+		@Override
+		public int getIncidenciasPendientes(Establecimiento establecimiento) {
+			Session session = SessionFactoryService.get().openSession();
+			session.beginTransaction();
+			Query q = session.createQuery("SELECT count(i) from Incidencia i where i.status='pendiente' and i.establecimiento_incidencia = :establecimiento  ");
+			q.setParameter("establecimiento", establecimiento);
+			int num_incidencias_pendientes = ((Number) q.getSingleResult()).intValue();
+			session.getTransaction().commit();
+			session.close();
+			return num_incidencias_pendientes;
+		}
+		
+	
+//	@SuppressWarnings("unchecked")
+//	public List<Incidencia> getIncidenciasPendientes_Establecimiento(Establecimiento establecimiento) {
+//		Session session = SessionFactoryService.get().openSession();
+//		session.beginTransaction();
+//		Query q = session.createQuery("select i from Incidencia i where i.status='pendiente' and ");
+//		List<Incidencia> incidencias = q.getResultList();
+//		session.getTransaction().commit();
+//		session.close();
+//		return incidencias;
+//	}
 	
 	//Obtiene la ultima inspeccion realizada en un establecimiento
 //	public Inspeccion ultimaInspeccion(Establecimiento establecimiento) {

@@ -1,6 +1,7 @@
 package es.upm.dit.isst.tfg.dao;
 
 import java.util.Collection;
+import java.util.List;
 
 import es.upm.dit.isst.tfg.model.Cliente;
 import es.upm.dit.isst.tfg.model.Establecimiento;
@@ -14,4 +15,7 @@ public interface IncidenciaDAO {
 	public Collection<Incidencia> readAll ();
 	public Collection<Incidencia> readAllIncidencias_Establ(Establecimiento establecimiento);
 	public Collection<Incidencia> readAllIncidencias_Cliente(Cliente cliente);
+	public List<Incidencia> readAllIncidencias_EstablStatus(Establecimiento establecimiento, String status);
+	public List<Incidencia> getIncidenciasPendientes();
+	public int getIncidenciasPendientes(Establecimiento establecimiento);
 }

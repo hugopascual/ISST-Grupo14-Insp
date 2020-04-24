@@ -16,8 +16,6 @@
 
 <%@ include file = "header.jsp" %>
 
-<!-- este archivo puede dar conflicto debido al merge -->
-
 <div class="container">
 	<div class="col">
 		<h2>Establecimiento ${establecimiento.nombre}</h2>
@@ -72,6 +70,12 @@
 			<div class="row">
 				<%@ include file = "BotonPaginaInspeccion.jsp" %>
 				<%@ include file = "BotonHistorialInspecciones.jsp" %>
+				
+				<form action="BotonIncidenciasEstablecimientoServlet">
+					<input type="hidden" name="cliente_email" value="${cliente.email}"/>
+					<button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1">Incidencias</button>
+				</form>
+				
 				<%@ include file = "FormListaEstablecimientos.jsp" %>
 			</div>
 		</c:when>

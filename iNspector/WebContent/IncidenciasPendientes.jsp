@@ -29,13 +29,18 @@
 		</tr>
 		</thead>
 	
-		<c:forEach items="${incidencias}" var="incidenciasi">
+		<c:forEach var="establecimientoi" items="${num_incidencias_establecimiento}">
 			<tr>
-				<td>${incidenciasi.nombre}</td>
-				<td>${incidenciasi.count(*)}</td>
-				<td><%@ include file = "BotonDetalleEstablecimiento.jsp" %></td>
+				<td>${establecimientoi.key.nombre}</td>
+				<td>${establecimientoi.value}</td>
+				<td>
+					<form action="BotonDetalleEstablecimientoServlet">
+						<input type="hidden" name="establecimientoCIF" value="${establecimientoi.key.cif}" />
+						<button type="submit" class="btn btn-primary">Ver establecimiento</button>
+					</form>
+				</td>
 			</tr>
-		</c:forEach>	
+		</c:forEach>
 	</table>
 	</div>
 </div>		
