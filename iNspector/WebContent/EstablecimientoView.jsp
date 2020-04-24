@@ -59,6 +59,10 @@
 		</div>
 	</div>	
 	
+	<div >
+			<%@ include file = "MapaViewDetalles.jsp" %>
+		</div>
+	
 	<div>
 	<c:choose>
 		<c:when test="${soy_cliente}">
@@ -86,7 +90,10 @@
 		</c:when>
 		
 	</c:choose>
+	
 	</div>	
+	
+	
 </div>
 
 
