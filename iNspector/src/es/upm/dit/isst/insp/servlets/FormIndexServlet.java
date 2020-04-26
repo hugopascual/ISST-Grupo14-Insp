@@ -25,6 +25,7 @@ public class FormIndexServlet extends HttpServlet {
 		
 		Object soy_cliente = req.getSession().getAttribute("soy_cliente");
 		Object soy_inspector = req.getSession().getAttribute("soy_inspector");
+		Object admin = req.getSession().getAttribute("admin");
 		
 		if (null != soy_cliente) { //compruebo que el usuario logeado es un cliente.
 			
@@ -40,6 +41,11 @@ public class FormIndexServlet extends HttpServlet {
 			req.getSession().setAttribute("num_establecimientos",num_establecimientos );
 			req.getSession().getAttribute("inspector");//me quedo con los datos del inspector.
 			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+			
+		} else if ( null != admin ) {
+			
+			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+			
 		}
 		
 	}

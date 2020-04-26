@@ -16,11 +16,17 @@
 </head>
 
 <header>
-	<div class="logo">
+	<!--<div class="logo">
 	<a href="index.jsp">
 		<img src="files/logo_iNspector.png" alt="Logo de iNspector"
 			width="250">
 	</a>
+	</div>-->
+	
+	<div class="logo">
+	<form action="FormIndexServlet" method="get">
+	<input type=image src="files/logo_iNspector.png" alt="Logo de iNspector" width="250"> 
+	</form>
 	</div>
 
 
