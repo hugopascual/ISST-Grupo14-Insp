@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.insp.dao.ClienteDAOImplementation;
 import es.upm.dit.isst.insp.dao.EstablecimientoDAOImplementation;
+import es.upm.dit.isst.insp.dao.IncidenciaDAOImplementation;
 import es.upm.dit.isst.insp.dao.InspectorDAOImplementation;
 import es.upm.dit.isst.insp.model.Cliente;
 import es.upm.dit.isst.insp.model.Establecimiento;
@@ -70,6 +71,11 @@ public class FormLoginServlet extends HttpServlet {
 			if (inspector.getImagen() != null) {
 				imagen = true;
 			}
+			int num_incidencias_pendientes = IncidenciaDAOImplementation.getInstance().getIncidenciasPendientes();	
+			int num_establecimientos = IncidenciaDAOImplementation.getInstance().getNumEstablecimientosConIncidenciasPendientes();
+			
+			req.getSession().setAttribute("num_incidencias_pendientes",num_incidencias_pendientes );
+			req.getSession().setAttribute("num_establecimientos",num_establecimientos );
 			req.getSession().setAttribute("imagen",imagen);
 			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 			

@@ -1,6 +1,8 @@
 package es.upm.dit.isst.insp.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -19,6 +21,9 @@ public class EstablecimientoDAOImplementation implements EstablecimientoDAO {
 
 	//Esta clase debe seguir el patron de diseno Singleton
 	private static EstablecimientoDAOImplementation instancia = null;
+	
+	Date fecha_hoy = new Date();
+	String fecha_hoy_simple= new SimpleDateFormat("yyyy-MM-dd").format(fecha_hoy);
 	
 	private EstablecimientoDAOImplementation() {
 	}
@@ -82,34 +87,19 @@ public class EstablecimientoDAOImplementation implements EstablecimientoDAO {
 		return list;
 	}
 	
-	
+	//saca todos los establecimientos con fecha proxima inspeccion posterior a la fecha del dia de hoy
 	@SuppressWarnings("unchecked")
 	public List<Establecimiento> readAllOrderInspeccion() {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		List<Establecimiento> list = session.createQuery("from Establecimiento order by proxima_inspeccion desc").list();
+		Query q = session.createQuery("from Establecimiento order by proxima_inspeccion asc");
+		//Query q = session.createQuery("from Establecimiento where proxima_inspeccion >= :fecha order by proxima_inspeccion asc");
+		//q.setParameter("fecha", fecha_hoy);
+		List<Establecimiento> list = q.getResultList();
 		session.getTransaction().commit();
 		session.close();
 		return list;
 	}
 	
-
-//	@SuppressWarnings("unchecked")
-//	@Override
-//	public Establecimiento login(String cif, String password) {//los restaurantes van a necesitar entrar en la app?
-//		Session session = SessionFactoryService.get().openSession();
-//		Establecimiento establecimiento = null;
-//		session.beginTransaction();
-//		Query q = session.createQuery("select e from Establecimiento e where e.cif = :cif");
-//		//Query q = session.createQuery("select e from Establecimiento e where e.cif = :cif and e.password = :password");
-//		q.setParameter("cif", cif);
-//		//q.setParameter("password", password);
-//		List<Establecimiento> establecimientos = q.getResultList();
-//		if (establecimientos.size() > 0)
-//			establecimiento = (Establecimiento)(q.getResultList().get(0));
-//		session.getTransaction().commit();
-//		session.close();
-//		return establecimiento;
-//	}
 
 }

@@ -20,11 +20,14 @@ import javax.servlet.http.Part;
 
 import org.apache.taglibs.standard.extra.spath.ParseException;
 
+import es.upm.dit.isst.insp.dao.IncidenciaDAOImplementation;
 import es.upm.dit.isst.insp.dao.InspeccionDAOImplementation;
 import es.upm.dit.isst.insp.dao.InspectorDAOImplementation;
+import es.upm.dit.isst.insp.dao.EstablecimientoDAOImplementation;
 import es.upm.dit.isst.insp.model.Establecimiento;
 import es.upm.dit.isst.insp.model.Inspeccion;
 import es.upm.dit.isst.insp.model.Inspector;
+import es.upm.dit.isst.insp.model.Incidencia;
 
 /*
  * Servlet para guardar la informacion de la inspeccion
@@ -42,6 +45,8 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
 		Establecimiento establecimiento = (Establecimiento) req.getSession().getAttribute("establecimiento");//establecimiento inspeccionado
 		Inspector inspector = (Inspector) req.getSession().getAttribute("inspector");//inspector que registra la inspeccion
 
+		//REGISTRO DE UNA NUEVA INSPECCION EN LA BASE DE DATOS
+		
 		Date fecha_insp = null;
 		
 		try {
@@ -72,15 +77,48 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
     	
     	InspeccionDAOImplementation.getInstance().create(inspeccion);//respalda la inspeccion en la base de datos
     	
-    	//obtengo la inspeccion mas reciente del establecimiento
-    	Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);
+    	Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);//obtengo la inspeccion mas reciente del establecimiento
 		req.getSession().setAttribute("ultima_inspeccion", ultima_inspeccion);
     	
-    	//actualizar la lista de inspecciones para que salga la ultima inspeccion
-    	List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Establ(establecimiento);
+    	List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Establ(establecimiento);    	//actualizar la lista de inspecciones para que salga la ultima inspeccion
 		req.getSession().setAttribute("inspecciones", inspecciones);
-	
-    	getServletContext().getRequestDispatcher("/EstablecimientoView.jsp").forward(req,resp);//después de registrar la inspeccion vuelve a la pagina del establecimiento
-			
+		
+		//TODAS LAS INCIDENCIAS CON FECHA ANTERIOR A LA FECHA DE INSPECCION PASAN A ESTADO ´revisada'
+		
+		List<Incidencia> incidencias_no_revisadas = IncidenciaDAOImplementation.getInstance().readAllIncidenciaAntesDeFecha(establecimiento,fecha_insp);
+		
+		for(Incidencia incidencia : incidencias_no_revisadas) {
+			incidencia.setStatus("revisada");
+			IncidenciaDAOImplementation.getInstance().update(incidencia);
+		}
+		
+		//ACTUALIZACION DE LA FECHA DE LA PROXIMA INSPECCION DEL ESTABLECIMIENTO SEGUN LA NOTA DE LA INSPECCION REGISTRADA
+		
+		Date nueva_fecha_insp = fecha_insp;
+		if (nota.equals("Favorable")) {
+			nueva_fecha_insp = sumarMeses(fecha_insp,12);
+		} else if (nota.equals("Favorable condicionado")) {
+			nueva_fecha_insp = sumarMeses(fecha_insp,8);
+		} else if (nota.equals("Desfavorable")) {
+			nueva_fecha_insp = sumarMeses(fecha_insp,3);
+		}
+		
+		establecimiento.setProxima_inspeccion(nueva_fecha_insp);
+		EstablecimientoDAOImplementation.getInstance().update(establecimiento);
+		
+		//leer de nuevo el objeto Establecimiento correspondiente para que la fecha aparezca con el formato correcto
+		Establecimiento establec = EstablecimientoDAOImplementation.getInstance().read(establecimiento.getCif());
+		req.getSession().setAttribute("establecimiento", establec);
+		
+    	getServletContext().getRequestDispatcher("/EstablecimientoView.jsp").forward(req,resp);//después de registrar la inspeccion vuelve a la pagina del establecimiento	
 	}
+	
+	private Date sumarMeses(Date fecha, int meses){
+		 Calendar calendar = Calendar.getInstance();
+		 calendar.setTime(fecha); // Configuramos la fecha que se recibe
+		 calendar.add(Calendar.MONTH, meses);  // numero de meses a sumar
+		 Date nueva_fecha = calendar.getTime();
+		 return nueva_fecha; // Devuelve el objeto Date con los nuevos días añadidos
+	}
+	
 }

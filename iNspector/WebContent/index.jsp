@@ -39,6 +39,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h3>Bienvenido de nuevo a iNspector, ${inspector.nombre}</h3>
+				<p> Hay ${num_incidencias_pendientes} incidencias pendientes en ${num_establecimientos} establecimientos </p>
 				<div class= row id ="botonesHistorialInspeccionesView">
 					<%@ include file = "FormPerfilUsuario.jsp" %>
 					<%@ include file = "BotonInspeccionesInspector.jsp" %>

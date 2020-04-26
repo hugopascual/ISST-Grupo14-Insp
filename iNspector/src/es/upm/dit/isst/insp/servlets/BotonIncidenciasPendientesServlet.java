@@ -2,8 +2,10 @@ package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,8 +40,23 @@ public class BotonIncidenciasPendientesServlet extends HttpServlet {
 			num_incidencias_pendientes.put(e, num); //anade Establecimiento y numero incidencias pendientes
 		}
 		
-		req.getSession().setAttribute("num_incidencias_establecimiento", num_incidencias_pendientes);
+		Map<Establecimiento,Integer> num_incidencias_pendientes_ordenadas = sortByValue(num_incidencias_pendientes);
+		
+		req.getSession().getAttribute("num_incidencias_pendientes");
+		req.getSession().getAttribute("num_establecimientos");
+		
+		req.getSession().setAttribute("num_incidencias_establecimiento", num_incidencias_pendientes_ordenadas);
 		getServletContext().getRequestDispatcher("/IncidenciasPendientes.jsp").forward(req,res);
 	}
+	
+	/*
+	 * Metodo que ordena el Map segun el numero de incidencias pendientes (integer).
+	 */
+	private static Map<Establecimiento, Integer> sortByValue(final Map<Establecimiento, Integer> num_incidencias_pendientes) {
+        return num_incidencias_pendientes.entrySet()
+                .stream()
+                .sorted((Map.Entry.<Establecimiento, Integer>comparingByValue().reversed()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+    }
 
 }

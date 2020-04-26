@@ -1,5 +1,6 @@
 package es.upm.dit.isst.insp.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -80,7 +81,6 @@ public class IncidenciaDAOImplementation implements IncidenciaDAO {
 
 	
 	//Obtiene las incidencia segun el restaurante
-	//este metodo se puede modificar para que las incidencias devueltas sean solo las de status sea el que queramos mostrar - hay que anadirlo en la query
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Incidencia> readAllIncidencias_Establ(Establecimiento establecimiento) {
@@ -123,17 +123,17 @@ public class IncidenciaDAOImplementation implements IncidenciaDAO {
 		return incidencias;
 	}
 	
-	//Obtiene el número de indicencias pendientes segun establecimiento y ordenadas por cantidad
+	//Obtiene el número de indicencias con status='pendiente' registradas en el sistema
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Incidencia> getIncidenciasPendientes() {
+	public int getIncidenciasPendientes() {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		Query q = session.createQuery("SELECT i from Incidencia i where i.status='pendiente'");
-		List<Incidencia> incidencias = q.getResultList();
+		Query q = session.createQuery("SELECT count(i) from Incidencia i where i.status='pendiente'");
+		int num_incidencias_pendientes = ((Number) q.getSingleResult()).intValue();
 		session.getTransaction().commit();
 		session.close();
-		return incidencias;
+		return num_incidencias_pendientes;
 	}
 	
 	//Obtiene el número de indicencias pendientes de un establecimiento
@@ -150,6 +150,38 @@ public class IncidenciaDAOImplementation implements IncidenciaDAO {
 			return num_incidencias_pendientes;
 		}
 		
+		
+	/*
+	 * Obtiene el numero de establecimientos que tienen una incidencia pendiente
+	 * select distinct establecimiento_incidencia_cif from incidencia where status='pendiente'
+	 */
+		@SuppressWarnings("unchecked")
+	
+		public int getNumEstablecimientosConIncidenciasPendientes() {
+			Session session = SessionFactoryService.get().openSession();
+			session.beginTransaction();
+			Query q = session.createQuery("select distinct i.establecimiento_incidencia from Incidencia i where i.status='pendiente'");
+			List<String> incidencias = q.getResultList();
+			int num_establecimientos = incidencias.size();
+			session.getTransaction().commit();
+			session.close();
+			return num_establecimientos;
+		}
+		
+		/*
+		 * Obtiene todas las incidencias con 
+		 */
+		public List<Incidencia> readAllIncidenciaAntesDeFecha (Establecimiento establecimiento, Date fecha){
+			Session session = SessionFactoryService.get().openSession();
+			session.beginTransaction();
+			Query q = session.createQuery("select i from Incidencia i where i.status='pendiente' and i.establecimiento_incidencia= :establecimiento and i.fecha <= :fecha");
+			q.setParameter("establecimiento", establecimiento);
+			q.setParameter("fecha", fecha);
+			List<Incidencia> incidencias = q.getResultList();
+			session.getTransaction().commit();
+			session.close();
+			return incidencias;
+		}
 	
 //	@SuppressWarnings("unchecked")
 //	public List<Incidencia> getIncidenciasPendientes_Establecimiento(Establecimiento establecimiento) {

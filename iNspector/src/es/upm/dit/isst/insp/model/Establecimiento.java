@@ -48,10 +48,10 @@ public class Establecimiento implements Serializable {
 
 	
 	public Establecimiento() {
-		Date hoy = new Date();
-		int aux = hoy.getYear()+1;
-		hoy.setYear(aux);
-		this.proxima_inspeccion=hoy;
+		Date fecha = new Date();
+		int aux = fecha.getYear()+1;
+		fecha.setYear(aux);
+		this.proxima_inspeccion=fecha;
 	}
 	
 	

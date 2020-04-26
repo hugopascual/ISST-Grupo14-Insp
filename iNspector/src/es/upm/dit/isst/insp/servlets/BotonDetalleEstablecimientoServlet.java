@@ -37,8 +37,7 @@ public class BotonDetalleEstablecimientoServlet extends HttpServlet {
 		req.getSession().setAttribute("inspecciones", inspecciones);
 		
 		if (inspecciones.size() > 0) {
-			//query para sacar la inspeccion más reciente
-			Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);
+			Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);//query para sacar la inspeccion más reciente
 			req.getSession().setAttribute("ultima_inspeccion", ultima_inspeccion);
 		} else {
 			req.getSession().removeAttribute("ultima_inspeccion");

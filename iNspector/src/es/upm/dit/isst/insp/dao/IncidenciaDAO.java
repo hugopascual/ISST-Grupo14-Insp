@@ -16,6 +16,6 @@ public interface IncidenciaDAO {
 	public Collection<Incidencia> readAllIncidencias_Establ(Establecimiento establecimiento);
 	public Collection<Incidencia> readAllIncidencias_Cliente(Cliente cliente);
 	public List<Incidencia> readAllIncidencias_EstablStatus(Establecimiento establecimiento, String status);
-	public List<Incidencia> getIncidenciasPendientes();
+	public int getIncidenciasPendientes();
 	public int getIncidenciasPendientes(Establecimiento establecimiento);
 }
