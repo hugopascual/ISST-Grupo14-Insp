@@ -38,9 +38,20 @@ public class BotonDetalleEstablecimientoServlet extends HttpServlet {
 		
 		if (inspecciones.size() > 0) {
 			Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);//query para sacar la inspeccion más reciente
+			
+			String colorNota = colorNota(ultima_inspeccion);
+			
+			req.getSession().setAttribute("colorNota", colorNota);
 			req.getSession().setAttribute("ultima_inspeccion", ultima_inspeccion);
+			
 		} else {
 			req.getSession().removeAttribute("ultima_inspeccion");
+		}
+		
+		if (establecimiento.getImagen().length == 0) {
+			req.getSession().setAttribute("tiene_imagen",false);
+		} else {
+			req.getSession().setAttribute("tiene_imagen",true);
 		}
 		
 		if (null != soy_cliente) { //compruebo que el usuario logeado es un cliente
@@ -51,5 +62,21 @@ public class BotonDetalleEstablecimientoServlet extends HttpServlet {
 		
 		getServletContext().getRequestDispatcher("/EstablecimientoView.jsp").forward(req,resp);
 			
+	}
+	
+	/*
+	 * En funcion de la nota de la inspeccion, el texto aparece en diferente color 
+	 */
+	private String colorNota(Inspeccion inspeccion) {
+		String color= null;
+		String nota = inspeccion.getNota();
+		if (nota.equals("Favorable")) {
+			color = "#00A135"; //verde
+		} else if (nota.equals("Favorable condicionado")) {
+			color = "#FFFF00"; //amarillo
+		} else if (nota.equals("Desfavorable")) {
+			color = "#FF0000"; //rojo
+		}
+		return "color:"+color+";";
 	}
 }

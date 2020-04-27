@@ -28,12 +28,20 @@
 			<p>Número de inspecciones: ${fn:length(inspecciones)}</p>
 			<c:choose>
 				<c:when test="${soy_inspector}">
-					<p>Fecha proxima inspeción: ${establecimiento.proxima_inspeccion}</p>
+					<p>Fecha próxima inspección: ${establecimiento.proxima_inspeccion}</p>
+					<div id="oculto" style="display: none;">
+						<form action="ModificarFechaInspeccionServlet" method="get">
+							<input type="hidden" name="establecimientoCIF" value="${establecimiento.cif}" />
+							<input required type="date" name="nueva_fecha_insp" min="1900-01-01" placeholder="Nueva fecha de la inspección">
+							<button class="btn btn-primary mt-1 ml-1 mr-1 mb-1" type="submit" id="botonNuevaFecha">Guardar</button>
+						</form>
+					</div>
+					<button class="btn btn-primary mt-1 ml-1 mr-1 mb-1" onclick="if(document.getElementById('oculto') .style.display=='none') {document.getElementById('oculto') .style.display=''}else{document.getElementById('oculto') .style.display='none'}"  type="button">Modificar fecha </button>
 				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${not empty ultima_inspeccion}">
-					<p>Nota última inspección: ${ultima_inspeccion.nota} <p>
+					<p>Nota última inspección:<b style=${colorNota}> ${ultima_inspeccion.nota}</b> </p>
 				</c:when>
 				<c:otherwise>
 					<p>Este establecimiento aún no tiene registrada ninguna inspección</p>
@@ -43,14 +51,15 @@
 		
 		<div class="col-lg-6">
 			<c:choose>
-				<c:when test="${sin_imagen}">
+				
+				<c:when test="${tiene_imagen}">
 					<div>
-						<img src="img/Imagen_Establecimiento_NoDisponible.PNG" width="500" height="350" />
+						<img src="${pageContext.request.contextPath}/ServeImageServlet?id=${establecimiento.cif}" width="500" height="350" />
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div>
-						<img src="${pageContext.request.contextPath}/ServeImageServlet?id=${establecimiento.cif}" width="500" height="350" />
+						<img src="img/Imagen_Establecimiento_NoDisponible.PNG" width="500" height="350" />
 					</div>
 				</c:otherwise>
 			</c:choose>

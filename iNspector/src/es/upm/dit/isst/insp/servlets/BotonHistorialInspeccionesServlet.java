@@ -34,6 +34,7 @@ public class BotonHistorialInspeccionesServlet extends HttpServlet {
 		req.getSession().getAttribute("inspector");
 		req.getSession().setAttribute("inspecciones", inspecciones);
 		req.getSession().setAttribute("segun_establecimiento", true);//marcamos que queremos las inspecciones segun el establecimiento
+		req.getSession().setAttribute("segun_inspector", false);
 		
 		getServletContext().getRequestDispatcher("/HistorialInspeccionesView.jsp").forward(req,resp);
 			

@@ -46,6 +46,8 @@ public class FormIndexServlet extends HttpServlet {
 			
 			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 			
+		} else {
+			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 		}
 		
 	}

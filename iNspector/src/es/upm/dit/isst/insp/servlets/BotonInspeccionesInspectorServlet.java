@@ -30,6 +30,7 @@ public class BotonInspeccionesInspectorServlet extends HttpServlet {
 		List<Inspeccion> inspecciones = (List<Inspeccion>) InspeccionDAOImplementation.getInstance().readAllInspecciones_Insp(inspector);	
 		req.getSession().setAttribute("inspecciones", inspecciones);
 		req.getSession().setAttribute("segun_inspector", true);//marcamos que queremos las inspecciones segun el inspector
+		req.getSession().setAttribute("segun_establecimiento", false);
 		
 		getServletContext().getRequestDispatcher("/HistorialInspeccionesView.jsp").forward(req,resp);
 			

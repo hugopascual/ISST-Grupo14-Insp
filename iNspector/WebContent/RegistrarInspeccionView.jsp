@@ -23,10 +23,10 @@
 <div class=row id="informeRegistrarInspeccion">
 <form action="FormRegistrarInspeccionServlet" method="post" enctype="multipart/form-data">
 	
-	<p>Nombre del establecimiento: <input type="text" name="establecimiento" value="${establecimiento.nombre}"></p>
-	<p>Fecha: <input required type="date" name="fecha_insp" min="1900-01-01" placeholder="Fecha de la inspección"></p>
+	<p>Nombre del establecimiento: <input type="text" name="establecimiento" value="${establecimiento.nombre}" disabled required></p>
+	<p>Fecha: <input required type="date" name="fecha_insp" min="1900-01-01" max=${fecha} placeholder="Fecha de la inspección" required></p>
 	<p> Nota de la inspección:
-	<select name="nota">
+	<select name="nota" required>
 		   <option value="" disabled selected>Nota</option>
 	       <option value="Favorable">Favorable</option> 
 	       <option value="Favorable condicionado">Favorable Condicionado</option> 
@@ -34,7 +34,6 @@
 	</select>
 	</p>
 	<p>
-	<!--  <input type="text" name="descripcion" placeholder="Comentarios adicionales sobre la inspección" style="width:500px;height:200px"> -->
 	<textarea rows="10" cols="40" name="descripcion" placeholder="Comentarios adicionales sobre la inspección"></textarea>
 	</p>
 	<p>

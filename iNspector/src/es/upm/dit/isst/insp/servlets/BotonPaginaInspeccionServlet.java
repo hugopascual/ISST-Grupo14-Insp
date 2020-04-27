@@ -25,7 +25,7 @@ public class BotonPaginaInspeccionServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");//fecha de hoy
+		Date fecha = new Date();//fecha de hoy
 		
 		req.getSession().getAttribute("establecimiento");
 		req.getSession().getAttribute("inspector");

@@ -57,7 +57,6 @@
 	<c:when test="${segun_inspector}">
 		<h2>Lista de inspecciones realizadas por el inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2}</h2>
 		<p>Este inspector ha realizado ${fn:length(inspecciones)} inspecciones</p>
-		<p>Nota. en un futuro aquí también aparecerán las inspecciones programadas para que las realice el inspector</p>
 		<table class ="table" border="1">
 			<thead class="my-thead">
 			<tr>

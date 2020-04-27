@@ -37,8 +37,9 @@ public class ServeImageServlet extends HttpServlet {
 			resp.getOutputStream().write(cliente.getImagen());
 		} else if (null != establecimiento) {
 			if (establecimiento.getImagen().length == 0) {
-				req.getSession().setAttribute("sin_imagen",true); //no funciona
+				req.getSession().setAttribute("tiene_imagen",false); //no funciona
 			} else {
+				req.getSession().setAttribute("tiene_imagen",true);
 				resp.setContentLength(establecimiento.getImagen().length);
 				resp.getOutputStream().write(establecimiento.getImagen());	
 			}

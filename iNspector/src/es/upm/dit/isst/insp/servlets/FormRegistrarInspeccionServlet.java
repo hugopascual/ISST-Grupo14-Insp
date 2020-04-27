@@ -83,6 +83,9 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
     	List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Establ(establecimiento);    	//actualizar la lista de inspecciones para que salga la ultima inspeccion
 		req.getSession().setAttribute("inspecciones", inspecciones);
 		
+		String colorNota = colorNota(ultima_inspeccion);
+		req.getSession().setAttribute("colorNota", colorNota);
+		
 		//TODAS LAS INCIDENCIAS CON FECHA ANTERIOR A LA FECHA DE INSPECCION PASAN A ESTADO ´revisada'
 		
 		List<Incidencia> incidencias_no_revisadas = IncidenciaDAOImplementation.getInstance().readAllIncidenciaAntesDeFecha(establecimiento,fecha_insp);
@@ -119,6 +122,22 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
 		 calendar.add(Calendar.MONTH, meses);  // numero de meses a sumar
 		 Date nueva_fecha = calendar.getTime();
 		 return nueva_fecha; // Devuelve el objeto Date con los nuevos días añadidos
+	}
+	
+	/*
+	 * En funcion de la nota de la inspeccion, el texto aparece en diferente color 
+	 */
+	private String colorNota(Inspeccion inspeccion) {
+		String color= null;
+		String nota = inspeccion.getNota();
+		if (nota.equals("Favorable")) {
+			color = "#00A135"; //verde
+		} else if (nota.equals("Favorable condicionado")) {
+			color = "#FFFF00"; //amarillo
+		} else if (nota.equals("Desfavorable")) {
+			color = "#FF0000"; //rojo
+		}
+		return "color:"+color+";";
 	}
 	
 }

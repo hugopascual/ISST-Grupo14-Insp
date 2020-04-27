@@ -14,27 +14,27 @@
 	<form action="FormCreaEstablecimientoServlet" method="post" enctype="multipart/form-data" class="form">
 		<div class="form-row">
 			<div class="col mb-1">
-			<input type="text" name="cif" placeholder="CIF">
+			<input type="text" name="cif" placeholder="CIF" required>
 			</div>
 			<div class="col">
-			<input type="text" name="nombre" placeholder="Nombre">
+			<input type="text" name="nombre" placeholder="Nombre" required>
 			</div>
 			<div class="col">
-			<input type="text" name="direccion" placeholder="Direccion">
+			<input type="text" name="direccion" placeholder="Direccion" required>
 			</div>
 			<div class="col">
-			<input type="text" name="ciudad" placeholder="Ciudad">
+			<input type="text" name="ciudad" placeholder="Ciudad" required>
 			</div>
 			<div class="col">
-			<input type="text" name="codigo_postal" placeholder="Codigo Postal">
+			<input type="text" name="codigo_postal" placeholder="Codigo Postal" required>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="col">
-			<input type="text" name="rep_legal" placeholder="Representante legal">
+			<input type="text" name="rep_legal" placeholder="Representante legal" required>
 			</div>
 			<div class="col">
-			<select name="tipo">
+			<select name="tipo" required>
 			   <option value="" disabled selected>Tipo de establecimiento</option>
 			       <option value="Restaurante">Restaurante</option> 
 			       <option value="Cafeteria">Cafetería</option> 

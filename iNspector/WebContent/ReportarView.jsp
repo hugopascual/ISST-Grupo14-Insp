@@ -24,11 +24,11 @@
 	<div class=row id="informeReportarIncidencia">
 		<form action="FormReportarServlet" method="post" enctype="multipart/form-data">
 			
-			<p>Nombre del establecimiento: <input type="text" name="establecimiento" value="${establecimiento.nombre}" disabled></p>
-			<p>Denunciante:<input type="text" name="cliente" value="${cliente.nombre} ${cliente.apellido_1} ${cliente.apellido_2}" disabled>
-			<p>Fecha: <input required type="date" name="fecha_incidencia" min="1900-01-01" placeholder="Fecha de la incidencia"></p>
+			<p>Nombre del establecimiento: <input type="text" name="establecimiento" value="${establecimiento.nombre}" disabled required></p>
+			<p>Denunciante:<input type="text" name="cliente" value="${cliente.nombre} ${cliente.apellido_1} ${cliente.apellido_2}" disabled required>
+			<p>Fecha: <input type="date" name="fecha_incidencia" min="1900-01-01" placeholder="Fecha de la incidencia" required></p>
 			<p>Nota de la inspección:
-				<select name="gravedad">
+				<select name="gravedad" required>
 					   <option value="" disabled selected>Gravedad</option>
 				       <option value="Muy grave">Muy grave</option> 
 				       <option value="Grave">Grave</option> 

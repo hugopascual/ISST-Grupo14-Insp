@@ -14,10 +14,10 @@
 			<form action="FormCreaInspectorServlet" class="form">
 					<div class="form-row">
 						<div class="col mb-1">
-						<input type="text" name="nombre" placeholder="Nombre">
+						<input type="text" name="nombre" placeholder="Nombre" required>
 						</div>
 						<div class="col">
-						<input type="text" name="apellido_1" placeholder="Primer Apellido">
+						<input type="text" name="apellido_1" placeholder="Primer Apellido" required>
 						</div>
 						<div class="col">
 						<input type="text" name="apellido_2" placeholder="Segundo Apellido">
@@ -25,13 +25,13 @@
 					</div>
 					<div class="form-row">
 						<div class="col">
-						<input type="text" name="email" placeholder="Email">
+						<input type="text" name="email" placeholder="Email" required>
 						</div>
 						<div class="col">
-						<input type="text" name="usuario" placeholder="Usuario">
+						<input type="text" name="usuario" placeholder="Usuario" required>
 						</div>
 						<div class="col">
-						<input type="password" name="password" placeholder="Contraseña">
+						<input type="password" name="password" placeholder="Contraseña" required>
 						</div>
 					</div>
 					<div class="form-row mt-1">
