@@ -93,6 +93,7 @@
 	
 	</c:otherwise>
 </c:choose>
+
 </div>	
 
 <c:choose>
