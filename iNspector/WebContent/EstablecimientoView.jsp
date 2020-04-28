@@ -66,9 +66,10 @@
 		</div>
 	</div>	
 	
+	<!-- TODO colocar el mapa-->
 	<div >
 			<%@ include file = "MapaViewDetalles.jsp" %>
-		</div>
+	</div>
 	
 	<div>
 	<c:choose>
