@@ -9,6 +9,9 @@
 <meta charset="ISO-8859-1">
 <title>iNspector</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="CSS/elements.css" type="text/css"></link>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- Favicon -->
 <link rel="icon" href="img/favi.ico">
 </head>
@@ -22,9 +25,10 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-6">
-			<p>Nombre: ${establecimiento.nombre}</p>
+			<p>Nombre:${establecimiento.nombre}</p>
 			<p>Dirección: ${establecimiento.direccion}</p>
 			<p>Ciudad: ${establecimiento.ciudad}</p>
+
 			<p>Número de inspecciones: ${fn:length(inspecciones)}</p>
 			<c:choose>
 				<c:when test="${soy_inspector}">
@@ -48,40 +52,39 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		
-		<div class="col-lg-6">
-			<c:choose>
+		<div class=col-lg-6>
+		<c:choose>
 				
-				<c:when test="${tiene_imagen}">
-					<div>
-						<img src="${pageContext.request.contextPath}/ServeImageServlet?id=${establecimiento.cif}" width="500" height="350" />
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div>
-						<img src="img/Imagen_Establecimiento_NoDisponible.PNG" width="500" height="350" />
-					</div>
-				</c:otherwise>
-			</c:choose>
+			<c:when test="${tiene_imagen}">
+				<div>
+					<img src="${pageContext.request.contextPath}/ServeImageServlet?id=${establecimiento.cif}" width="500" height="350" />
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div>
+					<img src="img/Imagen_Establecimiento_NoDisponible.PNG" width="500" height="350" />
+				</div>
+			</c:otherwise>
+		</c:choose>
+					
+		
 		</div>
+		
 	</div>	
 	
-	<!-- TODO colocar el mapa-->
-	<div >
-			<%@ include file = "MapaViewDetalles.jsp" %>
-	</div>
 	
-	<div>
+	
+	<div class=row>
 	<c:choose>
 		<c:when test="${soy_cliente}">
-			<div class="row">
+			<div class=row>
 				<!--Aquí se incluyen los botones de cliente-->
 				<%@ include file = "BotonPaginaReportar.jsp" %>
 				<%@ include file = "FormListaEstablecimientos.jsp" %>
 			</div>
 		</c:when>
 		<c:when test="${soy_inspector}">
-			<div class="row">
+			<div class=row >
 				<%@ include file = "BotonPaginaInspeccion.jsp" %>
 				<%@ include file = "BotonHistorialInspecciones.jsp" %>
 				
@@ -94,12 +97,12 @@
 			</div>
 		</c:when>
 		<c:when test="${usuario_no_registrado}">
-			<div class="row">
+			<div class=row>
 				<p>Hemos visto que aún no estás registrado...</p>
 				<p><form method="get" action="FormCreaCliente.jsp">
 		  			<button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1">Registrarse</button>
 				</form>
-				<%@ include file = "FormListaEstablecimientos.jsp" %></p>
+				<p><%@ include file = "FormListaEstablecimientos.jsp" %></p>
 			</div>
 		</c:when>
 		
@@ -107,10 +110,22 @@
 	
 	</div>	
 	
+	<div class=container>
+	<!-- TODO colocar el mapa -->
+		
+		
+			<%@ include file = "MapaViewDetalles.jsp" %> 
+		
+		<!--    -->
+	
+	</div>
+
+	
+	
+	
+	
 	
 </div>
-
-
 
 </body>
 </html>

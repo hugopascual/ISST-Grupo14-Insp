@@ -25,6 +25,7 @@ public class FormCreaInspectorServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -67,13 +68,21 @@ public class FormCreaInspectorServlet extends HttpServlet {
 		inspector.setUsuario(usuario);
 		inspector.setPassword(password);
 		
-		InspectorDAOImplementation.getInstance().create(inspector);
-		
+		try {InspectorDAOImplementation.getInstance().create(inspector);
 		List<Inspector> inspectores = new ArrayList<Inspector>();
 		inspectores.addAll((List<Inspector>) 
 				req.getSession().getAttribute("inspectores"));
 		inspectores.add (inspector);
 		req.getSession().setAttribute("inspectores", inspectores);
 		getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
+		
+		} catch (Exception e) {
+			req.getSession().setAttribute("error_insp", true);
+			req.getSession().setAttribute("error_establ", false);
+			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
+			
+		}
+		
+		
 	}
 }

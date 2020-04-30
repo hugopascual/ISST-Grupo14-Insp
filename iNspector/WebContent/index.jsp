@@ -104,6 +104,9 @@
 	</c:when>
 </c:choose>
 
-<!--<jsp:include page="footer.jsp"/>-->
+
+
+
 </body>
+
 </html>

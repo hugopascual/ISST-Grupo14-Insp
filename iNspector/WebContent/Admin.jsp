@@ -50,6 +50,7 @@
 	
 </div>
 
+
 <div class="container" id="margen">
 	<div class="row" id="admin">
 	<div class="row" id="admin">
@@ -84,12 +85,21 @@
 		</div>
 		</div>
 </div>
-
-
-
-
+<c:choose>
+	<c:when test="${error_insp}">
+		<script>
+		alert('Ha introducido dos inspectores con el mismo email');
+		</script>
+	</c:when>
+	<c:when test="${error_establ}">
+		<script>
+		alert('Ha introducido dos establecimientos con el mismo CIF');
+		</script>
+	</c:when>
+</c:choose>
 
 
 
 </body>
+
 </html>

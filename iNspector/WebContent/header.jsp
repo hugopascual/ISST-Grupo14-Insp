@@ -52,11 +52,21 @@
 					<div class="perfil">
 						<%@ include file = "FormPerfilUsuario.jsp" %>
 					</div>
+					
+			</c:when>
+			<c:when test="${admin}">
+					<div class="logout">
+						<form action="FormLogoutServlet">
+							<button type="submit" class="btn btn-danger mt-1 mb-1 ml-1 mr-1">Logout</button>
+						</form>
+					</div>
+				
 			</c:when>
 			<c:otherwise>
-				<!--  <form action="FormLogoutServlet">
+			<!-- <form action="FormLogoutServlet">
 					<button type="submit" class="btn btn-danger mt-1 mb-1 ml-1 mr-1">Volver a la página principal</button>
 				</form>-->
+				
 			</c:otherwise>
 		</c:choose>
 	</div>

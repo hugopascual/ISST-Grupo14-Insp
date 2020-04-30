@@ -58,12 +58,19 @@ public class FormCreaEstablecimientoServlet extends HttpServlet {
 			for (int length = 0; (length = fileContent.read(buffer)) > 0;) output.write(buffer, 0, length);
 			establecimiento.setImagen(output.toByteArray());
 			
-			EstablecimientoDAOImplementation.getInstance().create(establecimiento);//respalda el establecimiento en la base de datos
+			try{EstablecimientoDAOImplementation.getInstance().create(establecimiento);//respalda el establecimiento en la base de datos
+				List<Establecimiento> establecimientos = new ArrayList<Establecimiento>();
+				establecimientos.addAll((List<Establecimiento>) req.getSession().getAttribute("establecimientos"));//lee los establecimientos ya existentes 
+				establecimientos.add (establecimiento);//anade el nuevo establecimiento
+				req.getSession().setAttribute("establecimientos", establecimientos);//actualiza el atributo de la sesion con los establecimientos
+				getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
+			} catch (Exception e) {
+				req.getSession().setAttribute("error_establ", true);
+				req.getSession().setAttribute("error_insp", false);
+				getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
+				
+			}
 			
-			List<Establecimiento> establecimientos = new ArrayList<Establecimiento>();
-			establecimientos.addAll((List<Establecimiento>) req.getSession().getAttribute("establecimientos"));//lee los establecimientos ya existentes 
-			establecimientos.add (establecimiento);//anade el nuevo establecimiento
-			req.getSession().setAttribute("establecimientos", establecimientos);//actualiza el atributo de la sesion con los establecimientos
-			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
+			
 		}
 	}

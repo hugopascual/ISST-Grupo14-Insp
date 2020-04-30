@@ -18,11 +18,13 @@
             href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
             type="text/css"
     />
-    <style>
-        body { margin: 0; padding: 0; }
-        #map { position: absolute; top: 0; bottom: 0; width: 50%; }
-    </style>
+   
 </head>
+
+<style>
+        body { margin:0px; padding:0; }
+        #map { position:center; top:0; bottom:0; width: 1000px; height: 550px; margin-bottom: 100px; margin-top:100px; }
+</style>
 <body>
 <div id="map"></div>
 <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
@@ -51,7 +53,7 @@
 
     mapboxClient.geocoding
         .forwardGeocode({
-            query: '${establecimiento.direccion},28047,${establecimiento.ciudad}',
+            query: '${establecimiento.direccion},${establecimiento.codigo_postal},${establecimiento.ciudad}',
             autocomplete: false,
             limit: 1
         })
