@@ -43,6 +43,8 @@ public class ModificarFechaInspeccionServlet extends HttpServlet {
 		
 		Establecimiento establecimiento = EstablecimientoDAOImplementation.getInstance().read(req.getParameter("establecimientoCIF"));
 		
+		String fecha_hoy = fechaHoy();
+		
 		Date nueva_fecha_insp = null;
 		
 		try {
@@ -58,11 +60,18 @@ public class ModificarFechaInspeccionServlet extends HttpServlet {
 		Establecimiento establec = EstablecimientoDAOImplementation.getInstance().read(establecimiento.getCif());
 		
 		req.getSession().setAttribute("establecimiento", establec);
+		req.getSession().setAttribute("fecha_hoy", fecha_hoy);
 		req.getSession().getAttribute("inspecciones");
 		req.getSession().getAttribute("ultima_inspeccion");
 		req.getSession().getAttribute("tiene_imagen");
 		req.getSession().getAttribute("inspector");
     	getServletContext().getRequestDispatcher("/EstablecimientoView.jsp").forward(req,resp);
+	}
+	
+	private String fechaHoy() {
+		Date fecha_hoy =new Date();
+		String hoy = new SimpleDateFormat("yyyy-MM-dd").format(fecha_hoy);
+		return hoy;
 	}
 	
 	

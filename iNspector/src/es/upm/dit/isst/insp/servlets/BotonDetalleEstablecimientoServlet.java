@@ -1,6 +1,8 @@
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -60,6 +62,9 @@ public class BotonDetalleEstablecimientoServlet extends HttpServlet {
 			req.getSession().getAttribute("inspector");
 		}
 		
+		String fecha_hoy = fechaHoy();
+		
+		req.getSession().setAttribute("fecha_hoy", fecha_hoy);
 		getServletContext().getRequestDispatcher("/EstablecimientoView.jsp").forward(req,resp);
 			
 	}
@@ -73,10 +78,19 @@ public class BotonDetalleEstablecimientoServlet extends HttpServlet {
 		if (nota.equals("Favorable")) {
 			color = "#00A135"; //verde
 		} else if (nota.equals("Favorable condicionado")) {
-			color = "#FFFF00"; //amarillo
+			color = "#FAB521"; //amarillo
 		} else if (nota.equals("Desfavorable")) {
 			color = "#FF0000"; //rojo
 		}
 		return "color:"+color+";";
+	}
+	
+	/*
+	 * Devuelve un string con la fecha de hoy
+	 */
+	private String fechaHoy() {
+		Date fecha_hoy =new Date();
+		String hoy = new SimpleDateFormat("yyyy-MM-dd").format(fecha_hoy);
+		return hoy;
 	}
 }

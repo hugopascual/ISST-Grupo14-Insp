@@ -24,7 +24,7 @@
 <form action="FormRegistrarInspeccionServlet" method="post" enctype="multipart/form-data">
 	
 	<p>Nombre del establecimiento: <input type="text" name="establecimiento" value="${establecimiento.nombre}" disabled required></p>
-	<p>Fecha: <input required type="date" name="fecha_insp" min="1900-01-01" max=${fecha} placeholder="Fecha de la inspección" required></p>
+	<p>Fecha: <input required type="date" name="fecha_insp" min="2000-01-01" max=${fecha_hoy} placeholder="Fecha de la inspección" required></p>
 	<p> Nota de la inspección:
 	<select name="nota" required>
 		   <option value="" disabled selected>Nota</option>

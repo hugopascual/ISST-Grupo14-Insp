@@ -36,7 +36,7 @@
 					<div id="oculto" style="display: none;">
 						<form action="ModificarFechaInspeccionServlet" method="get">
 							<input type="hidden" name="establecimientoCIF" value="${establecimiento.cif}" />
-							<input required type="date" name="nueva_fecha_insp" min="1900-01-01" placeholder="Nueva fecha de la inspección">
+							<input required type="date" name="nueva_fecha_insp" min=${fecha_hoy} placeholder="Nueva fecha de la inspección">
 							<button class="btn btn-primary mt-1 ml-1 mr-1 mb-1" type="submit" id="botonNuevaFecha">Guardar</button>
 						</form>
 					</div>

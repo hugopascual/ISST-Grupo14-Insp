@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.insp.dao.ClienteDAOImplementation;
 import es.upm.dit.isst.insp.dao.EstablecimientoDAOImplementation;
+import es.upm.dit.isst.insp.dao.InspeccionDAOImplementation;
 import es.upm.dit.isst.insp.dao.InspectorDAOImplementation;
+import es.upm.dit.isst.insp.dao.IncidenciaDAOImplementation;
 import es.upm.dit.isst.insp.model.Cliente;
 import es.upm.dit.isst.insp.model.Establecimiento;
 import es.upm.dit.isst.insp.model.Inspector;
+import es.upm.dit.isst.insp.model.Incidencia;
 
 @WebServlet("/ServeImageServlet")
 public class ServeImageServlet extends HttpServlet {
@@ -22,12 +25,13 @@ public class ServeImageServlet extends HttpServlet {
 	
 	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+	
 		String id = (req.getParameter("id")); //hay hecha una "trampa" en EstablecimientoView, porque le paso el parametro cif pero lo llamo email, asi esta servlet vale para establecimientos y usuarios
 		
 		Establecimiento establecimiento = EstablecimientoDAOImplementation.getInstance().read(id);
 		Inspector inspector = InspectorDAOImplementation.getInstance().read(id);
 		Cliente cliente = ClienteDAOImplementation.getInstance().read(id);
+		
 		
 		if (null != inspector) {
 			resp.setContentLength(inspector.getImagen().length);
@@ -37,7 +41,7 @@ public class ServeImageServlet extends HttpServlet {
 			resp.getOutputStream().write(cliente.getImagen());
 		} else if (null != establecimiento) {
 			if (establecimiento.getImagen().length == 0) {
-				req.getSession().setAttribute("tiene_imagen",false); //no funciona
+				req.getSession().setAttribute("tiene_imagen",false);
 			} else {
 				req.getSession().setAttribute("tiene_imagen",true);
 				resp.setContentLength(establecimiento.getImagen().length);
@@ -45,5 +49,5 @@ public class ServeImageServlet extends HttpServlet {
 			}
 		}
 	}
-
+	
 }

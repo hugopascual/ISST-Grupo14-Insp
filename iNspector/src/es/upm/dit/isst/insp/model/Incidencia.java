@@ -151,7 +151,6 @@ public class Incidencia implements Serializable {
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
 		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result + ((gravedad == null) ? 0 : gravedad.hashCode());
-		result = prime * result + id;
 		return result;
 	}
 

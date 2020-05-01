@@ -24,14 +24,23 @@ public class BotonPaginaReportarServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");//fecha de hoy
+	
+		String fecha_hoy = fechaHoy();
 		
 		req.getSession().getAttribute("establecimiento");
 		req.getSession().getAttribute("cliente");
-		req.getSession().setAttribute("fecha", fecha);
+		req.getSession().setAttribute("fecha_hoy", fecha_hoy);
 		
 		getServletContext().getRequestDispatcher("/ReportarView.jsp").forward(req,resp);
 			
+	}
+	
+	/*
+	 * Devuelve un string con la fecha de hoy
+	 */
+	private String fechaHoy() {
+		Date fecha_hoy =new Date();
+		String hoy = new SimpleDateFormat("yyyy-MM-dd").format(fecha_hoy);
+		return hoy;
 	}
 }

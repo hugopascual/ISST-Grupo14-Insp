@@ -68,7 +68,7 @@
                 var feature = response.body.features[0];
                 
                 var popup = new mapboxgl.Popup({ offset: 25 }).setText(
-                		'${establecimiento.nombre}' + '${establecimiento.direccion}'
+                		'${establecimiento.nombre}'+'\n '+'Nota: '+'${ultima_inspeccion.nota}'
                 		);
                 
                 var map = new mapboxgl.Map({
