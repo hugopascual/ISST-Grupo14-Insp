@@ -48,11 +48,9 @@
 	<c:choose>
 		<c:when test="${soy_cliente}">
 		<!--por si hay que incluir algo cuando eres cliente -->
-			<%@ include file = "FormIndex.jsp" %>
 		</c:when>
 		<c:when test="${soy_inspector}">
 			<!--por si hay que incluir algo cuando eres inspector -->
-			<%@ include file = "FormIndex.jsp" %>
 		</c:when>
 		<c:otherwise>
 			<div class="row">

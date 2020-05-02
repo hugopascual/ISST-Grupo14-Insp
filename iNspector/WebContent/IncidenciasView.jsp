@@ -140,7 +140,6 @@
 	</c:choose>
 
 	<div class="row" id="botonesHistorialInspeccionesView">
-		<%@ include file = "FormPerfilUsuario.jsp" %>
 	</div>	
 </div>
 

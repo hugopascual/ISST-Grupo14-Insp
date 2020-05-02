@@ -44,7 +44,6 @@
 	</div>
 		
 	<div class= row id="botonesHistorialInspeccionesView">
-		<%@ include file = "FormPerfilUsuario.jsp" %>
 		<%@ include file = "FormListaEstablecimientos.jsp" %>
 	</div>
 </div>

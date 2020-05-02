@@ -27,10 +27,8 @@
 		<div class="col-lg-12">
 			<h3>Bienvenido de nuevo a iNspector, ${cliente.nombre}</h3>
 			<div class= row id ="botonesHistorialInspeccionesView">
-				<%@ include file = "FormPerfilUsuario.jsp" %>
 				<%@ include file = "BotonIncidenciasCliente.jsp" %>
 				<%@ include file = "FormListaEstablecimientos.jsp" %>
-				<%@ include file = "FormLogout.jsp" %>
 			</div>
 		</div>
 	</div>
@@ -41,12 +39,10 @@
 				<h3>Bienvenido de nuevo a iNspector, ${inspector.nombre}</h3>
 				<p> Hay ${num_incidencias_pendientes} incidencias pendientes en ${num_establecimientos} establecimientos </p>
 				<div class= row id ="botonesHistorialInspeccionesView">
-					<%@ include file = "FormPerfilUsuario.jsp" %>
 					<%@ include file = "BotonInspeccionesInspector.jsp" %>
 					<%@ include file = "FormListaEstablecimientos.jsp" %>
 					<%@ include file = "BotonProximasInspecciones.jsp" %>
 					<%@ include file = "BotonIncidenciasPendientes.jsp" %>
-					<%@ include file = "FormLogout.jsp" %>
 				</div>
 			</div>
 		</div>
