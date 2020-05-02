@@ -24,6 +24,7 @@
 		<h2>Lista de inspecciones realizadas en el establecimiento ${establecimiento.nombre}</h2>
 		<p>Ahora mismo el inspector ${inspector.nombre} está visualizando el historial de inspecciones</p>
 		<p>En este establecimiento se han realizado ${fn:length(inspecciones)} inspecciones</p>
+		<c:if test="${fn:length(inspecciones)!=0}">
 		<div>
 		<table class="table" border="1">
 			<thead class="my-thead">
@@ -53,10 +54,12 @@
 			</c:forEach>	
 		</table>
 		</div>
+		</c:if>
 	</c:when>
 	<c:when test="${segun_inspector}">
 		<h2>Lista de inspecciones realizadas por el inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2}</h2>
 		<p>Este inspector ha realizado ${fn:length(inspecciones)} inspecciones</p>
+		<c:if test="${fn:length(inspecciones)!=0}">
 		<table class ="table" border="1">
 			<thead class="my-thead">
 			<tr>
@@ -83,6 +86,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+		</c:if>
 	</c:when>
 </c:choose>
 
@@ -91,6 +95,8 @@
 </div>	
 </div>
 
-
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -49,7 +49,8 @@
 	</c:when>
 	<c:otherwise>
 	<div class="container">
-	<div class="col">
+	<div class="row">
+	<div class="col-lg-6">
 		<div class="row mt-1 mb-1 ml-1 mr-1">
 			<h3>¡Bienvenido a iNspector!</h3>
 		</div>
@@ -84,6 +85,10 @@
 		<div class="row mt-1 mb-1 ml-1 mr-1">
 			<%@ include file = "FormListaEstablecimientos.jsp" %>
 		</div>
+	</div>
+	<div class="col-lg-6">
+		<img src="img/indeximg.jpg" class="img-fluid" alt="Responsive image">
+	</div>
 	</div>
 	</div>
 	

@@ -23,7 +23,14 @@
 <div class="container">
 	<div class="row" id="admin">
 		
-			<h2>Inspectores</h2>
+			<h2 style="margin:auto; padding-left:300px">Inspectores</h2>
+			
+			<hr>
+			<c:choose>
+			<c:when test="${fn:length(inspectores)==0}" >
+			<p class="lead" style="margin-right:50px; color:red">No hay ningún inspector registrado</p>
+			</c:when>
+			<c:otherwise>
 			<table class="table" border="1">
 					<thead class="my-thead">
 					<tr>
@@ -42,8 +49,9 @@
 					</tr>
 				</c:forEach>
 			</table>
-			
-			<div class="row">
+			</c:otherwise>
+			</c:choose>
+			<div class="row" id="margen">
 			<%@ include file = "FormCreaInspector.jsp" %>
 			</div>
 	</div>
@@ -55,6 +63,11 @@
 	<div class="row" id="admin">
 	<div class="row" id="admin">
 			<h2>Establecimientos</h2>
+			<c:choose>
+			<c:when test="${fn:length(establecimientos)==0}" >
+			<p class="lead" style="margin-left:20px; color:red">No hay ningún establecimiento registrado</p>
+			</c:when>
+			<c:otherwise>
 			<table class= "table" border="1">
 					<thead class="my-thead">
 					<tr>
@@ -79,6 +92,8 @@
 					</tr>
 				</c:forEach>
 			</table>
+			</c:otherwise>
+			</c:choose>
 		</div>
 		<div class = "row" id="margen">
 		<%@ include file = "FormCreaRestaurante.jsp" %>
@@ -99,7 +114,9 @@
 </c:choose>
 
 
-
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>

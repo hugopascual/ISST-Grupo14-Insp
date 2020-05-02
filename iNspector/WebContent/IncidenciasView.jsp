@@ -24,6 +24,7 @@
 			<p>En este establecimiento los clientes han reportado ${fn:length(incidencias_pendientes)} incidencias que aún no han sido revisadas</p>
 			
 			<div>
+			<c:if test="${fn:length(incidencias_pendientes)!=0}">
 			<h3>Incidencias pendientes</h3>
 			<table class="table" border="1">
 				<thead class="my-thead">
@@ -66,8 +67,10 @@
 					</div>
 				</c:forEach>	
 			</table>
+			</c:if>
 			</div>
 			<div>
+			<c:if test="${fn:length(inspecciones)!=0}">
 			<h3>Incidencias revisadas</h3>
 			<table class="table" border="1">
 				<thead class="my-thead">
@@ -91,12 +94,14 @@
 					</tr>
 				</c:forEach>	
 			</table>
+			</c:if>
 			</div>
 		</c:when>
 		
 		<c:when test="${segun_cliente}">
 			<h2>Lista de incidencias reportadas por el cliente ${cliente.nombre} ${cliente.apellido_1} ${cliente.apellido_2}</h2>
 			<p>Este cliente ha reportado ${fn:length(incidencias)} incidencias</p>
+			<c:if test="${fn:length(incidencias)!=0}">
 			<table class ="table" border="1">
 				<thead class="my-thead">
 				<tr>
@@ -135,6 +140,7 @@
 					
 				</c:forEach>
 			</table>
+			</c:if>
 		</c:when>
 		
 	</c:choose>

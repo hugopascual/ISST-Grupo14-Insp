@@ -21,6 +21,7 @@
 	<p> Hay ${num_incidencias_pendientes} incidencias pendientes en ${num_establecimientos} establecimientos </p>
 		
 	<div>
+	<c:if test="${num_incidencias_pendientes !=0}">
 	<table  class= "table" border="1">
 		<thead class = "my-thead">
 		<tr>
@@ -43,6 +44,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</c:if>
 	</div>
 </div>		
 

@@ -21,6 +21,10 @@
 	<p>Actualmente hay registrados ${fn:length(establecimientos)} establecimientos en iNspector<p>
 	
 	<div>
+	<c:choose>
+	<c:when test="${fn:length(establecimientos)==0}">
+	</c:when>
+	<c:otherwise>
 	<table  class= "table" border="1">
 		<thead class = "my-thead">
 		<tr>
@@ -42,6 +46,8 @@
 			</tr>
 		</c:forEach>	
 	</table>
+	</c:otherwise>
+	</c:choose>
 	</div>
 	
 	<div>
