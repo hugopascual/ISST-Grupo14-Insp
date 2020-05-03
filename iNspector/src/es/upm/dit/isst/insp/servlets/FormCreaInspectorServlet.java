@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -14,10 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import es.upm.dit.isst.insp.dao.InspectorDAOImplementation;
 import es.upm.dit.isst.insp.model.Inspector;
 
-/*
- * Con el metodo doGet lee los parametros, crea un objeto Profesor respaldado en la base de datos
- * y actualiza la lista de profesores en la sesion de manera que Admin.jsp pueda mostrar en cada 
- * momento la lista de profesores dados de alta en la aplicacion
+/**
+ * Servlet que se encarga de recoger los datos del formulario de registro de un inspector y respaldarlos en la base de datos
+ * Es necesario manejar la excepcion que puede saltar al intentar registrar dos inspectores con la misma clave primaria (email)
+ * Ademas, si es el primer inspector que se esta registrando, se crea un inspector falso que sera utilizado para asignarle las 
+ * inspecciones de inspectores eliminados
  */
 
 @WebServlet("/FormCreaInspectorServlet")
@@ -31,14 +38,15 @@ public class FormCreaInspectorServlet extends HttpServlet {
 		
 		List<Inspector> lista_inspectores = (List<Inspector>) req.getSession().getAttribute("inspectores");
 		
+		//si no hay inspectores, se crea el "inspector falso"
 		if (lista_inspectores.size() == 0) {
-			//si no hay inspectores, debemos crear el "inspector falso" al que se le asignaran las inspecciones de inspectores eliminados
+		
 			String nombre = "Inspector";
 			String apellido_1 = "Eliminado";
 			String apellido_2 = null;
-			String email = "inspector_falso";//necesita email porque es el id
+			String email = "inspector_falso";
 			String usuario = null;
-			String password = null; // no necesita password porque no queremos que pueda iniciar sesion
+			String password = null; //no necesita password porque no queremos que pueda iniciar sesion
 			
 			Inspector inspector_falso = new Inspector();
 			
@@ -52,6 +60,7 @@ public class FormCreaInspectorServlet extends HttpServlet {
 			InspectorDAOImplementation.getInstance().create(inspector_falso);		
 		}
 		
+		//registro del inspector real
 		String nombre = req.getParameter("nombre");
 		String apellido_1 = req.getParameter("apellido_1");
 		String apellido_2 = req.getParameter("apellido_2");
@@ -68,19 +77,26 @@ public class FormCreaInspectorServlet extends HttpServlet {
 		inspector.setUsuario(usuario);
 		inspector.setPassword(password);
 		
-		try {InspectorDAOImplementation.getInstance().create(inspector);
-		List<Inspector> inspectores = new ArrayList<Inspector>();
-		inspectores.addAll((List<Inspector>) 
-				req.getSession().getAttribute("inspectores"));
-		inspectores.add (inspector);
-		req.getSession().setAttribute("inspectores", inspectores);
-		getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
+		//al registrar al inspector en la BBDD, si ya exite uno con el mismo id, salta una excepcion ya que se vulnera la unicidad de claves
+		try {
+			InspectorDAOImplementation.getInstance().create(inspector);
+			
+			List<Inspector> inspectores = new ArrayList<Inspector>();
+			inspectores.addAll((List<Inspector>) 
+					req.getSession().getAttribute("inspectores"));
+			inspectores.add (inspector);//actualizacion de la lista de insepctores
+			
+			req.getSession().setAttribute("inspectores", inspectores);
+			req.getSession().setAttribute("error_insp", false);
+			req.getSession().setAttribute("error_establ", false);
+			
+			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
 		
 		} catch (Exception e) {
-			req.getSession().setAttribute("error_insp", true);
+			req.getSession().setAttribute("error_insp", true);//variable que hara que salte la alerta de inspector duplicado
 			req.getSession().setAttribute("error_establ", false);
-			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
 			
+			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
 		}
 		
 		

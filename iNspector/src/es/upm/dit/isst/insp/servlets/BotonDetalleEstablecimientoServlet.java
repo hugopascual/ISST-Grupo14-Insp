@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -16,8 +22,8 @@ import es.upm.dit.isst.insp.dao.InspeccionDAOImplementation;
 import es.upm.dit.isst.insp.model.Establecimiento;
 import es.upm.dit.isst.insp.model.Inspeccion;
 
-/*
- * Servlet para sacar toda la información relativa al establecimiento seleccionado
+/**
+ * Servlet que obtiene toda la información relativa al establecimiento que se ha seleccionado
  */
 
 @WebServlet("/BotonDetalleEstablecimientoServlet")
@@ -32,15 +38,18 @@ public class BotonDetalleEstablecimientoServlet extends HttpServlet {
 		Object soy_cliente = req.getSession().getAttribute("soy_cliente");
 		Object soy_inspector = req.getSession().getAttribute("soy_inspector");
 		
-		Establecimiento establecimiento = EstablecimientoDAOImplementation.getInstance().read(req.getParameter("establecimientoCIF"));//a través del indentificador del establecimiento (CIF) obtengo el establecimiento que corresponde
+		//obtengo el establecimiento seleccionado usando el identificador obtenido como parametro
+		Establecimiento establecimiento = EstablecimientoDAOImplementation.getInstance().read(req.getParameter("establecimientoCIF"));
 		req.getSession().setAttribute("establecimiento", establecimiento);
 		
-		List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Establ(establecimiento); //todas las inspecciones del establecimiento
+		//lista de todas las inspecciones del establecimiento
+		List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Establ(establecimiento);
 		req.getSession().setAttribute("inspecciones", inspecciones);
 		
+		//si se han registrado inspecciones en el establecimiento, obtengo la inspeccion mas reciente
 		if (inspecciones.size() > 0) {
-			Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);//query para sacar la inspeccion más reciente
 			
+			Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);
 			String colorNota = colorNota(ultima_inspeccion);
 			
 			req.getSession().setAttribute("colorNota", colorNota);
@@ -50,15 +59,17 @@ public class BotonDetalleEstablecimientoServlet extends HttpServlet {
 			req.getSession().removeAttribute("ultima_inspeccion");
 		}
 		
+		//compruebo si el establecimiento tiene asociada una imagen
 		if (establecimiento.getImagen().length == 0) {
 			req.getSession().setAttribute("tiene_imagen",false);
 		} else {
 			req.getSession().setAttribute("tiene_imagen",true);
 		}
 		
-		if (null != soy_cliente) { //compruebo que el usuario logeado es un cliente
+		//compruebo si el usuario logeado es un cliente o un inspector
+		if (null != soy_cliente) {
 			req.getSession().getAttribute("cliente");
-		} else if ( null != soy_inspector) { //compruebo que el usuario logeado es un inspector
+		} else if ( null != soy_inspector) {
 			req.getSession().getAttribute("inspector");
 		}
 		
@@ -69,8 +80,10 @@ public class BotonDetalleEstablecimientoServlet extends HttpServlet {
 			
 	}
 	
-	/*
-	 * En funcion de la nota de la inspeccion, el texto aparece en diferente color 
+	/**
+	 * Metodo auxiliar que comprueba la nota de la inspeccion y devuelve un color asociado a esta
+	 * @param inspeccion de la que se quiere mostrar la nota
+	 * @return string que será utilizado para definir el estilo del texto que muetsre la nota
 	 */
 	private String colorNota(Inspeccion inspeccion) {
 		String color= null;
@@ -85,8 +98,9 @@ public class BotonDetalleEstablecimientoServlet extends HttpServlet {
 		return "color:"+color+";";
 	}
 	
-	/*
-	 * Devuelve un string con la fecha de hoy
+	/**
+	 * Metodo auxiliar que devuelve un string con la fecha actual con formato yyyy-MM-dd
+	 * @return string con la fecha de hoy que será utilizado para definir limites en la seleccion de fechas
 	 */
 	private String fechaHoy() {
 		Date fecha_hoy =new Date();

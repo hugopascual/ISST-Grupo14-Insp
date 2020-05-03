@@ -17,14 +17,14 @@
 <%@ include file = "header.jsp" %>
 
 <div class="container">
-	<h2>Lista de proximas Inspecciones</h2>
+	<h2>Próximas inspecciones</h2>
 		
 	<div>
 	<table  class= "table" border="1">
 		<thead class = "my-thead">
 		<tr>
 			<td><b>Nombre</b></td>
-			<td><b>Fecha Prevista</b></td>
+			<td><b>Fecha de Inspección Prevista</b></td>
 			<td><b>Acción</b>
 		</tr>
 		</thead>

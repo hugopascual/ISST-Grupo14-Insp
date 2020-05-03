@@ -17,7 +17,7 @@
 <%@ include file = "header.jsp" %>
 
 <div class="container">
-	<h2>Lista de Incidencias Pendientes</h2>
+	<h2>Incidencias Pendientes</h2>
 	<p> Hay ${num_incidencias_pendientes} incidencias pendientes en ${num_establecimientos} establecimientos </p>
 		
 	<div>

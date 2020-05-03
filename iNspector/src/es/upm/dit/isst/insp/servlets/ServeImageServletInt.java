@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.ByteArrayOutputStream;
@@ -14,6 +20,10 @@ import javax.servlet.http.Part;
 
 import es.upm.dit.isst.insp.dao.IncidenciaDAOImplementation;
 import es.upm.dit.isst.insp.model.Incidencia;
+
+/*
+ * Servlet que devuelve la imagen asoaciada a una incidencia
+ */
 
 @WebServlet("/ServeImageServletInt")
 public class ServeImageServletInt extends HttpServlet {

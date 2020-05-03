@@ -12,7 +12,6 @@
 <meta charset="UTF-8">
 <title>iNspector</title>
 
-
 </head>
 
 <header>
@@ -23,10 +22,11 @@
 	</a>
 	</div>-->
 	
+	<!-- Logo de iNspector que redirecciona a la pagina principal-->
 	<div class="logo">
-	<form action="FormIndexServlet" method="get">
-	<input type=image src="files/logo_iNspector.png" alt="Logo de iNspector" width="250"> 
-	</form>
+		<form action="FormIndexServlet" method="get">
+			<input type=image src="files/logo_iNspector.png" alt="Logo de iNspector" width="250"> 
+		</form>
 	</div>
 
 
@@ -42,6 +42,7 @@
 					<div class="perfil">
 						<%@ include file = "FormPerfilUsuario.jsp" %>
 					</div>
+					
 			</c:when>
 			<c:when test="${soy_inspector}">
 					<div class="logout">

@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -12,7 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.insp.dao.ClienteDAOImplementation;
+import es.upm.dit.isst.insp.dao.EstablecimientoDAOImplementation;
 import es.upm.dit.isst.insp.model.Cliente;
+import es.upm.dit.isst.insp.model.Establecimiento;
+
+/**
+ * Servlet que se encarga de recoger los datos del formulario de registro de un cliente y respaldarlos en la base de datos
+ * Es necesario manejar la excepcion que puede saltar al intentar registrar dos usuarios con la misma clave primaria (email)
+ */
 
 @WebServlet("/FormCreaClienteServlet")
 public class FormCreaClienteServlet extends HttpServlet {
@@ -38,10 +51,19 @@ public class FormCreaClienteServlet extends HttpServlet {
 		cliente.setUsuario(usuario);
 		cliente.setPassword(password);
 		
-		ClienteDAOImplementation.getInstance().create(cliente);
+		//al crear el cliente en la BBDD, si ya exite un cliente con el mismo id, salta una excepcion ya que se vulnera la unicidad de claves
+		try {
+			ClienteDAOImplementation.getInstance().create(cliente);
+			
+			req.getSession().setAttribute("nuevo_usuario", true);//variable que hara que salte alerta de usuario registrado
+			req.getSession().setAttribute("error_cliente", false);
+			
+			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+		} catch (Exception e) {
+			req.getSession().setAttribute("error_cliente", true);//variable que hara que salte alerta de usuario repetido
+			
+			getServletContext().getRequestDispatcher("/FormCreaCliente.jsp").forward(req,resp);
+		}
 		
-		req.getSession().setAttribute("nuevo_usuario", true);//variable que hara que salte el mensaje de "Usuario registrado"
-		
-		getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 	}
 }

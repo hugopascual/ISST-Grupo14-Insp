@@ -1,3 +1,8 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -18,10 +23,9 @@ import javax.servlet.http.Part;
 import es.upm.dit.isst.insp.dao.EstablecimientoDAOImplementation;
 import es.upm.dit.isst.insp.model.Establecimiento;
 
-/*
- * Con el metodo doGet lee los parametros, crea un objeto Profesor respaldado en la base de datos
- * y actualiza la lista de profesores en la sesion de manera que Admin.jsp pueda mostrar en cada 
- * momento la lista de profesores dados de alta en la aplicacion
+/**
+ * Servlet que se encarga de recoger los datos del formulario de creacion de un establecimiento y respaldarlos en la base de datos
+ * Es necesario manejar la excepcion que puede saltar al intentar registrar dos establecimientos con la misma clave primaria (CIF)
  */
 
 @WebServlet("/FormCreaEstablecimientoServlet")
@@ -58,22 +62,27 @@ public class FormCreaEstablecimientoServlet extends HttpServlet {
 			for (int length = 0; (length = fileContent.read(buffer)) > 0;) output.write(buffer, 0, length);
 			establecimiento.setImagen(output.toByteArray());
 			
+			//al crear el establecimiento en la BBDD, si ya exite uno con el mismo id, salta una excepcion ya que se vulnera la unicidad de claves
 			try{
-				EstablecimientoDAOImplementation.getInstance().create(establecimiento);//respalda el establecimiento en la base de datos
+				EstablecimientoDAOImplementation.getInstance().create(establecimiento);
+				
 				List<Establecimiento> establecimientos = new ArrayList<Establecimiento>();
-				establecimientos.addAll((List<Establecimiento>) req.getSession().getAttribute("establecimientos"));//lee los establecimientos ya existentes 
-				establecimientos.add (establecimiento);//anade el nuevo establecimiento
-				req.getSession().setAttribute("establecimientos", establecimientos);//actualiza el atributo de la sesion con los establecimientos
+				establecimientos.addAll((List<Establecimiento>) req.getSession().getAttribute("establecimientos")); 
+				establecimientos.add (establecimiento);//actualizo la lista de establecimientos
+				
+				req.getSession().setAttribute("establecimientos", establecimientos);
+				req.getSession().setAttribute("error_establ", false);
+				req.getSession().setAttribute("error_insp", false);
+				
 				getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
 				
 			} catch (Exception e) {
 				
-				req.getSession().setAttribute("error_establ", true);
+				req.getSession().setAttribute("error_establ", true);//variable que hara que salte alerta de establecimiento repetido
 				req.getSession().setAttribute("error_insp", false);
 				getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
 				
 			}
-			
 			
 		}
 	}

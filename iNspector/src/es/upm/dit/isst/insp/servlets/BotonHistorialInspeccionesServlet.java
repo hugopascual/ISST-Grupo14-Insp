@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -16,8 +22,8 @@ import es.upm.dit.isst.insp.model.Establecimiento;
 import es.upm.dit.isst.insp.model.Inspeccion;
 import es.upm.dit.isst.insp.model.Inspector;
 
-/*
- * Servlet para sacar toda la información relativa al establecimiento seleccionado
+/**
+ * Servlet encargada de obtener el historial de inspecciones registradas en un establecimiento
  */
 
 @WebServlet("/BotonHistorialInspeccionesServlet")

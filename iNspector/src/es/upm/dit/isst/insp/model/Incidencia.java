@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.model;
 
 import java.io.Serializable;
@@ -13,6 +19,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * Clase que representa una incidencia
+ */
+
 @Entity
 public class Incidencia implements Serializable {
 
@@ -25,16 +35,19 @@ public class Incidencia implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
-	private String status;// puede tener dos valores pendiente y revisada.
+	private String status;
 	
 	@Lob
 	private byte[] imagen;
 	
+	//relaciones definidas en el modelo de datos
 	@ManyToOne
 	private Establecimiento establecimiento_incidencia;
 	
 	@ManyToOne
 	private Cliente cliente_incidencia;
+	
+	
 	
 	public Incidencia() {
 		this.status="pendiente";
@@ -81,65 +94,47 @@ public class Incidencia implements Serializable {
 			this.status="revisada";
 	}
 
-	/**
-	 * @return the id
-	 */
+	
 	public int getId() {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
+	
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the gravedad
-	 */
+	
 	public String getGravedad() {
 		return gravedad;
 	}
 
-	/**
-	 * @param gravedad the gravedad to set
-	 */
+	
 	public void setGravedad(String gravedad) {
 		this.gravedad = gravedad;
 	}
 
-	/**
-	 * @return the descripcion
-	 */
+	
 	public String getDescripcion() {
 		return descripcion;
 	}
 
-	/**
-	 * @param descripcion the descripcion to set
-	 */
+	
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-	/**
-	 * @return the fecha
-	 */
+	
 	public Date getFecha() {
 		return fecha;
 	}
 
-	/**
-	 * @param fecha the fecha to set
-	 */
+	
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
-	/**
-	 * @return the serialversionuid
-	 */
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

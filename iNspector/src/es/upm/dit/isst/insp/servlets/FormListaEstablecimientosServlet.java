@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -12,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import es.upm.dit.isst.insp.dao.EstablecimientoDAOImplementation;
 import es.upm.dit.isst.insp.model.Establecimiento;
 
-/*
- * Servlet para volver a la vista del cliente desde cualquier página siempre que acceda un cliente
+/**
+ * Servlet que recopila la informacion necesaria para mostrar la lista de establecimientos registrados en la aplicacion
  */
 
 @WebServlet("/FormListaEstablecimientosServlet")
@@ -31,9 +37,10 @@ public class FormListaEstablecimientosServlet extends HttpServlet {
 		
 		req.getSession().setAttribute("establecimientos", establecimientos);
 		
-		if (null != soy_cliente) { //compruebo que el usuario logeado es un cliente
+		//segun el tipo de usuario, se pasan los datos de uno o de otro
+		if (null != soy_cliente) {
 			req.getSession().getAttribute("cliente");
-		} else if ( null != soy_inspector) { //compruebo que el usuario logeado es un inspector
+		} else if ( null != soy_inspector) { 
 			req.getSession().getAttribute("inspector");
 		} else {
 			req.getSession().setAttribute("usuario_no_registrado",true);

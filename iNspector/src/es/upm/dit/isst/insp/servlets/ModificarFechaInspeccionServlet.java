@@ -1,3 +1,8 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.ByteArrayOutputStream;
@@ -29,8 +34,9 @@ import es.upm.dit.isst.insp.model.Inspeccion;
 import es.upm.dit.isst.insp.model.Inspector;
 import es.upm.dit.isst.insp.model.Incidencia;
 
-/*
- * Servlet para guardar la informacion de la inspeccion
+/**
+ * Servlet que se encarga de actualizar la fecha de proxima inspeccion de un establecimiento cuando un inspector
+ * la modifica de forma manual
  */
 
 @WebServlet("/ModificarFechaInspeccionServlet")
@@ -43,6 +49,7 @@ public class ModificarFechaInspeccionServlet extends HttpServlet {
 		
 		Establecimiento establecimiento = EstablecimientoDAOImplementation.getInstance().read(req.getParameter("establecimientoCIF"));
 		
+		//string con la fecha de hoy que sera utilizado para limitar la eleccion de fechas
 		String fecha_hoy = fechaHoy();
 		
 		Date nueva_fecha_insp = null;
@@ -68,6 +75,10 @@ public class ModificarFechaInspeccionServlet extends HttpServlet {
     	getServletContext().getRequestDispatcher("/EstablecimientoView.jsp").forward(req,resp);
 	}
 	
+	/**
+	 * Metodo auxiliar que devuelve un string con la fecha de hoy
+	 * @return string con la fecha de hoy
+	 */
 	private String fechaHoy() {
 		Date fecha_hoy =new Date();
 		String hoy = new SimpleDateFormat("yyyy-MM-dd").format(fecha_hoy);

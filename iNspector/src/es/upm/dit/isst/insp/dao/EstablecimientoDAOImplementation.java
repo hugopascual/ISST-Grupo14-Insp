@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.dao;
 
 import java.text.SimpleDateFormat;
@@ -11,15 +17,8 @@ import org.hibernate.Session;
 
 import es.upm.dit.isst.insp.model.Establecimiento;
 
-/*
- * DAO son clases utilizadas para realizar operaciones de persistencia 
- * asociadas al modelo, es decir, utilizadas para escribir o leer de la 
- * base de datos
- */
-
 public class EstablecimientoDAOImplementation implements EstablecimientoDAO {
 
-	//Esta clase debe seguir el patron de diseno Singleton
 	private static EstablecimientoDAOImplementation instancia = null;
 	
 	Date fecha_hoy = new Date();
@@ -28,7 +27,6 @@ public class EstablecimientoDAOImplementation implements EstablecimientoDAO {
 	private EstablecimientoDAOImplementation() {
 	}
 	
-	//con esto nos aseguramos de que solo haya creado un objeto de este tipo
 	public static EstablecimientoDAOImplementation getInstance() {
 		if (null==instancia)
 			instancia = new EstablecimientoDAOImplementation();
@@ -47,7 +45,7 @@ public class EstablecimientoDAOImplementation implements EstablecimientoDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Establecimiento read(String cif) {//hay que ver que identifica al establecimiento
+	public Establecimiento read(String cif) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
 		Establecimiento establecimiento= session.get(Establecimiento.class, cif);
@@ -87,14 +85,16 @@ public class EstablecimientoDAOImplementation implements EstablecimientoDAO {
 		return list;
 	}
 	
-	//saca todos los establecimientos con fecha proxima inspeccion posterior a la fecha del dia de hoy
+
+	/**
+	 * @return todos los establecimientos con fecha de proxima inspeccion posterior a la fecha del dia de hoy
+	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<Establecimiento> readAllOrderInspeccion() {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
 		Query q = session.createQuery("from Establecimiento order by proxima_inspeccion asc");
-		//Query q = session.createQuery("from Establecimiento where proxima_inspeccion >= :fecha order by proxima_inspeccion asc");
-		//q.setParameter("fecha", fecha_hoy);
 		List<Establecimiento> list = q.getResultList();
 		session.getTransaction().commit();
 		session.close();

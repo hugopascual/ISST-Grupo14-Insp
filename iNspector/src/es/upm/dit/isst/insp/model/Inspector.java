@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.model;
 
 import java.io.Serializable;
@@ -15,6 +21,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+/**
+ * Clase que define a un inspector
+ */
+
 @Entity
 public class Inspector implements Serializable {
 	
@@ -31,6 +41,10 @@ public class Inspector implements Serializable {
 	@Id
 	private String email;
 	
+	@Lob
+	private byte[] imagen;
+	
+	//relaciones definidas en el modelo de datos
 	@OneToMany (mappedBy = "inspector_realiza_inspeccion", fetch = FetchType.EAGER)
 	private List <Inspeccion> inspecciones_realizadas_inspector;
 	
@@ -41,8 +55,6 @@ public class Inspector implements Serializable {
 			inverseJoinColumns = @JoinColumn(name = "cif"))
 	private List <Establecimiento> establecimientos_inspeccionados;
 	
-	@Lob
-	private byte[] imagen;
 	
 	public Inspector() {
 		super();
@@ -119,93 +131,63 @@ public class Inspector implements Serializable {
 		this.imagen = imagen;
 	}
 	
-	/**
-	 * @return the id
-	 */
+
 	public int getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-	/**
-	 * @return the nombre
-	 */
+	
 	public String getNombre() {
 		return nombre;
 	}
-	/**
-	 * @param nombre the nombre to set
-	 */
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	/**
-	 * @return the apellido_1
-	 */
+	
 	public String getApellido_1() {
 		return apellido_1;
 	}
-	/**
-	 * @param apellido_1 the apellido_1 to set
-	 */
+	
 	public void setApellido_1(String apellido_1) {
 		this.apellido_1 = apellido_1;
 	}
-	/**
-	 * @return the apellido_2
-	 */
+	
 	public String getApellido_2() {
 		return apellido_2;
 	}
-	/**
-	 * @param apellido_2 the apellido_2 to set
-	 */
+	
 	public void setApellido_2(String apellido_2) {
 		this.apellido_2 = apellido_2;
 	}
-	/**
-	 * @return the usuario
-	 */
+	
 	public String getUsuario() {
 		return usuario;
 	}
-	/**
-	 * @param usuario the usuario to set
-	 */
+	
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-	/**
-	 * @return the password
-	 */
+	
 	public String getPassword() {
 		return password;
 	}
-	/**
-	 * @param password the password to set
-	 */
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	/**
-	 * @return the email
-	 */
+	
 	public String getEmail() {
 		return email;
 	}
-	/**
-	 * @param email the email to set
-	 */
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	/**
-	 * @return the serialversionuid
-	 */
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

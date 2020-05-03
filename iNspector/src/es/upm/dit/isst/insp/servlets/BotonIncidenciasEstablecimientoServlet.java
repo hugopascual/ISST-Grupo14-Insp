@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -13,8 +19,8 @@ import es.upm.dit.isst.insp.dao.IncidenciaDAOImplementation;
 import es.upm.dit.isst.insp.model.Establecimiento;
 import es.upm.dit.isst.insp.model.Incidencia;
 
-/*
- * Servlet sacar toda la informacion necesaria para sacar todas las incidencias reportadas en un establecimiento
+/**
+ * Servlet que obtiene todas las incidencias reportadas en un establecimiento, clasificadas según su estado
  */
 
 @WebServlet("/BotonIncidenciasEstablecimientoServlet")
@@ -32,8 +38,7 @@ public class BotonIncidenciasEstablecimientoServlet extends HttpServlet {
 		
 		req.getSession().setAttribute("incidencias_pendientes", incidencias_pendientes);
 		req.getSession().setAttribute("incidencias_revisadas", incidencias_revisadas);
-		
-		req.getSession().setAttribute("segun_establecimiento", true);//marcamos que queremos las incidencias segun el establecimeinto en el que se reportan
+		req.getSession().setAttribute("segun_establecimiento", true);//marco que quiero las incidencias segun el establecimiento
 		
 		getServletContext().getRequestDispatcher("/IncidenciasView.jsp").forward(req,resp);
 			

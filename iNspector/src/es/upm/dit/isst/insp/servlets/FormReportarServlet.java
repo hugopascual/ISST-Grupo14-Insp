@@ -1,3 +1,8 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.ByteArrayOutputStream;
@@ -26,8 +31,8 @@ import es.upm.dit.isst.insp.model.Cliente;
 import es.upm.dit.isst.insp.model.Establecimiento;
 import es.upm.dit.isst.insp.model.Incidencia;
 
-/*
- * Servlet para guardar la informacion de la incidencia reportada por un cliente
+/**
+ * Servlet que se enacarga de guardar la informacion de la incidencia reportada por un cliente
  */
 
 @WebServlet("/FormReportarServlet")
@@ -39,7 +44,7 @@ public class FormReportarServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		Establecimiento establecimiento = (Establecimiento) req.getSession().getAttribute("establecimiento");//establecimiento inspeccionado
+		Establecimiento establecimiento = (Establecimiento) req.getSession().getAttribute("establecimiento");//establecimiento en el que se reporta
 		Cliente cliente= (Cliente) req.getSession().getAttribute("cliente");//cliente que reporta la incidencia
 
 		Date fecha = null;
@@ -71,16 +76,8 @@ public class FormReportarServlet extends HttpServlet {
     	incidencia.setImagen(output.toByteArray());
     	
     	IncidenciaDAOImplementation.getInstance().create(incidencia);
-    	
-    	//obtengo la inspeccion mas reciente del establecimiento
-    	//Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);
-		//req.getSession().setAttribute("ultima_inspeccion", ultima_inspeccion);
-    	
-    	//actualizar la lista de inspecciones para que salga la ultima inspeccion
-    	//List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Establ(establecimiento);
-		//req.getSession().setAttribute("inspecciones", inspecciones);
 	
-    	getServletContext().getRequestDispatcher("/EstablecimientoView.jsp").forward(req,resp);//después de reportar la incidencia vuelve a la pagina del establecimiento
+    	getServletContext().getRequestDispatcher("/EstablecimientoView.jsp").forward(req,resp);
 			
 	}
 }

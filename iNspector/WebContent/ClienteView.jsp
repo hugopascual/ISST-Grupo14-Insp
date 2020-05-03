@@ -19,10 +19,10 @@
 	<div class="row">
 		<div class="col-lg-6">
 			<h2>Página del cliente ${cliente.nombre} ${cliente.apellido_1} ${cliente.apellido_2}</h2>
-			<p>Nombre: ${cliente.nombre}</p>
-			<p>Apellidos: ${cliente.apellido_1} ${cliente.apellido_2}</p>
-			<p>Usuario: ${cliente.usuario}</p>
-			<p>Email: ${cliente.email}</p>
+			<p><b>Nombre:</b> ${cliente.nombre}</p>
+			<p><b>Apellidos:</b> ${cliente.apellido_1} ${cliente.apellido_2}</p>
+			<p><b>Usuario:</b> ${cliente.usuario}</p>
+			<p><b>Email:</b> ${cliente.email}</p>
 		</div>
 		
 		<div class="col-lg-6">

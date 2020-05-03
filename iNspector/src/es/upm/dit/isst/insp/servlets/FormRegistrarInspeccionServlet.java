@@ -1,3 +1,8 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.ByteArrayOutputStream;
@@ -29,8 +34,15 @@ import es.upm.dit.isst.insp.model.Inspeccion;
 import es.upm.dit.isst.insp.model.Inspector;
 import es.upm.dit.isst.insp.model.Incidencia;
 
-/*
- * Servlet para guardar la informacion de la inspeccion
+/**
+ * Servlet que se encarga de registrar una inspeccion despues de recopilar todos los datos que el inspector ha introducido en el formulario.
+ * 
+ * El registro de una inspeccion supone el cambio de estado de todas las incidencias con fecha anterior a la de la inspeccion. Todas estas 
+ * incidencias pasan a tener estado 'Revisada'.
+ * 
+ * Ademas, tambien se establece una nueva fecha de proxima inspeccion en funcion de la nota obtenida en la inspeccion que se esta registrando. 
+ * Si la nota es 'Favorable' se programa la proxima inspeccion para dentro de 12 meses; si es 'Favorable condicionado', para dentro de 8 meses;
+ * y si es 'Desfavorbale', la proxima inspeccion se producira dentro de 3 meses.
  */
 
 @WebServlet("/FormRegistrarInspeccionServlet")
@@ -46,11 +58,11 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
 		Inspector inspector = (Inspector) req.getSession().getAttribute("inspector");//inspector que registra la inspeccion
 
 		//REGISTRO DE UNA NUEVA INSPECCION EN LA BASE DE DATOS
-		
 		Date fecha_insp = null;
 		
+		//obtengo la fecha de la inspeccion con el formato correspondiente
 		try {
-			fecha_insp = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha_insp")); //getParameter siempre devuelve string
+			fecha_insp = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha_insp"));
 		} catch (java.text.ParseException e) {
 			e.printStackTrace();
 		}
@@ -75,19 +87,20 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
     		output.write(buffer, 0, length);
     	inspeccion.setArchivo(output.toByteArray());
     	
-    	InspeccionDAOImplementation.getInstance().create(inspeccion);//respalda la inspeccion en la base de datos
+    	InspeccionDAOImplementation.getInstance().create(inspeccion);
     	
-    	Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);//obtengo la inspeccion mas reciente del establecimiento
+    	//obtengo la inspeccion mas reciente del establecimiento
+    	Inspeccion ultima_inspeccion = InspeccionDAOImplementation.getInstance().ultimaInspeccion(establecimiento);
 		req.getSession().setAttribute("ultima_inspeccion", ultima_inspeccion);
     	
-    	List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Establ(establecimiento);    	//actualizar la lista de inspecciones para que salga la ultima inspeccion
+		//actualizo la lista de inspecciones para que salga la ultima inspeccion
+    	List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Establ(establecimiento);    	
 		req.getSession().setAttribute("inspecciones", inspecciones);
 		
 		String colorNota = colorNota(ultima_inspeccion);
 		req.getSession().setAttribute("colorNota", colorNota);
 		
-		//TODAS LAS INCIDENCIAS CON FECHA ANTERIOR A LA FECHA DE INSPECCION PASAN A ESTADO ´revisada'
-		
+		//TODAS LAS INCIDENCIAS CON FECHA ANTERIOR A LA FECHA DE INSPECCION PASAN A ESTADO 'revisada'
 		List<Incidencia> incidencias_no_revisadas = IncidenciaDAOImplementation.getInstance().readAllIncidenciaAntesDeFecha(establecimiento,fecha_insp);
 		
 		for(Incidencia incidencia : incidencias_no_revisadas) {
@@ -96,7 +109,6 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
 		}
 		
 		//ACTUALIZACION DE LA FECHA DE LA PROXIMA INSPECCION DEL ESTABLECIMIENTO SEGUN LA NOTA DE LA INSPECCION REGISTRADA
-		
 		Date nueva_fecha_insp = fecha_insp;
 		if (nota.equals("Favorable")) {
 			nueva_fecha_insp = sumarMeses(fecha_insp,12);
@@ -116,6 +128,13 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
     	getServletContext().getRequestDispatcher("/EstablecimientoView.jsp").forward(req,resp);//después de registrar la inspeccion vuelve a la pagina del establecimiento	
 	}
 	
+	/**
+	 * Metodo auxiliar que se encarga de sumar una cantidad de meses a una fecha en concreto. 
+	 * Para realizar operaciones con la fecha es necesario cambiar a la clase Calendar
+	 * @param fecha base
+	 * @param numero de meses que se quiere sumar a la fecha base
+	 * @return fecha futura
+	 */
 	private Date sumarMeses(Date fecha, int meses){
 		 Calendar calendar = Calendar.getInstance();
 		 calendar.setTime(fecha); // Configuramos la fecha que se recibe
@@ -124,8 +143,10 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
 		 return nueva_fecha; // Devuelve el objeto Date con los nuevos días añadidos
 	}
 	
-	/*
-	 * En funcion de la nota de la inspeccion, el texto aparece en diferente color 
+	/**
+	 * Metodo auxiliar que define el color en que se mostrara la nota en funcion de la nota de la inspeccion.
+	 * @param inspeccion cuya nota se quiere mostrar en color
+	 * @return string que define el color utilizado para mostrar la nota
 	 */
 	private String colorNota(Inspeccion inspeccion) {
 		String color= null;

@@ -20,8 +20,8 @@
 	<c:choose>
 	
 		<c:when test="${segun_establecimiento}">
-			<h2>Lista de incidencias reportadas en el establecimiento ${establecimiento.nombre}</h2>
-			<p>En este establecimiento los clientes han reportado ${fn:length(incidencias_pendientes)} incidencias que aún no han sido revisadas</p>
+			<h2>Incidencias reportadas en el establecimiento ${establecimiento.nombre}</h2>
+			<p>En este establecimiento los clientes han reportado ${fn:length(incidencias_pendientes)} incidencias que aún no han sido revisadas y ${fn:length(incidencias_revisadas)} incidencias que ya han sido revisadas</p>
 			
 			<div>
 			<c:if test="${fn:length(incidencias_pendientes)!=0}">
@@ -61,7 +61,7 @@
     						<p> <b>Gravedad:</b> ${incidenciai.gravedad}</p>
     						<p> <b>Estado:</b> ${incidenciai.status}</p>
     						<p> <b>Descripción:</b> ${incidenciai.descripcion}<p>
-    						<img src="${pageContext.request.contextPath}/ServeImageServletInt?id=${incidenciai.id}" width="200" height="250" alt="No hay imagen adjuntada por el cliente" />
+    						<img src="${pageContext.request.contextPath}/ServeImageServletInt?id=${incidenciai.id}" width="400" height="400" alt="No hay imagen adjuntada por el cliente" />
     						<button class="showhide btn btn-primary mt-1 mb-1 ml-1 mr-1" id="showHideButton_${loop.index}"> Cerrar detalles</button>
   						</div>
 					</div>
@@ -99,7 +99,7 @@
 		</c:when>
 		
 		<c:when test="${segun_cliente}">
-			<h2>Lista de incidencias reportadas por el cliente ${cliente.nombre} ${cliente.apellido_1} ${cliente.apellido_2}</h2>
+			<h2>Incidencias reportadas por el cliente ${cliente.nombre} ${cliente.apellido_1} ${cliente.apellido_2}</h2>
 			<p>Este cliente ha reportado ${fn:length(incidencias)} incidencias</p>
 			<c:if test="${fn:length(incidencias)!=0}">
 			<table class ="table" border="1">
@@ -109,6 +109,7 @@
 					<td><b>Establecimiento</b></td>
 					<td><b>Gravedad</b></td>
 					<td><b>Descripción de la incidencia</b></td>
+					<td><b>Detalles</b></td>
 				</tr>
 				</thead>
 				<c:forEach items="${incidencias}" var="incidenciai" varStatus="loop">
@@ -133,7 +134,7 @@
     						<p> <b>Gravedad:</b> ${incidenciai.gravedad}</p>
     						<p> <b>Estado:</b> ${incidenciai.status}</p>
     						<p> <b>Descripción:</b> ${incidenciai.descripcion}<p>
-    						<img src="${pageContext.request.contextPath}/ServeImageServletInt?id=${incidenciai.id}" width="200" height="250" alt="No hay imagen adjuntada por el cliente" />
+    						<img src="${pageContext.request.contextPath}/ServeImageServletInt?id=${incidenciai.id}" width="400" height="400" alt="No hay imagen adjuntada por el cliente" />
     						<button class="showhide btn btn-primary mt-1 mb-1 ml-1 mr-1" id="showHideButton_${loop.index}"> Cerrar detalles</button>
   						</div>
 					</div>

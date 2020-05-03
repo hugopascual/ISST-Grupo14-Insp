@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -15,8 +21,13 @@ import es.upm.dit.isst.insp.dao.InspectorDAOImplementation;
 import es.upm.dit.isst.insp.model.Inspeccion;
 import es.upm.dit.isst.insp.model.Inspector;
 
-/*
- * Servlet para la accion de eliminar un inspector
+/**
+ * Servlet que se encarga de las tareas necesarias para eliminar un inspector
+ * 
+ * Antes de eliminar un inspector es necesario asociar todas sus inspecciones a otro inspector, para que no 
+ * se pierdan. Esto es necesario porque la clave primaria del inspector es clave foranea de la inspeccion.
+ * 
+ * Para realizar esto, se asignan las inspecciones del inspector a eliminar a un "inspector falso".
  */
 
 @WebServlet("/BotonEliminaInspectorServlet")
@@ -28,28 +39,28 @@ public class BotonEliminaInspectorServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		/*Antes de eliminar un inspector necesitamos un "inspector falso" al que se le asigne las inspecciones que ha realizado el inspector que queremos eliminar
-		ya que si no, no se puede eliminar al inspector porque se produce una Violación de una restricción de Integridad Referencial al borrar una 
-		FOREIGN KEY de la inspección.
-		La id del inspector falso es inspector_falso */
+		//obtengo el inspector falso
+		Inspector inspector_falso = InspectorDAOImplementation.getInstance().read("inspector_falso");
 		
-		Inspector inspector_falso = InspectorDAOImplementation.getInstance().read("inspector_falso");//obtengo el inspector falso
-			
-		Inspector inspector = InspectorDAOImplementation.getInstance().read(req.getParameter("email_inspector"));//a través del indentificador del inspector (email) obtengo el inspector correspondiente
+		//a través del indentificador (email) obtengo el inspector correspondiente
+		Inspector inspector = InspectorDAOImplementation.getInstance().read(req.getParameter("email_inspector"));
 		
-		List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Insp(inspector); //lista de todas las inspecciones realizadas por el inspector que queremos eliminar
+		//lista de todas las inspecciones realizadas por el inspector que queremos eliminar
+		List<Inspeccion> inspecciones = InspeccionDAOImplementation.getInstance().readAllInspecciones_Insp(inspector); 
 		
-		//bucle que cambia el inspector al inspector_falso para todas las inspecciones del inspector
+		//asigno todas las inspecciones del inspector al inspector falso
 		for (Inspeccion inspeccioni : inspecciones) {
 			inspeccioni.setInspector_realiza_inspeccion(inspector_falso);
 			InspeccionDAOImplementation.getInstance().update(inspeccioni);
 		}
 		
-		InspectorDAOImplementation.getInstance().delete(inspector);//elimina el inspector de la base de datos
+		//elimina el inspector de la base de datos
+		InspectorDAOImplementation.getInstance().delete(inspector);
 		
-		List<Inspector> inspectores = (List<Inspector>) InspectorDAOImplementation.getInstance().readAll();//lee la lista de inspectores de la base de datos
-		req.getSession().setAttribute("inspectores", inspectores);//actualiza el atributo de la sesion con los inspectores
-
+		//actualizo la lista de inspectores
+		List<Inspector> inspectores = (List<Inspector>) InspectorDAOImplementation.getInstance().readAll();
+		
+		req.getSession().setAttribute("inspectores", inspectores);
 		getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
 			
 	}

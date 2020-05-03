@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -12,9 +18,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-/*
- * Servlet para sacar toda la información relativa al establecimiento seleccionado para el registro de la inspeccion
+/**
+ * Servlet que obtiene todos los datos relativos al establecimiento que son necesarios en la pagina de registro de una inspeccion
  */
 
 @WebServlet("/BotonPaginaInspeccionServlet")
@@ -25,6 +30,7 @@ public class BotonPaginaInspeccionServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		//String con la fecha del dia actual. Este string se utilizara para limitar los calendarios en los que el inspector debe marcar la fecha 
 		String fecha_hoy = fechaHoy();
 		
 		req.getSession().getAttribute("establecimiento");
@@ -35,8 +41,9 @@ public class BotonPaginaInspeccionServlet extends HttpServlet {
 			
 	}
 	
-	/*
-	 * Devuelve un string con la fecha de hoy
+	/**
+	 * Metodo auxiliar que devuelve un string con la fecha del dia actual con formato yyyy-MM-dd. 
+	 * @return string con la fecha de hoy
 	 */
 	private String fechaHoy() {
 		Date fecha_hoy =new Date();

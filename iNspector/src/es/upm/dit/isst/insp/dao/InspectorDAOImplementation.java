@@ -1,23 +1,19 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.dao;
 
 import java.util.Collection;
 import java.util.List;
-
 import javax.persistence.Query;
-
 import org.hibernate.Session;
-
 import es.upm.dit.isst.insp.model.Inspector;
-
-/*
- * DAO son clases utilizadas para realizar operaciones de persistencia 
- * asociadas al modelo, es decir, utilizadas para escribir o leer de la 
- * base de datos
- */
 
 public class InspectorDAOImplementation implements InspectorDAO {
 
-	//Esta clase debe seguir el patron de diseno Singleton
 		private static InspectorDAOImplementation instancia = null;
 		
 		private InspectorDAOImplementation() {
@@ -42,7 +38,7 @@ public class InspectorDAOImplementation implements InspectorDAO {
 
 		@SuppressWarnings("unchecked")
 		@Override
-		public Inspector read(String email) {//hay que ver como leer el identificador del inspector
+		public Inspector read(String email) {
 			Session session = SessionFactoryService.get().openSession();
 			session.beginTransaction();
 			Inspector inspector = session.get(Inspector.class, email);
@@ -90,8 +86,8 @@ public class InspectorDAOImplementation implements InspectorDAO {
 			Inspector inspector =null;
 			session.beginTransaction();
 			Query q = session.createQuery("select i from Inspector i where i.email = :email and i.password = :password");
-			q.setParameter("email", email); //cambia email en la query por email del parametro
-			q.setParameter("password", password);//cambia password en la query por password de parametro
+			q.setParameter("email", email);
+			q.setParameter("password", password);
 			List<Inspector> inspectores = q.getResultList();
 			if (inspectores.size() > 0)
 				inspector = (Inspector) (q.getResultList().get(0));

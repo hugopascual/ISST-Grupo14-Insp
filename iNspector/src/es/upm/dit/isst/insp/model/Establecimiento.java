@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.model;
 
 import java.io.Serializable;
@@ -14,6 +20,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * Clase que define un establecimiento
+ */
 
 @Entity
 public class Establecimiento implements Serializable {
@@ -21,19 +30,21 @@ public class Establecimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String cif; // tendremos que implementar una funcion que compruebe si es valido
+	private String cif;
 	private String nombre;
 	private String direccion;
 	private String ciudad;
 	private String rep_legal;
-	private String tipo; //tipo puede ser: bar, restaurante, cafeteria, hotel, otro
+	private String tipo;
 	private String codigo_postal;
 	
 	@Temporal(TemporalType.DATE)
-	//si favorable 1 año, favorable Condicionado 8 meses, no favorable 2 meses
 	private Date proxima_inspeccion; 
 	
+	@Lob
+	private byte[] imagen;
 	
+	//relaciones definidas en el modelo de datos
 	@OneToMany(mappedBy="establecimiento_inspeccion", fetch = FetchType.EAGER)
 	private List <Inspeccion> inspecciones_realizadas_rest;
 	
@@ -43,10 +54,11 @@ public class Establecimiento implements Serializable {
 	@ManyToMany (mappedBy = "establecimientos_inspeccionados")
 	private List <Inspector> inspectores_realizado_inspecciones;
 	
-	@Lob
-	private byte[] imagen;
-
-	
+	/**
+	 * Constructor de la clase. 
+	 * Al crear un establecimiento, automáticamente se establece su fecha de proxima inspeccion 
+	 * para dentro de un anyo desde su creacion	
+	 */
 	public Establecimiento() {
 		Date fecha = new Date();
 		int aux = fecha.getYear()+1;
@@ -125,121 +137,86 @@ public class Establecimiento implements Serializable {
 		this.imagen = imagen;
 	}
 
-	/**
-	 * @return the cif
-	 */
+	
 	public String getCif() {
 		return cif;
 	}
 
-	/**
-	 * @param cif the cif to set
-	 */
+	
 	public void setCif(String cif) {
 		this.cif = cif;
 	}
 
-	/**
-	 * @return the nombre
-	 */
+	
 	public String getNombre() {
 		return nombre;
 	}
 
-	/**
-	 * @param nombre the nombre to set
-	 */
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	/**
-	 * @return the direccion
-	 */
+	
 	public String getDireccion() {
 		return direccion;
 	}
 
-	/**
-	 * @param direccion the direccion to set
-	 */
+	
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 
-	/**
-	 * @return the ciudad
-	 */
+	
 	public String getCiudad() {
 		return ciudad;
 	}
 
-	/**
-	 * @param ciudad the ciudad to set
-	 */
+	
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
 
-	/**
-	 * @return the rep_legal
-	 */
+	
 	public String getRep_legal() {
 		return rep_legal;
 	}
 
-	/**
-	 * @param rep_legal the rep_legal to set
-	 */
+	
 	public void setRep_legal(String rep_legal) {
 		this.rep_legal = rep_legal;
 	}
 
-	/**
-	 * @return the tipo
-	 */
+	
 	public String getTipo() {
 		return tipo;
 	}
 
-	/**
-	 * @param tipo the tipo to set
-	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
-	/**
-	 * @return the proxima_inspeccion
-	 */
+	
 	public Date getProxima_inspeccion() {
 		return proxima_inspeccion;
 	}
 	
-	/**
-	 * @param proxima_inspeccion the proxima_inspeccion to set
-	 */
+	
 	public void setProxima_inspeccion(Date proxima_inspeccion) {
 		this.proxima_inspeccion = proxima_inspeccion;
 	}
 	
-	/**
-	 * @return the proxima_inspeccion
-	 */
+	
 	public String getCodigo_postal() {
 		return codigo_postal;
 	}
 	
-	/**
-	 * @param proxima_inspeccion the proxima_inspeccion to set
-	 */
+	
 	public void setCodigo_postal(String codigo_postal) {
 		this.codigo_postal = codigo_postal;
 	}
 	
-	/**
-	 * @return the serialversionuid
-	 */
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

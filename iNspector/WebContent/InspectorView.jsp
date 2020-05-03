@@ -20,10 +20,10 @@
 		<div class="col-lg-6">
 			<h2>Página del inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2}</h2>
 			
-			<p>Nombre: ${inspector.nombre}</p>
-			<p>Apellidos: ${inspector.apellido_1} ${inspector.apellido_2}</p>
-			<p>Usuario: ${inspector.usuario}</p>
-			<p>Email: ${inspector.email}</p>
+			<p><b>Nombre:</b> ${inspector.nombre}</p>
+			<p><b>Apellidos:</b> ${inspector.apellido_1} ${inspector.apellido_2}</p>
+			<p><b>Usuario:</b> ${inspector.usuario}</p>
+			<p><b>Email:</b> ${inspector.email}</p>
 			
 		</div>
 		<div class="col-lg-6">

@@ -1,3 +1,8 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -20,8 +25,8 @@ import es.upm.dit.isst.insp.dao.InspectorDAOImplementation;
 import es.upm.dit.isst.insp.model.Cliente;
 import es.upm.dit.isst.insp.model.Inspector;
 
-/*
- * Servlet para subir fotos de perfil de un usuario
+/**
+ * Servlet utilizada para subir fotos de perfil de un usuario
  */
 
 @WebServlet("/FotoPerfilServlet")
@@ -33,10 +38,10 @@ public class FotoPerfilServlet extends HttpServlet {
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
-			req.getSession().setAttribute("imagen", true);
+			req.getSession().setAttribute("imagen", true);//variable para detectar que el usuario tiene una imagen
 			
 			String email = req.getParameter("email");
-			
+		
 			Inspector inspector = InspectorDAOImplementation.getInstance().read(email);
 			Cliente cliente = ClienteDAOImplementation.getInstance().read(email);
 			

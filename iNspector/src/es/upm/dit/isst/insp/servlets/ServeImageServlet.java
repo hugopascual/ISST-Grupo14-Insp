@@ -1,3 +1,8 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
 package es.upm.dit.isst.insp.servlets;
 
 import java.io.IOException;
@@ -18,6 +23,10 @@ import es.upm.dit.isst.insp.model.Establecimiento;
 import es.upm.dit.isst.insp.model.Inspector;
 import es.upm.dit.isst.insp.model.Incidencia;
 
+/**
+ * Servlet encargada de devolver la imagen asociada a un inspector, un cliente o un establecimiento
+ */
+
 @WebServlet("/ServeImageServlet")
 public class ServeImageServlet extends HttpServlet {
 	
@@ -32,7 +41,6 @@ public class ServeImageServlet extends HttpServlet {
 		Inspector inspector = InspectorDAOImplementation.getInstance().read(id);
 		Cliente cliente = ClienteDAOImplementation.getInstance().read(id);
 		
-		
 		if (null != inspector) {
 			resp.setContentLength(inspector.getImagen().length);
 			resp.getOutputStream().write(inspector.getImagen());
@@ -40,7 +48,7 @@ public class ServeImageServlet extends HttpServlet {
 			resp.setContentLength(cliente.getImagen().length);
 			resp.getOutputStream().write(cliente.getImagen());
 		} else if (null != establecimiento) {
-			if (establecimiento.getImagen().length == 0) {
+			if (establecimiento.getImagen().length == 0) {//comprobacion de si el establecimineto tiene imagen asociada
 				req.getSession().setAttribute("tiene_imagen",false);
 			} else {
 				req.getSession().setAttribute("tiene_imagen",true);

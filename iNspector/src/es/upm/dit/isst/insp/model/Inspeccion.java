@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.model;
 
 import java.io.Serializable;
@@ -13,6 +19,10 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+/**
+ * Clase que representa una inspeccion
+ */
 
 @Entity
 public class Inspeccion implements Serializable {
@@ -41,126 +51,68 @@ public class Inspeccion implements Serializable {
 	public Inspeccion() {
 	}
 
-
-	/**
-	 * @return the id
-	 */
 	public int getId() {
 		return id;
 	}
 
-
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 
-	/**
-	 * @return the fecha_insp
-	 */
 	public Date getFecha_insp() {
 		return fecha_insp;
 	}
 
 
-	/**
-	 * @param fecha_insp the fecha_insp to set
-	 */
 	public void setFecha_insp(Date fecha_insp) {
 		this.fecha_insp = fecha_insp;
 	}
 
 
-	/**
-	 * @return the nota
-	 */
 	public String getNota() {
 		return nota;
 	}
 
-
-	/**
-	 * @param nota the nota to set
-	 */
 	public void setNota(String nota) {
 		this.nota = nota;
 	}
 
-
-	/**
-	 * @return the descripcion
-	 */
 	public String getDescripcion() {
 		return descripcion;
 	}
 
-
-	/**
-	 * @param descripcion the descripcion to set
-	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-
-	/**
-	 * @return the archivo
-	 */
 	public byte[] getArchivo() {
 		return archivo;
 	}
 
-
-	/**
-	 * @param archivo the archivo to set
-	 */
 	public void setArchivo(byte[] archivo) {
 		this.archivo = archivo;
 	}
 
-
-	/**
-	 * @return the inspector_realiza_inspeccion
-	 */
 	public Inspector getInspector_realiza_inspeccion() {
 		return inspector_realiza_inspeccion;
 	}
 
-
-	/**
-	 * @param inspector_realiza_inspeccion the inspector_realiza_inspeccion to set
-	 */
 	public void setInspector_realiza_inspeccion(Inspector inspector_realiza_inspeccion) {
 		this.inspector_realiza_inspeccion = inspector_realiza_inspeccion;
 	}
 
-
-	/**
-	 * @return the establecimiento_inspeccion
-	 */
 	public Establecimiento getEstablecimiento_inspeccion() {
 		return establecimiento_inspeccion;
 	}
 
-
-	/**
-	 * @param establecimiento_inspeccion the establecimiento_inspeccion to set
-	 */
 	public void setEstablecimiento_inspeccion(Establecimiento establecimiento_inspeccion) {
 		this.establecimiento_inspeccion = establecimiento_inspeccion;
 	}
 
-
-	/**
-	 * @return the serialversionuid
-	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -218,7 +170,6 @@ public class Inspeccion implements Serializable {
 			return false;
 		return true;
 	}
-
 
 	@Override
 	public String toString() {

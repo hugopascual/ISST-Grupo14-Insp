@@ -17,7 +17,7 @@
 <%@ include file = "header.jsp" %>
 
 <div class="container">
-	<h2>Lista de establecimientos registrados</h2>
+	<h2>Establecimientos registrados en iNspector</h2>
 	<p>Actualmente hay registrados ${fn:length(establecimientos)} establecimientos en iNspector<p>
 	
 	<div>

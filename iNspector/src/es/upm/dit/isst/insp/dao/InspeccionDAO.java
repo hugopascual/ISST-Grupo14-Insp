@@ -1,3 +1,9 @@
+/**
+ * Esta clase forma parte del proyecto iNspector de la asigantura ISST del GITST de la UPM (curso 2019/2020)
+ * @author Jakub Piatek, Hugo Pascual, Alvaro Basante, Tian Lan y Jaime Castro
+ * @version Sprint 3
+ */
+
 package es.upm.dit.isst.insp.dao;
 
 import java.util.Collection;
@@ -7,14 +13,13 @@ import es.upm.dit.isst.insp.model.Establecimiento;
 import es.upm.dit.isst.insp.model.Inspeccion;
 import es.upm.dit.isst.insp.model.Inspector;
 
+/**
+ * Las clases DAO son utilizadas para realizar operaciones de persistencia asociadas al modelo.
+ * @see los metodos de esta interfaz se implementan en la clase InspeccionDAOImplementation
+ */
 
 public interface InspeccionDAO {
 
-/*
- * Las interfaces deben contener las funciones basicas de persistencia
- * CRUD (Create, Read, Update, Delete), lectura de todos los objetos,
- * y metodo para comprobar la autenticacion.
- */
 	public void create (Inspeccion inspeccion);
 	public Inspeccion read (int id);
 	public void update (Inspeccion inspeccion);

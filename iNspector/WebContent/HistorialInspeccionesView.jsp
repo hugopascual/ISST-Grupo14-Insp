@@ -21,8 +21,7 @@
 
 <c:choose>
 	<c:when test="${segun_establecimiento}">
-		<h2>Lista de inspecciones realizadas en el establecimiento ${establecimiento.nombre}</h2>
-		<p>Ahora mismo el inspector ${inspector.nombre} está visualizando el historial de inspecciones</p>
+		<h2>Inspecciones realizadas en el establecimiento ${establecimiento.nombre}</h2>
 		<p>En este establecimiento se han realizado ${fn:length(inspecciones)} inspecciones</p>
 		<c:if test="${fn:length(inspecciones)!=0}">
 		<div>
@@ -47,7 +46,9 @@
 					<td>
 					   <form action="ServeFileServlet" method="get">
 						   <input type="hidden" name="inspeccion_id" value="${inspeccioni.id}" />
-						   <button type="submit">Descargar informe de inspección</button>
+						   <input type="hidden" name="establecimiento_cif" value="${establecimiento.cif}" />
+						   <input type="hidden" name="fecha_inspeccion" value="${inspeccioni.fecha_insp}" />
+						   <button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1 ">Descargar informe de inspección</button>
 					   </form>
 					</td>
 				</tr>
@@ -57,7 +58,7 @@
 		</c:if>
 	</c:when>
 	<c:when test="${segun_inspector}">
-		<h2>Lista de inspecciones realizadas por el inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2}</h2>
+		<h2>Inspecciones realizadas por el inspector ${inspector.nombre} ${inspector.apellido_1} ${inspector.apellido_2}</h2>
 		<p>Este inspector ha realizado ${fn:length(inspecciones)} inspecciones</p>
 		<c:if test="${fn:length(inspecciones)!=0}">
 		<table class ="table" border="1">
@@ -68,6 +69,7 @@
 				<td><b>Fecha de la inspección</b></td>
 				<td><b>Nota</b></td>
 				<td><b>Comentarios del inspector</b></td>
+				<td><b>Informe</b></td>
 			</tr>
 			</thead>
 			<c:forEach items="${inspecciones}" var="inspeccioni">
@@ -80,7 +82,7 @@
 					<td>
 					   <form action="ServeFileServlet" method="get">
 						   <input type="hidden" name="inspeccion_id" value="${inspeccioni.id}" />
-						   <button type="submit">Descargar informe de inspección</button>
+						   <button type="submit" class="btn btn-primary mt-1 mb-1 ml-1 mr-1 ">Descargar informe de inspección</button>
 					   </form>
 					</td>
 				</tr>
