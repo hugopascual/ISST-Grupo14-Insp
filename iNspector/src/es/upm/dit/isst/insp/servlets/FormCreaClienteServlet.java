@@ -61,6 +61,7 @@ public class FormCreaClienteServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 		} catch (Exception e) {
 			req.getSession().setAttribute("error_cliente", true);//variable que hara que salte alerta de usuario repetido
+			req.getSession().setAttribute("nuevo_usuario", false);
 			
 			getServletContext().getRequestDispatcher("/FormCreaCliente.jsp").forward(req,resp);
 		}
