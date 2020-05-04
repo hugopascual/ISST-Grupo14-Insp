@@ -55,6 +55,11 @@
 		alert('Ha introducido dos clientes con el mismo email');
 		</script>
 	</c:when>
+	<c:when test="${email_no_valido}">
+		<script>
+		alert('El email introducido no es válido');
+		</script>
+	</c:when>
 </c:choose>
 
 

@@ -21,6 +21,7 @@ import es.upm.dit.isst.insp.dao.ClienteDAOImplementation;
 import es.upm.dit.isst.insp.dao.EstablecimientoDAOImplementation;
 import es.upm.dit.isst.insp.model.Cliente;
 import es.upm.dit.isst.insp.model.Establecimiento;
+import es.upm.dit.isst.insp.validacion.ClaseValidadora;
 
 /**
  * Servlet que se encarga de recoger los datos del formulario de registro de un cliente y respaldarlos en la base de datos
@@ -35,36 +36,46 @@ public class FormCreaClienteServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String nombre = req.getParameter("nombre");
-		String apellido_1 = req.getParameter("apellido_1");
-		String apellido_2 = req.getParameter("apellido_2");
 		String email = req.getParameter("email");
-		String usuario = req.getParameter("usuario");
-		String password = req.getParameter("password");
-		
-		Cliente cliente = new Cliente();
-		
-		cliente.setNombre(nombre);
-		cliente.setApellido_1(apellido_1);
-		cliente.setApellido_2(apellido_2);
-		cliente.setEmail(email);
-		cliente.setUsuario(usuario);
-		cliente.setPassword(password);
-		
-		//al crear el cliente en la BBDD, si ya exite un cliente con el mismo id, salta una excepcion ya que se vulnera la unicidad de claves
-		try {
-			ClienteDAOImplementation.getInstance().create(cliente);
+	
+		if (!ClaseValidadora.compruebaEmail(email)) {
 			
-			req.getSession().setAttribute("nuevo_usuario", true);//variable que hara que salte alerta de usuario registrado
-			req.getSession().setAttribute("error_cliente", false);
-			
-			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
-		} catch (Exception e) {
-			req.getSession().setAttribute("error_cliente", true);//variable que hara que salte alerta de usuario repetido
-			req.getSession().setAttribute("nuevo_usuario", false);
-			
+			req.getSession().setAttribute("email_no_valido", true);//variable que hara que salte la alerta de email incorrecto
 			getServletContext().getRequestDispatcher("/FormCreaCliente.jsp").forward(req,resp);
+			
+		} else {
+			
+			String nombre = req.getParameter("nombre");
+			String apellido_1 = req.getParameter("apellido_1");
+			String apellido_2 = req.getParameter("apellido_2");
+			String usuario = req.getParameter("usuario");
+			String password = req.getParameter("password");
+			
+			Cliente cliente = new Cliente();
+			
+			cliente.setNombre(nombre);
+			cliente.setApellido_1(apellido_1);
+			cliente.setApellido_2(apellido_2);
+			cliente.setEmail(email);
+			cliente.setUsuario(usuario);
+			cliente.setPassword(password);
+			
+			//al crear el cliente en la BBDD, si ya exite un cliente con el mismo id, salta una excepcion ya que se vulnera la unicidad de claves
+			try {
+				ClienteDAOImplementation.getInstance().create(cliente);
+				
+				req.getSession().setAttribute("nuevo_usuario", true);//variable que hara que salte alerta de usuario registrado
+				req.getSession().setAttribute("error_cliente", false);
+				req.getSession().setAttribute("email_no_valido", false);
+				
+				getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+			} catch (Exception e) {
+				req.getSession().setAttribute("error_cliente", true);//variable que hara que salte alerta de usuario repetido
+				req.getSession().setAttribute("nuevo_usuario", false);
+				req.getSession().setAttribute("email_no_valido", false);
+				
+				getServletContext().getRequestDispatcher("/FormCreaCliente.jsp").forward(req,resp);
+			}
 		}
-		
 	}
 }

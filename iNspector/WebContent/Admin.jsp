@@ -111,6 +111,16 @@
 		alert('Ha introducido dos establecimientos con el mismo CIF');
 		</script>
 	</c:when>
+	<c:when test="${cif_no_valido}">
+		<script>
+		alert('El CIF introducido no es válido');
+		</script>
+	</c:when>
+	<c:when test="${email_no_valido}">
+		<script>
+		alert('El email introducido no es válido');
+		</script>
+	</c:when>
 </c:choose>
 
 
