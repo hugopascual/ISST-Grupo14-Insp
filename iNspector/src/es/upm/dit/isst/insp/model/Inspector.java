@@ -30,8 +30,8 @@ public class Inspector implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id; 
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	//private int id; 
 	private String nombre;
 	private String apellido_1;
 	private String apellido_2;
@@ -67,7 +67,7 @@ public class Inspector implements Serializable {
 		result = prime * result + ((apellido_1 == null) ? 0 : apellido_1.hashCode());
 		result = prime * result + ((apellido_2 == null) ? 0 : apellido_2.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + id;
+		//result = prime * result + id;
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
@@ -76,7 +76,7 @@ public class Inspector implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Inspector [id=" + id + ", nombre=" + nombre + ", apellido_1=" + apellido_1 + ", apellido_2="
+		return "Inspector [ nombre=" + nombre + ", apellido_1=" + apellido_1 + ", apellido_2="
 				+ apellido_2 + ", usuario=" + usuario + ", password=" + password + ", email=" + email + "]";
 	}
 	@Override
@@ -102,8 +102,6 @@ public class Inspector implements Serializable {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
-			return false;
-		if (id != other.id)
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
@@ -132,13 +130,13 @@ public class Inspector implements Serializable {
 	}
 	
 
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
+//	public int getId() {
+//		return id;
+//	}
+//	
+//	public void setId(int id) {
+//		this.id = id;
+//	}
 	
 	public String getNombre() {
 		return nombre;

@@ -35,7 +35,7 @@ public class FormLoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String email = req.getParameter("email");
+		String email = req.getParameter("email").toLowerCase();
 		String password = req.getParameter("password");
 		
 		List<Inspector> inspectores = (List<Inspector>) InspectorDAOImplementation.getInstance().readAll();

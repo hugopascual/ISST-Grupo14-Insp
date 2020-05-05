@@ -37,7 +37,7 @@ public class FormCreaInspectorServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String email_real = req.getParameter("email");
+		String email_real = req.getParameter("email").toLowerCase();
 		
 		if (!ClaseValidadora.compruebaEmail(email_real)) {
 			
