@@ -137,11 +137,14 @@ public class InspeccionDAOImplementation implements InspeccionDAO {
 			q1.setParameter("establ", establecimiento);
 			Object fecha = q1.getSingleResult(); //fecha de la ultima inspeccion del establecimiento
 			
-			Query q2 = session.createQuery("select i from Inspeccion i where i.establecimiento_inspeccion = :establ and i.fecha_insp = :fecha ");//ultima inspeccion del establecimiento
+			Query q2 = session.createQuery("select i from Inspeccion i where i.establecimiento_inspeccion = :establ and i.fecha_insp = :fecha order by i.fecha_insp asc");//ultima inspeccion del establecimiento
 			q2.setParameter("establ", establecimiento);
 			q2.setParameter("fecha", fecha);
 			
-			inspeccion = (Inspeccion) q2.getSingleResult();//ultima inspeccion en el establecimiento
+			//inspeccion = (Inspeccion) q2.getSingleResult();//ultima inspeccion en el establecimiento
+			List<Inspeccion> inspecciones = q2.getResultList(); //inspecciones realizadas en la fecha dada
+			inspeccion = inspecciones.get(inspecciones.size()-1);//me quedo con la ultima inspeccion que se registro ese dia
+			
 			session.getTransaction().commit();
 			session.close();
 			return inspeccion;			

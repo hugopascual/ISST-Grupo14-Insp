@@ -57,6 +57,7 @@ public class FormIndexServlet extends HttpServlet {
 			
 		} else {//un usuario no registrado
 			
+			req.getSession().setAttribute("loginError", false);
 			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 		}
 		

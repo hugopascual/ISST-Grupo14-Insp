@@ -154,7 +154,7 @@ public class FormRegistrarInspeccionServlet extends HttpServlet {
 		if (nota.equals("Favorable")) {
 			color = "#00A135"; //verde
 		} else if (nota.equals("Favorable condicionado")) {
-			color = "#FFFF00"; //amarillo
+			color = "#FAB521"; //amarillo
 		} else if (nota.equals("Desfavorable")) {
 			color = "#FF0000"; //rojo
 		}

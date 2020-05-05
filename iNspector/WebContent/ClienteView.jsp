@@ -35,7 +35,7 @@
 				<form action="FotoPerfilServlet" method="post" enctype="multipart/form-data">
 					<p>Aquí puedes actualizar tu foto de perfil</p>
 					<input type="hidden" name="email" value="${cliente.email}" />
-					<input type="file" name="image" />
+					<input type="file" name="image" required />
 					<button type="submit" class="btn btn-primary">Subir foto</button>
 				</form>
 			</c:otherwise>	

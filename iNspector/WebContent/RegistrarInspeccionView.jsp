@@ -37,7 +37,7 @@
 	<textarea rows="10" cols="40" name="descripcion" placeholder="Comentarios adicionales sobre la inspección"></textarea>
 	</p>
 	<p>
-    <input type="file" name="file" />
+    <input type="file" name="file" required />
  	</p>
     <p>
     <button class="btn btn-primary" type="submit" id="botonRegistrarInforme">Registrar informe</button>

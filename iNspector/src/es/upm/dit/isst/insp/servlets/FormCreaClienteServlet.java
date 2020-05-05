@@ -68,12 +68,14 @@ public class FormCreaClienteServlet extends HttpServlet {
 				req.getSession().setAttribute("nuevo_usuario", true);//variable que hara que salte alerta de usuario registrado
 				req.getSession().setAttribute("error_cliente", false);
 				req.getSession().setAttribute("email_no_valido", false);
+				req.getSession().setAttribute("loginError", false);
 				
 				getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 			} catch (Exception e) {
 				req.getSession().setAttribute("error_cliente", true);//variable que hara que salte alerta de usuario repetido
 				req.getSession().setAttribute("nuevo_usuario", false);
 				req.getSession().setAttribute("email_no_valido", false);
+				
 				
 				getServletContext().getRequestDispatcher("/FormCreaCliente.jsp").forward(req,resp);
 			}

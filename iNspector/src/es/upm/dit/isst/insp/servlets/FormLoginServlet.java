@@ -55,6 +55,7 @@ public class FormLoginServlet extends HttpServlet {
 			req.getSession().setAttribute("inspectores", inspectores);
 			req.getSession().setAttribute("establecimientos", establecimientos);
 			req.getSession().setAttribute("clientes", clientes);
+			req.getSession().setAttribute("loginError", false);
 			
 			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
 			
@@ -64,6 +65,7 @@ public class FormLoginServlet extends HttpServlet {
 			req.getSession().setAttribute("soy_cliente", true);
 			req.getSession().setAttribute("cliente", cliente);
 			req.getSession().setAttribute("establecimientos", establecimientos);
+			req.getSession().setAttribute("loginError", false);
 			
 			boolean imagen = false;
 			if (cliente.getImagen() != null) {
@@ -80,6 +82,7 @@ public class FormLoginServlet extends HttpServlet {
 			req.getSession().setAttribute("soy_inspector", true);
 			req.getSession().setAttribute("inspector",inspector);
 			req.getSession().setAttribute("establecimientos", establecimientos);
+			req.getSession().setAttribute("loginError", false);
 			
 			boolean imagen = false;
 			if (inspector.getImagen() != null) {
