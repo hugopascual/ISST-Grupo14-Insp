@@ -27,7 +27,7 @@
 			<p>Nombre del establecimiento: <input type="text" name="establecimiento" value="${establecimiento.nombre}" disabled required></p>
 			<p>Denunciante:<input type="text" name="cliente" value="${cliente.nombre} ${cliente.apellido_1} ${cliente.apellido_2}" disabled required>
 			<p>Fecha: <input type="date" name="fecha_incidencia" min="2000-01-01" max=${fecha_hoy} placeholder="Fecha de la incidencia" required></p>
-			<p>Nota de la inspección:
+			<p>Seleccione la gravedad de la incidencia:
 				<select name="gravedad" required>
 					   <option value="" disabled selected>Gravedad</option>
 				       <option value="Muy grave">Muy grave</option> 
